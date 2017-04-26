@@ -30,5 +30,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.1'
     provided 'org.projectlombok:lombok:1.16.16'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
 }
