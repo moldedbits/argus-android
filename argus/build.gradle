@@ -32,4 +32,6 @@ dependencies {
     provided 'org.projectlombok:lombok:1.16.16'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.google.android.gms:play-services-auth:10.2.1'
 }

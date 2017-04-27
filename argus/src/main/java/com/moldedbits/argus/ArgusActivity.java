@@ -3,8 +3,11 @@ package com.moldedbits.argus;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.provider.LoginProvider;
+
 public class ArgusActivity extends AppCompatActivity implements
-        LoginFragment.OnFragmentInteractionListener {
+        LoginProvider.LoginListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +25,15 @@ public class ArgusActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(ArgusUser user) {
+        Argus.getInstance().loginUser(user);
+
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
+    }
+
+    @Override
+    public void onLoginFailure() {
+        // TODO
     }
 }
