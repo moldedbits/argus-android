@@ -1,6 +1,5 @@
 package com.moldedbits.argus.provider;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +14,11 @@ import com.moldedbits.argus.model.ArgusUser;
  */
 public class EmailLoginProvider extends LoginProvider {
 
-    private Context context;
-
     private EditText usernameInput;
     private EditText passwordInput;
 
     @Override
-    public View inflateLoginView(Context context, ViewGroup parentView) {
-        this.context = context;
+    public View inflateLoginView(ViewGroup parentView) {
 
         View loginView = LayoutInflater.from(context)
                 .inflate(R.layout.login_email, parentView, false);

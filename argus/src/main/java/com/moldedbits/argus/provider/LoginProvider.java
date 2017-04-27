@@ -1,6 +1,8 @@
 package com.moldedbits.argus.provider;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,11 +16,15 @@ import com.moldedbits.argus.model.ArgusUser;
 public abstract class LoginProvider {
 
     private LoginListener loginListener;
+    Fragment fragment;
+    protected Context context;
 
-    public View loginView(Context context, ViewGroup parentView, LoginListener listener) {
+    public View loginView(Fragment fragment, ViewGroup parentView, LoginListener listener) {
         this.loginListener = listener;
+        context = fragment.getContext();
+        this.fragment = fragment;
 
-        View view = inflateLoginView(context, parentView);
+        View view = inflateLoginView(parentView);
         if (view.findViewById(getLoginButtonId()) == null) {
             throw new RuntimeException("LoginProvider view needs a button with id R.id.login");
         }
@@ -42,7 +48,10 @@ public abstract class LoginProvider {
         loginListener.onLogin();
     }
 
-    abstract protected View inflateLoginView(Context context, ViewGroup parentView);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {}
+
+    abstract protected View inflateLoginView(ViewGroup parentView);
+
     abstract void performLogin();
 
     public interface LoginListener {

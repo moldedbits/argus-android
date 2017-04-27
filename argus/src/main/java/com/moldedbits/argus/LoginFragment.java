@@ -1,6 +1,7 @@
 package com.moldedbits.argus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
 
         ViewGroup loginContainer = (ViewGroup) view.findViewById(R.id.login_container);
         for (LoginProvider provider : Argus.getInstance().getLoginProviders()) {
-            loginContainer.addView(provider.loginView(getContext(), loginContainer, this));
+            loginContainer.addView(provider.loginView(this, loginContainer, this));
         }
 
         return view;
@@ -65,5 +66,13 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
 
     interface OnFragmentInteractionListener {
         void onLoginSuccess();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (LoginProvider provider : Argus.getInstance().getLoginProviders()) {
+            provider.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
