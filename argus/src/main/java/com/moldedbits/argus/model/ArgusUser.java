@@ -13,4 +13,8 @@ public class ArgusUser {
      * Username
      */
     @Getter @Setter String username;
+
+    public ArgusUser(String username) {
+        this.username = username;
+    }
 }

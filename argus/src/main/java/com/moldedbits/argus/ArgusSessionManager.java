@@ -10,6 +10,12 @@ import com.moldedbits.argus.model.ArgusUser;
 public class ArgusSessionManager {
 
     /**
+     * Static user object only for DEMO. This will be stored in a secure storage in the actual
+     * implementation.
+     */
+    static ArgusUser currentUser;
+
+    /**
      * Is a user currently logged in.
      *
      * @return True if a user is logged in, false otherwise
@@ -25,6 +31,10 @@ public class ArgusSessionManager {
      */
     @Nullable
     public static ArgusUser getCurrentUser() {
-        return null;
+        return currentUser;
+    }
+
+    static void setCurrentUser(ArgusUser user) {
+        currentUser = user;
     }
 }

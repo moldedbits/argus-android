@@ -1,6 +1,5 @@
 package com.moldedbits.argus;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -24,13 +23,7 @@ public class ArgusActivity extends AppCompatActivity implements
 
     @Override
     public void onLoginSuccess() {
-        Class nextScreen = Argus.getInstance().getNextScreen();
-        if (nextScreen != null) {
-            startActivity(new Intent(this, nextScreen));
-            finish();
-        } else {
-            startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
-            finish();
-        }
+        startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
+        finish();
     }
 }

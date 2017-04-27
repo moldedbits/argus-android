@@ -2,21 +2,19 @@ package com.moldedbits.argus;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moldedbits.argus.provider.LoginProvider;
 
 /**
  * Login Fragment
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements LoginProvider.LoginListener {
 
     private OnFragmentInteractionListener listener;
-
-    private View loginButton;
 
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -34,7 +32,12 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        loginButton = view.findViewById(R.id.login);
+
+        ViewGroup loginContainer = (ViewGroup) view.findViewById(R.id.login_container);
+        for (LoginProvider provider : Argus.getInstance().getLoginProviders()) {
+            loginContainer.addView(provider.loginView(getContext(), loginContainer, this));
+        }
+
         return view;
     }
 
@@ -56,15 +59,8 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onLoginSuccess();
-            }
-        });
+    public void onLogin() {
+        listener.onLoginSuccess();
     }
 
     interface OnFragmentInteractionListener {
