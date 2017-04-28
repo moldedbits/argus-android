@@ -24,6 +24,8 @@ import java.util.Arrays;
 
 public class FaceBookLoginProvider extends LoginProvider {
 
+    // Permissions can be changed
+
     public static final String[] FACEBOOK_APP_PERMISSIONS =
             {
                     "public_profile",
@@ -73,9 +75,8 @@ public class FaceBookLoginProvider extends LoginProvider {
 
     @Override
     protected View inflateLoginView(ViewGroup parentView) {
-        View loginView = LayoutInflater.from(context)
+        return LayoutInflater.from(context)
                 .inflate(R.layout.facebook_login, parentView, false);
-        return loginView;
     }
 
     @Override
