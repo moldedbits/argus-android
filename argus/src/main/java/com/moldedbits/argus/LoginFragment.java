@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
             listener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                                               + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -64,8 +64,13 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
         listener.onLoginSuccess();
     }
 
+
     interface OnFragmentInteractionListener {
         void onLoginSuccess();
+
+        void onSignUpSuccess();
+
+        void onSignupError();
     }
 
     @Override

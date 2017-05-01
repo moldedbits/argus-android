@@ -4,6 +4,7 @@ import android.util.Patterns;
 
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.LoginProvider;
+import com.moldedbits.argus.provider.SignupProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ public class Argus {
     @Getter private NextScreenProvider nextScreenProvider;
 
     @Getter private List<LoginProvider> loginProviders;
+
+    @Getter private List<SignupProvider> signupProviders;
 
     private Argus() {
     }
@@ -60,6 +63,14 @@ public class Argus {
                 argus.loginProviders = new ArrayList<>();
             }
             argus.loginProviders.add(provider);
+            return this;
+        }
+
+        public Builder signupProvider(SignupProvider provider) {
+            if (argus.signupProviders == null) {
+                argus.signupProviders = new ArrayList<>();
+            }
+            argus.signupProviders.add(provider);
             return this;
         }
 

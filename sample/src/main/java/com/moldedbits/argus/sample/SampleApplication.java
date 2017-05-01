@@ -5,6 +5,7 @@ import android.app.Application;
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.SimpleNextScreenProvider;
 import com.moldedbits.argus.provider.EmailLoginProvider;
+import com.moldedbits.argus.provider.EmailSignupProvider;
 import com.moldedbits.argus.provider.FaceBookLoginProvider;
 import com.moldedbits.argus.provider.LoginProvider;
 
@@ -20,6 +21,7 @@ public class SampleApplication extends Application {
         loginProviders.add(new FaceBookLoginProvider());
         Argus argus = new Argus.Builder()
                 .nextScreenProvider(new SimpleNextScreenProvider(MainActivity.class))
+                .signupProvider(new EmailSignupProvider())
                 .loginProvider(loginProviders)
                 .build();
         Argus.initialize(argus);

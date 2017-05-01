@@ -13,6 +13,14 @@ public class ArgusUser {
      * Username
      */
     @Getter @Setter String username;
+    /**
+     * email
+     */
+    @Getter @Setter String email;
+    /**
+     * password
+     */
+    @Getter @Setter String password;
 
     public ArgusUser(String username) {
         this.username = username;

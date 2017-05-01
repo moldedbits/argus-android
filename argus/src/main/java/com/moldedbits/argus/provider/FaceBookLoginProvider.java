@@ -52,8 +52,8 @@ public class FaceBookLoginProvider extends LoginProvider {
                                             @Override
                                             public void onCompleted(JSONObject object,
                                                                     GraphResponse response) {
-                                               onLoginSuccess(new ArgusUser("Hello"+ AccessToken
-                                                       .getCurrentAccessToken().getUserId()));
+                                                onLoginSuccess(new ArgusUser("Hello" + AccessToken
+                                                        .getCurrentAccessToken().getUserId()));
                                             }
                                         });
                         Bundle parameters = new Bundle();
