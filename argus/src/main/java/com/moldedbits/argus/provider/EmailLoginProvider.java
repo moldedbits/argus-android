@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.moldedbits.argus.ArgusSessionManager;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.model.ArgusUser;
 
@@ -32,6 +33,7 @@ public class EmailLoginProvider extends LoginProvider {
     @Override
     public void performLogin() {
         if (validateInput()) {
+            ArgusSessionManager.setIsLoggedIn(true);
             onLoginSuccess(new ArgusUser("Mock User"));
         }
     }

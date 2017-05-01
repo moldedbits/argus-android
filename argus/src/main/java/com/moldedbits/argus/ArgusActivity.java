@@ -15,7 +15,7 @@ public class ArgusActivity extends AppCompatActivity implements
         if (Argus.getInstance() == null) {
             throw new RuntimeException("Argus not initialized");
         }
-        if (ArgusSessionManager.isLoggedIn()) {
+        if (ArgusSessionManager.isIsLoggedIn()) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content, LoginFragment.newInstance())
@@ -30,18 +30,20 @@ public class ArgusActivity extends AppCompatActivity implements
 
     @Override
     public void onLoginSuccess() {
+        ArgusSessionManager.setIsLoggedIn(true);
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
     }
 
     @Override
     public void onSignUpSuccess() {
+        ArgusSessionManager.setIsLoggedIn(true);
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
     }
 
     @Override
     public void onSignupError() {
-        Toast.makeText(this,"fail",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
     }
 }

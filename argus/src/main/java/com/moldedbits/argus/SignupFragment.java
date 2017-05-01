@@ -11,10 +11,6 @@ import android.view.ViewGroup;
 import com.moldedbits.argus.provider.SignUpListener;
 import com.moldedbits.argus.provider.SignupProvider;
 
-/**
- * Created by shishank on 01/05/17.
- */
-
 public class SignupFragment extends Fragment implements SignUpListener {
 
     private LoginFragment.OnFragmentInteractionListener listener;
@@ -32,9 +28,9 @@ public class SignupFragment extends Fragment implements SignUpListener {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        ViewGroup loginContainer = (ViewGroup) view.findViewById(R.id.login_container);
+        ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.login_container);
         for (SignupProvider provider : Argus.getInstance().getSignupProviders()) {
-            loginContainer.addView(provider.signUpView(this, loginContainer, this));
+            signupContainer.addView(provider.signUpView(this, signupContainer, this));
         }
         return view;
     }
@@ -58,7 +54,7 @@ public class SignupFragment extends Fragment implements SignUpListener {
 
     @Override
     public void onSignupSuccess() {
-        listener.onSignUpSuccess();
+         listener.onSignUpSuccess();
     }
 
     @Override
