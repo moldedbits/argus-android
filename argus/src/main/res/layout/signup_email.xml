@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/default_margin"
-        android:hint="@string/password"
+        android:hint="@string/email"
         android:maxLength="10"
         android:inputType="textEmailAddress"
         android:fontFamily="sans-serif"/>
