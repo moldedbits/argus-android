@@ -73,6 +73,7 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
         void onLoginSuccess();
 
         void onLoginFail(String message);
+
         void onSignUpSuccess();
 
         void onSignupError();

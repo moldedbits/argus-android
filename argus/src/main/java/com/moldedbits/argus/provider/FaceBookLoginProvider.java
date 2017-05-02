@@ -15,6 +15,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.moldedbits.argus.ArgusSessionManager;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.model.ArgusUser;
 
@@ -54,6 +55,7 @@ public class FaceBookLoginProvider extends LoginProvider {
                                                                     GraphResponse response) {
                                                 onLoginSuccess(new ArgusUser("Hello" + AccessToken
                                                         .getCurrentAccessToken().getUserId()));
+                                                ArgusSessionManager.setIsLoggedIn(true);
                                             }
                                         });
                         Bundle parameters = new Bundle();

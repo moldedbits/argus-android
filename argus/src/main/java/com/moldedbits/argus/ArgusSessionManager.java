@@ -21,7 +21,7 @@ public class ArgusSessionManager {
      *
      * @return True if a user is logged in, false otherwise
      */
-    public static boolean isIsLoggedIn() {
+    public static boolean isLoggedIn() {
         return isLoggedIn;
     }
 

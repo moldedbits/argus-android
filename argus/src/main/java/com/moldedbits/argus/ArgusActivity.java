@@ -15,7 +15,7 @@ public class ArgusActivity extends AppCompatActivity implements
         if (Argus.getInstance() == null) {
             throw new RuntimeException("Argus not initialized");
         }
-        if (ArgusSessionManager.isIsLoggedIn()) {
+        if (ArgusSessionManager.isLoggedIn()) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.content, LoginFragment.newInstance())
