@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.moldedbits.argus.sample">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".SampleApplication"
         android:allowBackup="true"
@@ -11,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"/>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+                   android:value="@string/facebook_id"/>
         <activity
             android:name="com.moldedbits.argus.ArgusActivity"
             android:label="@string/app_name"
