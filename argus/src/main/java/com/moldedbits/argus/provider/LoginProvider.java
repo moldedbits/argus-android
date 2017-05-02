@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 /**
@@ -44,22 +44,18 @@ public abstract class LoginProvider {
     }
 
     protected void onLoginSuccess(ArgusUser user) {
-        Argus.getInstance().loginUser(user);
-        loginListener.onLogin();
+        loginListener.onLoginSuccess(user);
     }
 
     protected void onLoginFail(String message) {
-        loginListener.onLoginError(message);
+        loginListener.onLoginFailure(message);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {}
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    }
 
     abstract protected View inflateLoginView(ViewGroup parentView);
 
     abstract void performLogin();
 
-    public interface LoginListener {
-        void onLogin();
-        void onLoginError(String message);
-    }
 }

@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-public class ArgusActivity extends AppCompatActivity implements
-        LoginFragment.OnFragmentInteractionListener {
+import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.model.ArgusUser;
+
+public class ArgusActivity extends AppCompatActivity implements LoginListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +25,15 @@ public class ArgusActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(ArgusUser user) {
+        Argus.getInstance().loginUser(user);
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
     }
 
     @Override
-    public void onLoginFail(String message) {
+    public void onLoginFailure(String message) {
+        //TODO handle failure correctly
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

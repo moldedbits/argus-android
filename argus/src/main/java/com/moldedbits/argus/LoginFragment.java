@@ -8,14 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.LoginProvider;
 
 /**
  * Login Fragment
  */
-public class LoginFragment extends Fragment implements LoginProvider.LoginListener {
+public class LoginFragment extends Fragment implements LoginListener {
 
-    private OnFragmentInteractionListener listener;
+    private LoginListener listener;
 
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -45,8 +47,8 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            listener = (OnFragmentInteractionListener) context;
+        if (context instanceof LoginListener) {
+            listener = (LoginListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -60,19 +62,13 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
     }
 
     @Override
-    public void onLogin() {
-        listener.onLoginSuccess();
+    public void onLoginSuccess(ArgusUser user) {
+        listener.onLoginSuccess(user);
     }
 
     @Override
-    public void onLoginError(String message) {
-        listener.onLoginFail(message);
-    }
-
-    interface OnFragmentInteractionListener {
-        void onLoginSuccess();
-
-        void onLoginFail(String message);
+    public void onLoginFailure(String message) {
+        listener.onLoginFailure(message);
     }
 
     @Override
