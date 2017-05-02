@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.moldedbits.argus.listener.LoginListener;
-import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.model.IArgusUser;
 
 public class ArgusActivity extends AppCompatActivity implements LoginListener {
 
@@ -25,7 +25,7 @@ public class ArgusActivity extends AppCompatActivity implements LoginListener {
     }
 
     @Override
-    public void onLoginSuccess(ArgusUser user) {
+    public void onLoginSuccess(IArgusUser user) {
         Argus.getInstance().loginUser(user);
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();

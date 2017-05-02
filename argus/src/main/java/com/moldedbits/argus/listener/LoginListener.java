@@ -1,9 +1,9 @@
 package com.moldedbits.argus.listener;
 
-import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.model.IArgusUser;
 
 public interface LoginListener {
-    void onLoginSuccess(ArgusUser user);
+    void onLoginSuccess(IArgusUser user);
 
     void onLoginFailure(String message);
 }

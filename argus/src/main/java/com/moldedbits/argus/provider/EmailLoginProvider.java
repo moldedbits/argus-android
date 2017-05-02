@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.moldedbits.argus.IArgusUserFactory;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.model.IArgusUser;
 
 /**
  * Allow user to login with email and password
@@ -31,7 +32,9 @@ public class EmailLoginProvider extends LoginProvider {
     @Override
     public void performLogin() {
         if (validateInput()) {
-            loginListener.onLoginSuccess(new ArgusUser("Mock User"));
+            IArgusUser user = IArgusUserFactory.newInstance();
+            user.setUsername("Mock User");
+            loginListener.onLoginSuccess(user);
         }
     }
 

@@ -26,6 +26,7 @@ public class SampleApplication extends Application {
                 .nextScreenProvider(new SimpleNextScreenProvider(MainActivity.class))
                 .setLoginLayout(R.layout.custom_login_fragment)
                 .loginProvider(loginProviders)
+                .userClass(SampleArgusUser.class)
                 .build();
 
         Argus.initialize(argus);

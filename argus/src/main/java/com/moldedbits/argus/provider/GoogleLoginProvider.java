@@ -13,8 +13,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.moldedbits.argus.Argus;
+import com.moldedbits.argus.IArgusUserFactory;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.model.IArgusUser;
 
 public class GoogleLoginProvider extends LoginProvider implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -65,7 +68,9 @@ public class GoogleLoginProvider extends LoginProvider implements GoogleApiClien
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
-                loginListener.onLoginSuccess(new ArgusUser(acct.getDisplayName()));
+                IArgusUser user = IArgusUserFactory.newInstance();
+                user.setUsername(acct.getDisplayName());
+                loginListener.onLoginSuccess(user);
             }
         } else {
             // Signed out, show unauthenticated UI.
