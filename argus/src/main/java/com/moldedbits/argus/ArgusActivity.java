@@ -43,6 +43,10 @@ public class ArgusActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onLoginFail(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void onSignupError() {
         Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
     }

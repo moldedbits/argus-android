@@ -68,6 +68,7 @@ public class FaceBookLoginProvider extends LoginProvider {
 
                     @Override
                     public void onError(FacebookException error) {
+                        onLoginFail(error.getMessage());
                         Log.d("FACEBOOK", error.getMessage());
                     }
                 });

@@ -64,10 +64,15 @@ public class LoginFragment extends Fragment implements LoginProvider.LoginListen
         listener.onLoginSuccess();
     }
 
+    @Override
+    public void onLoginError(String message) {
+        listener.onLoginFail(message);
+    }
 
     interface OnFragmentInteractionListener {
         void onLoginSuccess();
 
+        void onLoginFail(String message);
         void onSignUpSuccess();
 
         void onSignupError();
