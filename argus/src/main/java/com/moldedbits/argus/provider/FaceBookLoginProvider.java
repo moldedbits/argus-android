@@ -15,8 +15,9 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.moldedbits.argus.IArgusUserFactory;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.model.IArgusUser;
 
 import org.json.JSONObject;
 
@@ -25,7 +26,6 @@ import java.util.Arrays;
 public class FaceBookLoginProvider extends LoginProvider {
 
     // Permissions can be changed
-
     public static final String[] FACEBOOK_APP_PERMISSIONS =
             {
                     "public_profile",
@@ -52,8 +52,7 @@ public class FaceBookLoginProvider extends LoginProvider {
                                             @Override
                                             public void onCompleted(JSONObject object,
                                                                     GraphResponse response) {
-                                               onLoginSuccess(new ArgusUser("Hello"+ AccessToken
-                                                       .getCurrentAccessToken().getUserId()));
+                                                onFbSuccess();
                                             }
                                         });
                         Bundle parameters = new Bundle();
@@ -72,6 +71,13 @@ public class FaceBookLoginProvider extends LoginProvider {
                         Log.d("FACEBOOK", error.getMessage());
                     }
                 });
+    }
+
+    private void onFbSuccess() {
+        IArgusUser user = IArgusUserFactory.newInstance();
+        user.setUsername("Hello"+ AccessToken
+                .getCurrentAccessToken().getUserId());
+        loginListener.onLoginSuccess(user);
     }
 
     @Override

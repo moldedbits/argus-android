@@ -1,13 +1,11 @@
 package com.moldedbits.argus;
 
-import android.util.Patterns;
-
 import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.model.IArgusUser;
 import com.moldedbits.argus.provider.LoginProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import lombok.Getter;
 
@@ -27,6 +25,12 @@ public class Argus {
     @Getter
     private int loginLayout;
 
+    @Getter
+    private Class<? extends IArgusUser> userClass;
+
+    @Getter
+    private ArgusConfig config;
+
     private Argus() {
     }
 
@@ -41,8 +45,12 @@ public class Argus {
         return _instance;
     }
 
-    public void loginUser(ArgusUser user) {
+    public void loginUser(IArgusUser user) {
         ArgusSessionManager.setCurrentUser(user);
+    }
+
+    public class ArgusConfig {
+        boolean logEnabled;
     }
 
     public static class Builder {
@@ -79,7 +87,29 @@ public class Argus {
             return this;
         }
 
+        public Builder userClass(Class<? extends IArgusUser> userClass) {
+            try {
+                if (userClass.getConstructor() == null) {
+                    throw new RuntimeException("IArgusUser implementation needs an" +
+                            " empty constructor");
+                }
+            } catch (NoSuchMethodException | SecurityException e) {
+                throw new RuntimeException("IArgusUser implementation needs an empty constructor");
+            }
+            argus.userClass = userClass;
+            return this;
+        }
+
+        public Builder logEnabled(boolean logEnabled) {
+            argus.config.logEnabled = logEnabled;
+            return this;
+        }
+
         public Argus build() {
+            // Use ArgusUser by default
+            if (argus.userClass == null) {
+                argus.userClass = ArgusUser.class;
+            }
             return argus;
         }
     }
