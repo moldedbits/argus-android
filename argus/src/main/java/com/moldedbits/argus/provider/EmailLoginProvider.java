@@ -49,4 +49,9 @@ public class EmailLoginProvider extends LoginProvider {
 
         return true;
     }
+
+    @Override
+    public int getContainerId() {
+        return R.id.container_email;
+    }
 }

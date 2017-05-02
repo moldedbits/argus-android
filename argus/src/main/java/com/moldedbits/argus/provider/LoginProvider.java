@@ -15,6 +15,7 @@ import com.moldedbits.argus.model.ArgusUser;
  */
 public abstract class LoginProvider {
 
+    public static final int DEFAULT_CONTAINER_ID = -1;
     private LoginListener loginListener;
     Fragment fragment;
     protected Context context;
@@ -55,6 +56,10 @@ public abstract class LoginProvider {
     }
 
     abstract protected View inflateLoginView(ViewGroup parentView);
+
+    public int getContainerId() {
+        return DEFAULT_CONTAINER_ID;
+    }
 
     abstract void performLogin();
 

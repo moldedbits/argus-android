@@ -20,9 +20,14 @@ public class Argus {
 
     private static Argus _instance;
 
-    @Getter private NextScreenProvider nextScreenProvider;
+    @Getter
+    private NextScreenProvider nextScreenProvider;
 
-    @Getter private List<LoginProvider> loginProviders;
+    @Getter
+    private List<LoginProvider> loginProviders;
+
+    @Getter
+    private int loginLayout;
 
     private Argus() {
     }
@@ -52,6 +57,11 @@ public class Argus {
 
         public Builder nextScreenProvider(NextScreenProvider provider) {
             argus.nextScreenProvider = provider;
+            return this;
+        }
+
+        public Builder setLoginLayout(int layout) {
+            argus.loginLayout = layout;
             return this;
         }
 
