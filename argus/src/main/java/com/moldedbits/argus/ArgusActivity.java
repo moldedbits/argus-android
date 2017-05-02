@@ -2,6 +2,7 @@ package com.moldedbits.argus;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class ArgusActivity extends AppCompatActivity implements
         LoginFragment.OnFragmentInteractionListener {
@@ -25,5 +26,10 @@ public class ArgusActivity extends AppCompatActivity implements
     public void onLoginSuccess() {
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
+    }
+
+    @Override
+    public void onLoginFail(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

@@ -48,6 +48,10 @@ public abstract class LoginProvider {
         loginListener.onLogin();
     }
 
+    protected void onLoginFail(String message) {
+        loginListener.onLoginError(message);
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {}
 
     abstract protected View inflateLoginView(ViewGroup parentView);
@@ -56,5 +60,6 @@ public abstract class LoginProvider {
 
     public interface LoginListener {
         void onLogin();
+        void onLoginError(String message);
     }
 }
