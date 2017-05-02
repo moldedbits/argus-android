@@ -22,7 +22,7 @@ public abstract class SignupProvider {
 
         View view = inflateSignUpView(parentView);
         if (view.findViewById(getSignUpButtonId()) == null) {
-            throw new RuntimeException("LoginProvider view needs a button with id R.id.login");
+            throw new RuntimeException("SignuProvider view needs a button with id R.id.signup");
         }
 
         view.findViewById(getSignUpButtonId()).setOnClickListener(new View.OnClickListener() {
