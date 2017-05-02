@@ -91,4 +91,9 @@ public class FaceBookLoginProvider extends LoginProvider {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public int getContainerId() {
+        return R.id.container_fb;
+    }
 }

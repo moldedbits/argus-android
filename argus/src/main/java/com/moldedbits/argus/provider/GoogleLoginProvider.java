@@ -20,6 +20,8 @@ public class GoogleLoginProvider extends LoginProvider implements GoogleApiClien
 
     private static final int RC_SIGN_IN = 10001;
 
+    GoogleApiClient mGoogleApiClient;
+
     @Override
     protected View inflateLoginView(ViewGroup parentView) {
         return LayoutInflater.from(context).inflate(R.layout.login_google, parentView, false);
@@ -27,19 +29,21 @@ public class GoogleLoginProvider extends LoginProvider implements GoogleApiClien
 
     @Override
     void performLogin() {
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+        if (mGoogleApiClient == null) {
+            // Configure sign-in to request the user's ID, email address, and basic
+            // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+            GoogleSignInOptions gso = new GoogleSignInOptions
+                    .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
 
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
-        // options specified by gso.
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(context)
-                .enableAutoManage((FragmentActivity) context, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+            // Build a GoogleApiClient with access to the Google Sign-In API and the
+            // options specified by gso.
+            mGoogleApiClient = new GoogleApiClient.Builder(context)
+                    .enableAutoManage((FragmentActivity) context, this)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+        }
 
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         fragment.startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -73,5 +77,10 @@ public class GoogleLoginProvider extends LoginProvider implements GoogleApiClien
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    public int getContainerId() {
+        return R.id.container_google;
     }
 }
