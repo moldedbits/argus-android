@@ -6,6 +6,7 @@ import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.SimpleNextScreenProvider;
 import com.moldedbits.argus.provider.EmailLoginProvider;
 import com.moldedbits.argus.provider.FaceBookLoginProvider;
+import com.moldedbits.argus.provider.GoogleLoginProvider;
 import com.moldedbits.argus.provider.LoginProvider;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class SampleApplication extends Application {
 
         ArrayList<LoginProvider> loginProviders = new ArrayList<>();
         loginProviders.add(new EmailLoginProvider());
+        loginProviders.add(new GoogleLoginProvider());
         loginProviders.add(new FaceBookLoginProvider());
 
         Argus argus = new Argus.Builder()

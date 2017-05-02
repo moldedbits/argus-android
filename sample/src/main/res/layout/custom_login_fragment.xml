@@ -15,4 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/container_email"/>
 
+    <FrameLayout
+        android:id="@id/container_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/container_fb"/>
+
 </RelativeLayout>

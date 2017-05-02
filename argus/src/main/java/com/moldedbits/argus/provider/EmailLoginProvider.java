@@ -19,7 +19,6 @@ public class EmailLoginProvider extends LoginProvider {
 
     @Override
     public View inflateLoginView(ViewGroup parentView) {
-
         View loginView = LayoutInflater.from(context)
                 .inflate(R.layout.login_email, parentView, false);
 
@@ -32,7 +31,7 @@ public class EmailLoginProvider extends LoginProvider {
     @Override
     public void performLogin() {
         if (validateInput()) {
-            onLoginSuccess(new ArgusUser("Mock User"));
+            loginListener.onLoginSuccess(new ArgusUser("Mock User"));
         }
     }
 
