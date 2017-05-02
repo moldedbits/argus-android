@@ -51,7 +51,7 @@ public class LoginFragment extends Fragment implements LoginListener {
             listener = (LoginListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement LoginListener");
         }
     }
 
