@@ -8,14 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.LoginProvider;
 
 /**
  * Login Fragment
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements LoginListener {
 
-    private LoginProvider.LoginListener listener;
+    private LoginListener listener;
 
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -36,7 +38,7 @@ public class LoginFragment extends Fragment {
 
         ViewGroup loginContainer = (ViewGroup) view.findViewById(R.id.login_container);
         for (LoginProvider provider : Argus.getInstance().getLoginProviders()) {
-            loginContainer.addView(provider.loginView(this, loginContainer, listener));
+            loginContainer.addView(provider.loginView(this, loginContainer, this));
         }
 
         return view;
@@ -45,8 +47,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof LoginProvider.LoginListener) {
-            listener = (LoginProvider.LoginListener) context;
+        if (context instanceof LoginListener) {
+            listener = (LoginListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement LoginListener");
@@ -57,6 +59,16 @@ public class LoginFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         listener = null;
+    }
+
+    @Override
+    public void onLoginSuccess(ArgusUser user) {
+        listener.onLoginSuccess(user);
+    }
+
+    @Override
+    public void onLoginFailure(String message) {
+        listener.onLoginFailure(message);
     }
 
     @Override

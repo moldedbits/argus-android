@@ -65,7 +65,8 @@ public class GoogleLoginProvider extends LoginProvider implements GoogleApiClien
             }
         } else {
             // Signed out, show unauthenticated UI.
-            loginListener.onLoginFailure();
+            // TODO Show correct message
+            loginListener.onLoginFailure("");
         }
     }
 

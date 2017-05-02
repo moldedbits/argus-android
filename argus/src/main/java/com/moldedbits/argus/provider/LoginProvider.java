@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 /**
@@ -77,8 +78,12 @@ public abstract class LoginProvider {
      */
     abstract void performLogin();
 
-    public interface LoginListener {
-        void onLoginSuccess(ArgusUser user);
-        void onLoginFailure();
+
+    protected void onLoginSuccess(ArgusUser user) {
+        loginListener.onLoginSuccess(user);
+    }
+
+    protected void onLoginFail(String message) {
+        loginListener.onLoginFailure(message);
     }
 }
