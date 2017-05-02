@@ -16,8 +16,6 @@ import lombok.Getter;
  */
 public class Argus {
 
-    public static final Pattern EMAIL = Patterns.EMAIL_ADDRESS;
-
     private static Argus _instance;
 
     @Getter private NextScreenProvider nextScreenProvider;
