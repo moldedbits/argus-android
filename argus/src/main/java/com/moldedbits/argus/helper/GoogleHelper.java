@@ -90,7 +90,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
         shouldResolve = true;
         connectClient();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-        fragment.startActivityForResult(signInIntent, 9002);
+        fragment.startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     public void logOut() {
