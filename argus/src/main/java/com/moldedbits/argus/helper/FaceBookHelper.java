@@ -18,7 +18,6 @@ import com.moldedbits.argus.model.ArgusUser;
 
 import org.json.JSONObject;
 
-
 public class FaceBookHelper {
     private AccessToken token;
     private static CallbackManager callbackManager;

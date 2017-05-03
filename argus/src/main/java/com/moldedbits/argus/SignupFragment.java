@@ -64,7 +64,6 @@ public class SignupFragment extends Fragment implements LoginListener {
         listener = null;
     }
 
-
     @Override
     public void onSuccess(ArgusUser user) {
         listener.onSuccess(user);
