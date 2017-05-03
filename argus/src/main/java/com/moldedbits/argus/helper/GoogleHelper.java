@@ -1,25 +1,25 @@
 package com.moldedbits.argus.helper;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.model.ArgusUser;
 
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
         , GoogleApiClient.OnConnectionFailedListener {
-    private Context context;
+    private Fragment fragment;
     private LoginListener listener;
     private GoogleApiClient googleApiClient = null;
     boolean isResolving;
@@ -28,7 +28,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
 
 
     public GoogleHelper(Fragment fragment, LoginListener listener) {
-        context = fragment.getContext();
+        this.fragment = fragment;
         this.listener = listener;
     }
 
@@ -37,7 +37,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        googleApiClient = new GoogleApiClient.Builder(context)
+        googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
@@ -64,7 +64,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
         if (!isResolving && shouldResolve) {
             if (connectionResult.hasResolution()) {
                 try {
-                    connectionResult.startResolutionForResult((Activity) context, 9002);
+                    connectionResult.startResolutionForResult(fragment.getActivity(), 9002);
                     isResolving = true;
                 } catch (IntentSender.SendIntentException e) {
                     Log.e("TAG", "Could not resolve ConnectionResult.", e);
@@ -81,19 +81,15 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
         Log.d("ERROR", "" + connectionResult);
     }
 
-    public void connectClient() {
+    private void connectClient() {
         googleApiClient.connect();
-    }
-
-    public void disconnectClient() {
-        googleApiClient.disconnect();
     }
 
     public void onSignInClicked() {
         shouldResolve = true;
         connectClient();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-        ((AppCompatActivity) context).startActivityForResult(signInIntent, 9002);
+        fragment.startActivityForResult(signInIntent, 9002);
     }
 
     public void logOut() {
@@ -108,6 +104,20 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
                     });
         } else {
             googleApiClient.connect();
+        }
+    }
+
+    public void handleSignInResult(GoogleSignInResult result) {
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            if (acct != null) {
+                listener.onSuccess(new ArgusUser(acct.getDisplayName()));
+            }
+        } else {
+            // Signed out, show unauthenticated UI.
+            // TODO Show correct message
+            listener.onFailure("Error");
         }
     }
 }
