@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider;
+package com.moldedbits.argus.provider.login;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.LoginProvider;
+import com.moldedbits.argus.provider.login.LoginProvider;
 
 /**
  * Login Fragment
@@ -72,13 +72,13 @@ public class LoginFragment extends Fragment implements LoginListener {
     }
 
     @Override
-    public void onLoginSuccess(ArgusUser user) {
-        listener.onLoginSuccess(user);
+    public void onSuccess(ArgusUser user) {
+        listener.onSuccess(user);
     }
 
     @Override
-    public void onLoginFailure(String message) {
-        listener.onLoginFailure(message);
+    public void onFailure(String message) {
+        listener.onFailure(message);
     }
 
     @Override

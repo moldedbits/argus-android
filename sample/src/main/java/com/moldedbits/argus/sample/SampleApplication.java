@@ -4,11 +4,11 @@ import android.app.Application;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.SimpleNextScreenProvider;
-import com.moldedbits.argus.provider.EmailLoginProvider;
-import com.moldedbits.argus.provider.EmailSignupProvider;
-import com.moldedbits.argus.provider.FaceBookLoginProvider;
-import com.moldedbits.argus.provider.GoogleLoginProvider;
-import com.moldedbits.argus.provider.LoginProvider;
+import com.moldedbits.argus.provider.login.EmailLoginProvider;
+import com.moldedbits.argus.provider.signup.EmailSignupProvider;
+import com.moldedbits.argus.provider.login.FaceBookLoginProvider;
+import com.moldedbits.argus.provider.login.GoogleLoginProvider;
+import com.moldedbits.argus.provider.login.LoginProvider;
 
 import java.util.ArrayList;
 

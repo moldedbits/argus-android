@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider;
+package com.moldedbits.argus.provider.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -83,11 +83,11 @@ public abstract class LoginProvider {
 
 
     protected void onLoginSuccess(ArgusUser user) {
-        loginListener.onLoginSuccess(user);
+        loginListener.onSuccess(user);
     }
 
     protected void onLoginFail(String message) {
-        loginListener.onLoginFailure(message);
+        loginListener.onFailure(message);
     }
 
     public int getContainerId() {

@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.listener.SignUpListener;
+import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.SignupProvider;
+import com.moldedbits.argus.provider.signup.SignupProvider;
 
-public class SignupFragment extends Fragment implements SignUpListener {
+public class SignupFragment extends Fragment implements LoginListener {
 
-    private SignUpListener listener;
+    private LoginListener listener;
 
     public static SignupFragment newInstance() {
         SignupFragment fragment = new SignupFragment();
@@ -38,11 +38,11 @@ public class SignupFragment extends Fragment implements SignUpListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof SignUpListener) {
-            listener = (SignUpListener) context;
+        if (context instanceof LoginListener) {
+            listener = (LoginListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                                               + " must implement SignupListener");
+                                               + " must implement LoginListener");
         }
     }
 
@@ -54,13 +54,13 @@ public class SignupFragment extends Fragment implements SignUpListener {
 
 
     @Override
-    public void onSignupSuccess(ArgusUser user) {
-        listener.onSignupSuccess(user);
+    public void onSuccess(ArgusUser user) {
+        listener.onSuccess(user);
     }
 
     @Override
-    public void onSignupFailure() {
-        listener.onSignupFailure();
+    public void onFailure(String message) {
+        listener.onFailure("");
     }
 
 }

@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider;
+package com.moldedbits.argus.provider.login;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -65,12 +65,12 @@ public class GoogleLoginProvider extends LoginProvider implements GoogleApiClien
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
-                loginListener.onLoginSuccess(new ArgusUser(acct.getDisplayName()));
+                loginListener.onSuccess(new ArgusUser(acct.getDisplayName()));
             }
         } else {
             // Signed out, show unauthenticated UI.
             // TODO Show correct message
-            loginListener.onLoginFailure("");
+            loginListener.onFailure("");
         }
     }
 

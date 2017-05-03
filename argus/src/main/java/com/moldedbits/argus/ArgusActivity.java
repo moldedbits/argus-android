@@ -5,10 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.moldedbits.argus.listener.LoginListener;
-import com.moldedbits.argus.listener.SignUpListener;
 import com.moldedbits.argus.model.ArgusUser;
 
-public class ArgusActivity extends AppCompatActivity implements LoginListener, SignUpListener {
+public class ArgusActivity extends AppCompatActivity implements LoginListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,28 +30,15 @@ public class ArgusActivity extends AppCompatActivity implements LoginListener, S
         }
     }
 
-    public void onLoginSuccess(ArgusUser user) {
+    public void onSuccess(ArgusUser user) {
         Argus.getInstance().loginUser(user);
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
     }
 
     @Override
-    public void onLoginFailure(String message) {
+    public void onFailure(String message) {
         //TODO handle failure correctly
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onSignupSuccess(ArgusUser user) {
-        Argus.getInstance().loginUser(user);
-        startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
-        finish();
-    }
-
-    @Override
-    public void onSignupFailure() {
-        //TODO handle failure correctly
-        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,8 +1,8 @@
 package com.moldedbits.argus;
 
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.LoginProvider;
-import com.moldedbits.argus.provider.SignupProvider;
+import com.moldedbits.argus.provider.login.LoginProvider;
+import com.moldedbits.argus.provider.signup.SignupProvider;
 
 import java.util.ArrayList;
 import java.util.List;

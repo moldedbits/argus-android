@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider;
+package com.moldedbits.argus.provider.signup;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,16 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.listener.SignUpListener;
+import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 public abstract class SignupProvider {
 
-    private SignUpListener signupListener;
+    private LoginListener signupListener;
     Fragment fragment;
     protected Context context;
 
-    public View signUpView(Fragment fragment, ViewGroup parentView, SignUpListener listener) {
+    public View signUpView(Fragment fragment, ViewGroup parentView, LoginListener listener) {
         this.signupListener = listener;
         this.fragment = fragment;
         this.context = fragment.getContext();
@@ -37,11 +37,11 @@ public abstract class SignupProvider {
     }
 
     protected void onSignupSuccess(ArgusUser user){
-        signupListener.onSignupSuccess(user);
+        signupListener.onSuccess(user);
     }
 
-    protected void onSignupFailure(){
-        signupListener.onSignupFailure();
+    protected void onFailure(){
+        signupListener.onFailure("");
     }
 
     protected abstract void performSignUp();

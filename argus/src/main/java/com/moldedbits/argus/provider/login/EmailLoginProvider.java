@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider;
+package com.moldedbits.argus.provider.login;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -31,7 +31,7 @@ public class EmailLoginProvider extends LoginProvider {
     @Override
     public void performLogin() {
         if (validateInput()) {
-            loginListener.onLoginSuccess(new ArgusUser("Mock User"));
+            loginListener.onSuccess(new ArgusUser("Mock User"));
         }
     }
 

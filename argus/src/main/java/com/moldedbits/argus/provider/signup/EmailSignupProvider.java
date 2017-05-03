@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider;
+package com.moldedbits.argus.provider.signup;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
