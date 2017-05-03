@@ -19,14 +19,11 @@ import com.moldedbits.argus.model.ArgusUser;
 public class GoogleSignupProvider extends SignupProvider implements LoginListener {
 
 
-    private  GoogleHelper googleHelper;
-
-    public GoogleSignupProvider() {
-    }
+    private GoogleHelper googleHelper;
 
     @Override
     protected void performSignUp() {
-        googleHelper = new GoogleHelper(fragment,this);
+        googleHelper = new GoogleHelper(fragment, this);
         googleHelper.initializeGoogleApiClient();
         googleHelper.onSignInClicked();
     }
@@ -40,7 +37,7 @@ public class GoogleSignupProvider extends SignupProvider implements LoginListene
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == 9002) {
+        if (requestCode == GoogleHelper.RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             googleHelper.handleSignInResult(result);
         }

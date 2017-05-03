@@ -19,6 +19,7 @@ import com.moldedbits.argus.model.ArgusUser;
 
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
         , GoogleApiClient.OnConnectionFailedListener {
+    public static final int RC_SIGN_IN = 10001;
     private Fragment fragment;
     private LoginListener listener;
     private GoogleApiClient googleApiClient = null;
@@ -64,7 +65,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
         if (!isResolving && shouldResolve) {
             if (connectionResult.hasResolution()) {
                 try {
-                    connectionResult.startResolutionForResult(fragment.getActivity(), 9002);
+                    connectionResult.startResolutionForResult(fragment.getActivity(), RC_SIGN_IN);
                     isResolving = true;
                 } catch (IntentSender.SendIntentException e) {
                     Log.e("TAG", "Could not resolve ConnectionResult.", e);
