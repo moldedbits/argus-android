@@ -8,12 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.provider.SignUpListener;
+import com.moldedbits.argus.listener.SignUpListener;
+import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.SignupProvider;
 
 public class SignupFragment extends Fragment implements SignUpListener {
 
-    private LoginFragment.OnFragmentInteractionListener listener;
+    private SignUpListener listener;
 
     public static SignupFragment newInstance() {
         SignupFragment fragment = new SignupFragment();
@@ -26,23 +27,22 @@ public class SignupFragment extends Fragment implements SignUpListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
-        ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.login_container);
-        for (SignupProvider provider : Argus.getInstance().getSignupProviders()) {
-            signupContainer.addView(provider.signUpView(this, signupContainer, this));
-        }
+        ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.signup_container);
+        SignupProvider provider = Argus.getInstance().getSignupProviders();
+        signupContainer.addView(provider.signUpView(this, signupContainer, this));
         return view;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof LoginFragment.OnFragmentInteractionListener) {
-            listener = (LoginFragment.OnFragmentInteractionListener) context;
+        if (context instanceof SignUpListener) {
+            listener = (SignUpListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                                               + " must implement OnFragmentInteractionListener");
+                                               + " must implement SignupListener");
         }
     }
 
@@ -52,20 +52,15 @@ public class SignupFragment extends Fragment implements SignUpListener {
         listener = null;
     }
 
+
     @Override
-    public void onSignupSuccess() {
-         listener.onSignUpSuccess();
+    public void onSignupSuccess(ArgusUser user) {
+        listener.onSignupSuccess(user);
     }
 
     @Override
-    public void onSignupError() {
-        listener.onSignupError();
+    public void onSignupFailure() {
+        listener.onSignupFailure();
     }
 
-    @Override
-    public void startSignup() {
-        // todo we need to call api here
-        onSignupSuccess();
-
-    }
 }

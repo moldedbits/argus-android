@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.listener.SignUpListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 public abstract class SignupProvider {
@@ -22,7 +22,7 @@ public abstract class SignupProvider {
 
         View view = inflateSignUpView(parentView);
         if (view.findViewById(getSignUpButtonId()) == null) {
-            throw new RuntimeException("SignuProvider view needs a button with id R.id.signup");
+            throw new RuntimeException("SignupProvider view needs a button with id R.id.signup");
         }
 
         view.findViewById(getSignUpButtonId()).setOnClickListener(new View.OnClickListener() {
@@ -36,6 +36,14 @@ public abstract class SignupProvider {
 
     }
 
+    protected void onSignupSuccess(ArgusUser user){
+        signupListener.onSignupSuccess(user);
+    }
+
+    protected void onSignupFailure(){
+        signupListener.onSignupFailure();
+    }
+
     protected abstract void performSignUp();
 
     private int getSignUpButtonId() {
@@ -44,8 +52,4 @@ public abstract class SignupProvider {
 
     protected abstract View inflateSignUpView(ViewGroup parentView);
 
-    protected void callSignUpApi(ArgusUser user) {
-        Argus.getInstance().loginUser(user);
-        signupListener.startSignup();
-    }
 }

@@ -1,14 +1,11 @@
 package com.moldedbits.argus;
 
-import android.util.Patterns;
-
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.LoginProvider;
 import com.moldedbits.argus.provider.SignupProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import lombok.Getter;
 
@@ -17,15 +14,19 @@ import lombok.Getter;
  */
 public class Argus {
 
-    public static final Pattern EMAIL = Patterns.EMAIL_ADDRESS;
-
     private static Argus _instance;
 
-    @Getter private NextScreenProvider nextScreenProvider;
+    @Getter
+    private NextScreenProvider nextScreenProvider;
 
-    @Getter private List<LoginProvider> loginProviders;
+    @Getter
+    private List<LoginProvider> loginProviders;
 
-    @Getter private List<SignupProvider> signupProviders;
+    @Getter
+    private int loginLayout;
+
+    @Getter
+    private SignupProvider signupProviders;
 
     private Argus() {
     }
@@ -58,6 +59,11 @@ public class Argus {
             return this;
         }
 
+        public Builder setLoginLayout(int layout) {
+            argus.loginLayout = layout;
+            return this;
+        }
+
         public Builder loginProvider(LoginProvider provider) {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
@@ -67,10 +73,7 @@ public class Argus {
         }
 
         public Builder signupProvider(SignupProvider provider) {
-            if (argus.signupProviders == null) {
-                argus.signupProviders = new ArrayList<>();
-            }
-            argus.signupProviders.add(provider);
+            argus.signupProviders = provider;
             return this;
         }
 

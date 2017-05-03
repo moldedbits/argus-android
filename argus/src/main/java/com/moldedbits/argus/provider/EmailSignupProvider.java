@@ -9,10 +9,6 @@ import android.widget.EditText;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.model.ArgusUser;
 
-/**
- * Created by shishank on 01/05/17.
- */
-
 public class EmailSignupProvider extends SignupProvider {
 
     private EditText username;
@@ -25,7 +21,7 @@ public class EmailSignupProvider extends SignupProvider {
             ArgusUser user = new ArgusUser(username.getText().toString());
             user.setEmail(email.getText().toString());
             user.setPassword(password.getText().toString());
-            callSignUpApi(user);
+            onSignupSuccess(new ArgusUser("New User Welcome"));
         }
     }
 
@@ -53,8 +49,6 @@ public class EmailSignupProvider extends SignupProvider {
             email.setError(context.getString(R.string.empty_email));
             return false;
         }
-
-
         return true;
     }
 }

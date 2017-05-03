@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 /**
@@ -15,13 +15,26 @@ import com.moldedbits.argus.model.ArgusUser;
  */
 public abstract class LoginProvider {
 
-    private LoginListener loginListener;
-    Fragment fragment;
+    public static final int DEFAULT_CONTAINER_ID = -1;
+
     protected Context context;
 
+    protected LoginListener loginListener;
+
+    protected Fragment fragment;
+
+    /**
+     * Provide the login view which will be shown on the login screen for this provider
+     *
+     * @param fragment Login fragment. This is needed to inject activity result callbacks
+     * @param parentView Parent view in which this view will be inflated.
+     * @param listener Login listener
+     *
+     * @return Inflated view to be shown on screen
+     */
     public View loginView(Fragment fragment, ViewGroup parentView, LoginListener listener) {
         this.loginListener = listener;
-        context = fragment.getContext();
+        this.context = fragment.getContext();
         this.fragment = fragment;
 
         View view = inflateLoginView(parentView);
@@ -40,27 +53,44 @@ public abstract class LoginProvider {
         return view;
     }
 
+    /**
+     * Override this if you want a custom id for your login button
+     *
+     * @return Login button id
+     */
     protected int getLoginButtonId() {
         return R.id.login;
     }
 
+    /**
+     * Override this if you want to listen to the onActivityResult of the parent fragment
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {}
+
+    /**
+     * Inflate your login view here
+     *
+     * @param parentView Parent view
+     * @return Inflated view
+     */
+    abstract protected View inflateLoginView(ViewGroup parentView);
+
+    /**
+     * Perform login here. Implementations should take care of showing loading overlay to block
+     * out UI
+     */
+    abstract void performLogin();
+
+
     protected void onLoginSuccess(ArgusUser user) {
-        Argus.getInstance().loginUser(user);
-        loginListener.onLogin();
+        loginListener.onLoginSuccess(user);
     }
 
     protected void onLoginFail(String message) {
-        loginListener.onLoginError(message);
+        loginListener.onLoginFailure(message);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {}
-
-    abstract protected View inflateLoginView(ViewGroup parentView);
-
-    abstract void performLogin();
-
-    public interface LoginListener {
-        void onLogin();
-        void onLoginError(String message);
+    public int getContainerId() {
+        return DEFAULT_CONTAINER_ID;
     }
 }
