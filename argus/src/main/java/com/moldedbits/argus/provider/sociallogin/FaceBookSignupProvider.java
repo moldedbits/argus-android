@@ -1,38 +1,37 @@
-package com.moldedbits.argus.provider.login;
+package com.moldedbits.argus.provider.sociallogin;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.facebook.login.LoginManager;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.helper.FaceBookConfig;
-import com.moldedbits.argus.helper.FaceBookHelper;
+import com.moldedbits.argus.helper.FacebookConfig;
+import com.moldedbits.argus.helper.FacebookHelper;
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.provider.BaseProvider;
 
-public class FaceBookLoginProvider extends LoginProvider implements LoginListener {
 
-    // Permissions can be changed
+public class FaceBookSignupProvider extends BaseProvider implements LoginListener {
 
-    private FaceBookHelper faceBookHelper;
+    private FacebookHelper facebookHelper;
 
-    public FaceBookLoginProvider() {
-        faceBookHelper = new FaceBookHelper(this);
-        faceBookHelper.setupFacebookCallback();
+    public FaceBookSignupProvider() {
+        facebookHelper = new FacebookHelper(this);
+        facebookHelper.setupFacebookCallback();
     }
 
     @Override
     protected void performLogin() {
-        LoginManager.getInstance()
-                .logInWithReadPermissions(fragment, new FaceBookConfig().getFaceBookPermissions());
+        facebookHelper.initiateLogin(fragment, new FacebookConfig().getFaceBookPermissions());
+
     }
 
     @Override
     protected View inflateLoginView(ViewGroup parentView) {
         return LayoutInflater.from(context)
-                .inflate(R.layout.facebook_login, parentView, false);
+                .inflate(R.layout.facebook_signup, parentView, false);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class FaceBookLoginProvider extends LoginProvider implements LoginListene
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        faceBookHelper.getCallbackManager().onActivityResult(requestCode, resultCode, data);
+        facebookHelper.getCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.login.LoginProvider;
+import com.moldedbits.argus.provider.BaseProvider;
 
 /**
  * Login Fragment
@@ -37,8 +37,8 @@ public class LoginFragment extends Fragment implements LoginListener {
         View view = inflater.inflate(getLayoutId(), container, false);
 
         ViewGroup loginContainer = (ViewGroup) view.findViewById(R.id.login_container);
-        for (LoginProvider provider : Argus.getInstance().getLoginProviders()) {
-            if (provider.getContainerId() == LoginProvider.DEFAULT_CONTAINER_ID) {
+        for (BaseProvider provider : Argus.getInstance().getLoginProviders()) {
+            if (provider.getContainerId() == BaseProvider.DEFAULT_CONTAINER_ID) {
                 loginContainer.addView(provider.loginView(this, loginContainer, this));
             } else {
                 View containerView = view.findViewById(provider.getContainerId());
@@ -84,7 +84,7 @@ public class LoginFragment extends Fragment implements LoginListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        for (LoginProvider provider : Argus.getInstance().getLoginProviders()) {
+        for (BaseProvider provider : Argus.getInstance().getLoginProviders()) {
             provider.onActivityResult(requestCode, resultCode, data);
         }
     }

@@ -10,19 +10,23 @@ import lombok.Setter;
  * Created by shishank on 03/05/17.
  */
 
-public class FaceBookConfig {
+public class FacebookConfig {
+
+    public static String PUBLIC_PROFILE = "public_profile";
+    public static String EMAIL = "email";
+    public static String USER_PHOTOS = "user_photos";
     @Getter
     @Setter
     public List<String> faceBookPermissions;
 
-    public FaceBookConfig() {
+    public FacebookConfig() {
         setDefaultPermission();
     }
 
     private void setDefaultPermission() {
         faceBookPermissions = new ArrayList<>();
-        faceBookPermissions.add("public_profile");
-        faceBookPermissions.add("email");
-        faceBookPermissions.add("user_photos");
+        faceBookPermissions.add(PUBLIC_PROFILE);
+        faceBookPermissions.add(EMAIL);
+        faceBookPermissions.add(USER_PHOTOS);
     }
 }

@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider.login;
+package com.moldedbits.argus.provider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import com.moldedbits.argus.model.ArgusUser;
 /**
  * Provides login functionality for specific end point
  */
-public abstract class LoginProvider {
+public abstract class BaseProvider {
 
     public static final int DEFAULT_CONTAINER_ID = -1;
 
@@ -39,7 +39,7 @@ public abstract class LoginProvider {
 
         View view = inflateLoginView(parentView);
         if (view.findViewById(getLoginButtonId()) == null) {
-            throw new RuntimeException("LoginProvider view needs a button with id R.id.login");
+            throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
 
         view.findViewById(getLoginButtonId()).setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,7 @@ public abstract class LoginProvider {
      * Perform login here. Implementations should take care of showing loading overlay to block
      * out UI
      */
-    abstract void performLogin();
+   protected abstract void performLogin();
 
 
     protected void onLoginSuccess(ArgusUser user) {

@@ -121,4 +121,9 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
             listener.onFailure("Error");
         }
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+        handleSignInResult(result);
+    }
 }

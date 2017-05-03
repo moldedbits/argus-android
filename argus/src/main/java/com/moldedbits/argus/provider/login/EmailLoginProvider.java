@@ -8,11 +8,12 @@ import android.widget.EditText;
 
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.provider.BaseProvider;
 
 /**
  * Allow user to login with email and password
  */
-public class EmailLoginProvider extends LoginProvider {
+public class EmailLoginProvider extends BaseProvider {
 
     private EditText usernameInput;
     private EditText passwordInput;

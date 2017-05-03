@@ -1,8 +1,7 @@
 package com.moldedbits.argus;
 
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.login.LoginProvider;
-import com.moldedbits.argus.provider.signup.SignupProvider;
+import com.moldedbits.argus.provider.BaseProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Argus {
     private NextScreenProvider nextScreenProvider;
 
     @Getter
-    private List<LoginProvider> loginProviders;
+    private List<BaseProvider> loginProviders;
 
     @Getter
     private int loginLayout;
@@ -29,7 +28,7 @@ public class Argus {
     private int signupLayout;
 
     @Getter
-    private List<SignupProvider> signupProviders;
+    private List<BaseProvider> signupProviders;
 
     private Argus() {
     }
@@ -72,7 +71,7 @@ public class Argus {
             return this;
         }
 
-        public Builder loginProvider(LoginProvider provider) {
+        public Builder loginProvider(BaseProvider provider) {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
             }
@@ -80,15 +79,15 @@ public class Argus {
             return this;
         }
 
-        public Builder signupProvider(List<SignupProvider> provider) {
+        public Builder signupProvider(List<BaseProvider> providers) {
            if(argus.signupProviders == null) {
                argus.signupProviders = new ArrayList<>();
            }
-           argus.signupProviders = provider;
+           argus.signupProviders = providers;
             return this;
         }
 
-        public Builder loginProvider(List<LoginProvider> providers) {
+        public Builder loginProvider(List<BaseProvider> providers) {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
             }

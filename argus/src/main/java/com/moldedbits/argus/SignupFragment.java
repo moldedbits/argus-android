@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.signup.SignupProvider;
+import com.moldedbits.argus.provider.BaseProvider;
 
 public class SignupFragment extends Fragment implements LoginListener {
 
@@ -31,9 +31,9 @@ public class SignupFragment extends Fragment implements LoginListener {
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
         ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.signup_container);
-        for (SignupProvider provider : Argus.getInstance().getSignupProviders()) {
-            if (provider.getContainerId() == SignupProvider.DEFAULT_SIGNUP_CONTAINER_ID) {
-                signupContainer.addView(provider.signUpView(this, signupContainer, this));
+        for (BaseProvider provider : Argus.getInstance().getSignupProviders()) {
+            if (provider.getContainerId() == BaseProvider.DEFAULT_CONTAINER_ID) {
+                signupContainer.addView(provider.loginView(this, signupContainer, this));
             } else {
                 View containerView = view.findViewById(provider.getContainerId());
                 if (containerView == null || !(containerView instanceof ViewGroup)) {
@@ -41,7 +41,7 @@ public class SignupFragment extends Fragment implements LoginListener {
                                                        "layout");
                 }
                 ((ViewGroup) containerView).addView(
-                        provider.signUpView(this, (ViewGroup) containerView, this));
+                        provider.loginView(this, (ViewGroup) containerView, this));
 
             }
         }
@@ -77,7 +77,7 @@ public class SignupFragment extends Fragment implements LoginListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        for (SignupProvider provider : Argus.getInstance().getSignupProviders()) {
+        for (BaseProvider provider : Argus.getInstance().getSignupProviders()) {
             provider.onActivityResult(requestCode, resultCode, data);
         }
     }
