@@ -32,5 +32,6 @@ dependencies {
     provided 'org.projectlombok:lombok:1.16.16'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.facebook.android:facebook-android-sdk:4.22.0'
+    compile 'com.google.code.gson:gson:2.7'
     testCompile 'junit:junit:4.12'
 }
