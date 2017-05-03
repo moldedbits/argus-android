@@ -28,6 +28,7 @@ public class ArgusActivity extends AppCompatActivity implements LoginListener {
                     .replace(R.id.content, SignupFragment.newInstance())
                     .commit();
         }
+
     }
 
     public void onSuccess(ArgusUser user) {

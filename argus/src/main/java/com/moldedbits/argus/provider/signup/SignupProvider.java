@@ -1,6 +1,7 @@
 package com.moldedbits.argus.provider.signup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,15 +37,21 @@ public abstract class SignupProvider {
 
     }
 
-    protected void onSignupSuccess(ArgusUser user){
+    protected void onSignupSuccess(ArgusUser user) {
         signupListener.onSuccess(user);
     }
 
-    protected void onFailure(){
-        signupListener.onFailure("");
+    protected void onSignupFailure(String message) {
+        signupListener.onFailure(message);
     }
 
     protected abstract void performSignUp();
+
+    /**
+     * Override this if you want to listen to the onActivityResult of the parent fragment
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    }
 
     private int getSignUpButtonId() {
         return R.id.signup;

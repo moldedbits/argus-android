@@ -1,6 +1,7 @@
 package com.moldedbits.argus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,8 +31,9 @@ public class SignupFragment extends Fragment implements LoginListener {
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
         ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.signup_container);
-        SignupProvider provider = Argus.getInstance().getSignupProviders();
-        signupContainer.addView(provider.signUpView(this, signupContainer, this));
+        for (SignupProvider provider : Argus.getInstance().getSignupProviders()) {
+            signupContainer.addView(provider.signUpView(this, signupContainer, this));
+        }
         return view;
     }
 
@@ -60,7 +62,15 @@ public class SignupFragment extends Fragment implements LoginListener {
 
     @Override
     public void onFailure(String message) {
-        listener.onFailure("");
+        listener.onFailure(message);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (SignupProvider provider : Argus.getInstance().getSignupProviders()) {
+            provider.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 }

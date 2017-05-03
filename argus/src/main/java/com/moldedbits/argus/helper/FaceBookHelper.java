@@ -21,15 +21,15 @@ import org.json.JSONObject;
 
 public class FaceBookHelper {
     private AccessToken token;
-    private CallbackManager callbackManager;
+    private static CallbackManager callbackManager;
     private LoginListener loginListener;
 
     public FaceBookHelper(LoginListener loginListener) {
         this.loginListener = loginListener;
+        callbackManager = CallbackManager.Factory.create();
     }
 
     public void setupFacebookCallback() {
-        callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -38,6 +38,7 @@ public class FaceBookHelper {
                         , new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.d("FACEBOOK","asdsadsad");
                                 token = AccessToken.getCurrentAccessToken();
                                 if (loginListener != null) {
                                     loginListener.onSuccess(new ArgusUser(token.toString()));
