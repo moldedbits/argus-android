@@ -57,4 +57,9 @@ public class GoogleLoginProvider extends LoginProvider implements LoginListener 
     public void onFailure(String message) {
         onLoginFail(message);
     }
+
+    @Override
+    public int getContainerId() {
+        return R.id.container_google;
+    }
 }

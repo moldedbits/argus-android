@@ -1,29 +1,19 @@
 package com.moldedbits.argus.provider.login;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.moldedbits.argus.ArgusSessionManager;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.helper.FaceBookHelper;
+import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
-
-import org.json.JSONObject;
 
 import java.util.Arrays;
 
-public class FaceBookLoginProvider extends LoginProvider {
+public class FaceBookLoginProvider extends LoginProvider implements LoginListener {
 
     // Permissions can be changed
 
@@ -34,46 +24,17 @@ public class FaceBookLoginProvider extends LoginProvider {
                     "user_photos",
             };
 
-    private static CallbackManager callbackManager;
+    private FaceBookHelper faceBookHelper;
 
     public FaceBookLoginProvider() {
-        callbackManager = CallbackManager.Factory.create();
-        setUpCallBack();
+        faceBookHelper = new FaceBookHelper(this);
+        faceBookHelper.setupFacebookCallback();
     }
 
-    private void setUpCallBack() {
-        LoginManager.getInstance()
-                .registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(final LoginResult loginResult) {
-
-                        GraphRequest graphRequest = GraphRequest
-                                .newMeRequest(loginResult.getAccessToken()
-                                        , new GraphRequest.GraphJSONObjectCallback() {
-                                            @Override
-                                            public void onCompleted(JSONObject object,
-                                                                    GraphResponse response) {
-                                                onLoginSuccess(new ArgusUser("Hello" + AccessToken
-                                                        .getCurrentAccessToken().getUserId()));
-                                                ArgusSessionManager.setIsLoggedIn(true);
-                                            }
-                                        });
-                        Bundle parameters = new Bundle();
-                        parameters.putString("fields", "name,email,public_profile");
-                        graphRequest.setParameters(parameters);
-                        graphRequest.executeAsync();
-                    }
-
-                    @Override
-                    public void onCancel() {
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-                        onLoginFail(error.getMessage());
-                        Log.d("FACEBOOK", error.getMessage());
-                    }
-                });
+    @Override
+    protected void performLogin() {
+        LoginManager.getInstance().logInWithReadPermissions(fragment, Arrays.asList(
+                FACEBOOK_APP_PERMISSIONS));
     }
 
     @Override
@@ -83,15 +44,19 @@ public class FaceBookLoginProvider extends LoginProvider {
     }
 
     @Override
-    void performLogin() {
-        LoginManager.getInstance().logInWithReadPermissions(fragment, Arrays.asList(
-                FACEBOOK_APP_PERMISSIONS));
+    public void onSuccess(ArgusUser user) {
+        onLoginSuccess(user);
+    }
+
+    @Override
+    public void onFailure(String message) {
+        onLoginFail(message);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        faceBookHelper.getCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
