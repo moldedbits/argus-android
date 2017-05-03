@@ -12,12 +12,13 @@ import com.moldedbits.argus.model.ArgusUser;
 
 public abstract class SignupProvider {
 
-    private LoginListener signupListener;
+    public static final int DEFAULT_SIGNUP_CONTAINER_ID = -1;
+    private LoginListener listener;
     Fragment fragment;
     protected Context context;
 
     public View signUpView(Fragment fragment, ViewGroup parentView, LoginListener listener) {
-        this.signupListener = listener;
+        this.listener = listener;
         this.fragment = fragment;
         this.context = fragment.getContext();
 
@@ -38,11 +39,11 @@ public abstract class SignupProvider {
     }
 
     protected void onSignupSuccess(ArgusUser user) {
-        signupListener.onSuccess(user);
+        listener.onSuccess(user);
     }
 
     protected void onSignupFailure(String message) {
-        signupListener.onFailure(message);
+        listener.onFailure(message);
     }
 
     protected abstract void performSignUp();
@@ -58,5 +59,9 @@ public abstract class SignupProvider {
     }
 
     protected abstract View inflateSignUpView(ViewGroup parentView);
+
+    public int getContainerId() {
+        return DEFAULT_SIGNUP_CONTAINER_ID;
+    }
 
 }

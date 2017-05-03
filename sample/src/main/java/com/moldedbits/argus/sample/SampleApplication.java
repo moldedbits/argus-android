@@ -9,6 +9,7 @@ import com.moldedbits.argus.provider.login.FaceBookLoginProvider;
 import com.moldedbits.argus.provider.login.GoogleLoginProvider;
 import com.moldedbits.argus.provider.login.LoginProvider;
 import com.moldedbits.argus.provider.signup.EmailSignupProvider;
+import com.moldedbits.argus.provider.signup.FaceBookSignupProvider;
 import com.moldedbits.argus.provider.signup.GoogleSignupProvider;
 import com.moldedbits.argus.provider.signup.SignupProvider;
 
@@ -26,13 +27,14 @@ public class SampleApplication extends Application {
         loginProviders.add(new GoogleLoginProvider());
         loginProviders.add(new FaceBookLoginProvider());
         signupProviders.add(new EmailSignupProvider());
-      //  signupProviders.add(new FaceBookSignupProvider());
+       signupProviders.add(new FaceBookSignupProvider());
         signupProviders.add(new GoogleSignupProvider());
 
         Argus argus = new Argus.Builder()
                 .nextScreenProvider(new SimpleNextScreenProvider(MainActivity.class))
                 .signupProvider(signupProviders)
                 .setLoginLayout(R.layout.custom_login_fragment)
+                .setSignupLayout(R.layout.custom_signup_layout)
                 .loginProvider(loginProviders)
                 .build();
 

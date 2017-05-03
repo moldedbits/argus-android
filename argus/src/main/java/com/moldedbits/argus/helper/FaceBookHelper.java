@@ -38,7 +38,6 @@ public class FaceBookHelper {
                         , new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
-                                Log.d("FACEBOOK","asdsadsad");
                                 token = AccessToken.getCurrentAccessToken();
                                 if (loginListener != null) {
                                     loginListener.onSuccess(new ArgusUser(token.toString()));

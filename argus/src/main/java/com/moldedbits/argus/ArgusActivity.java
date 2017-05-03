@@ -17,23 +17,10 @@ public class ArgusActivity extends AppCompatActivity implements LoginListener {
         if (Argus.getInstance() == null) {
             throw new RuntimeException("Argus not initialized");
         }
-        if (ArgusSessionManager.isLoggedIn()) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.content, LoginFragment.newInstance())
-                    .commit();
-        } else {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.content, SignupFragment.newInstance())
-                    .commit();
-        }
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, LoginFragment.newInstance())
                 .commit();
-
     }
 
     public void onSuccess(ArgusUser user) {

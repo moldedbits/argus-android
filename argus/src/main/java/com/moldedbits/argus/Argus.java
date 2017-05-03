@@ -26,6 +26,9 @@ public class Argus {
     private int loginLayout;
 
     @Getter
+    private int signupLayout;
+
+    @Getter
     private List<SignupProvider> signupProviders;
 
     private Argus() {
@@ -61,6 +64,11 @@ public class Argus {
 
         public Builder setLoginLayout(int layout) {
             argus.loginLayout = layout;
+            return this;
+        }
+
+        public Builder setSignupLayout(int layout) {
+            argus.signupLayout = layout;
             return this;
         }
 

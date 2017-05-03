@@ -53,4 +53,9 @@ public class GoogleSignupProvider extends SignupProvider implements LoginListene
     public void onFailure(String message) {
         onSignupFailure(message);
     }
+
+    @Override
+    public int getContainerId() {
+        return R.id.container_google;
+    }
 }

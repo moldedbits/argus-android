@@ -7,22 +7,14 @@ import android.view.ViewGroup;
 
 import com.facebook.login.LoginManager;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.helper.FaceBookConfig;
 import com.moldedbits.argus.helper.FaceBookHelper;
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
-import java.util.Arrays;
-
 public class FaceBookLoginProvider extends LoginProvider implements LoginListener {
 
     // Permissions can be changed
-
-    public static final String[] FACEBOOK_APP_PERMISSIONS =
-            {
-                    "public_profile",
-                    "email",
-                    "user_photos",
-            };
 
     private FaceBookHelper faceBookHelper;
 
@@ -33,8 +25,8 @@ public class FaceBookLoginProvider extends LoginProvider implements LoginListene
 
     @Override
     protected void performLogin() {
-        LoginManager.getInstance().logInWithReadPermissions(fragment, Arrays.asList(
-                FACEBOOK_APP_PERMISSIONS));
+        LoginManager.getInstance()
+                .logInWithReadPermissions(fragment, new FaceBookConfig().getFaceBookPermissions());
     }
 
     @Override

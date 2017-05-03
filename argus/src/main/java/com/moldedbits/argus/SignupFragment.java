@@ -32,7 +32,18 @@ public class SignupFragment extends Fragment implements LoginListener {
 
         ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.signup_container);
         for (SignupProvider provider : Argus.getInstance().getSignupProviders()) {
-            signupContainer.addView(provider.signUpView(this, signupContainer, this));
+            if (provider.getContainerId() == SignupProvider.DEFAULT_SIGNUP_CONTAINER_ID) {
+                signupContainer.addView(provider.signUpView(this, signupContainer, this));
+            } else {
+                View containerView = view.findViewById(provider.getContainerId());
+                if (containerView == null || !(containerView instanceof ViewGroup)) {
+                    throw new RuntimeException("Did you forget to define container in your " +
+                                                       "layout");
+                }
+                ((ViewGroup) containerView).addView(
+                        provider.signUpView(this, (ViewGroup) containerView, this));
+
+            }
         }
         return view;
     }
@@ -43,8 +54,7 @@ public class SignupFragment extends Fragment implements LoginListener {
         if (context instanceof LoginListener) {
             listener = (LoginListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                                               + " must implement LoginListener");
+            throw new RuntimeException(context.toString() +" must implement LoginListener");
         }
     }
 
@@ -72,5 +82,4 @@ public class SignupFragment extends Fragment implements LoginListener {
             provider.onActivityResult(requestCode, resultCode, data);
         }
     }
-
 }
