@@ -21,7 +21,6 @@ public class EmailSignupProvider extends BaseProvider {
         if (validateInput()) {
             ArgusUser user = new ArgusUser(username.getText().toString());
             user.setEmail(email.getText().toString());
-            user.setPassword(password.getText().toString());
             onLoginSuccess(new ArgusUser("New User Welcome"));
         }
     }
