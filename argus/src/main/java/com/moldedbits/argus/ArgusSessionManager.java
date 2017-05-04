@@ -1,10 +1,9 @@
 package com.moldedbits.argus;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.storage.ArgusStorage;
 
 /**
  * Helper to access Session information
@@ -16,8 +15,8 @@ class ArgusSessionManager {
      */
     private ArgusStorage argusStorage;
 
-    ArgusSessionManager(@NonNull final Context context) {
-        argusStorage = new ArgusStorage(context);
+    ArgusSessionManager(ArgusStorage argusStorage) {
+        this.argusStorage = argusStorage;
     }
 
     /**

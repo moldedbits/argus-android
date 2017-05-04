@@ -1,11 +1,10 @@
 package com.moldedbits.argus;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.LoginProvider;
+import com.moldedbits.argus.storage.ArgusStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +29,11 @@ public class Argus {
     private int loginLayout;
 
     /**
-     * @param context is needed here in order to initialize ArgusSessionManager which in turn needs
-     *                it to initialize ArgusStorage
+     * Required Argus storage instance in order to store ArgusUser
      */
-    private Argus(@NonNull final Context context) {
-        argusSessionManager = new ArgusSessionManager(context);
+    private ArgusStorage argusStorage;
+
+    private Argus() {
     }
 
     public static void initialize(Argus argus) {
@@ -56,11 +55,8 @@ public class Argus {
 
         private Argus argus;
 
-        public Builder(final Context context) {
-            if(context == null) {
-                throw new IllegalArgumentException("Context cannot be null");
-            }
-            argus = new Argus(context);
+        public Builder() {
+            argus = new Argus();
         }
 
         public Builder nextScreenProvider(NextScreenProvider provider) {
@@ -89,7 +85,20 @@ public class Argus {
             return this;
         }
 
+        public Builder argusStorage(ArgusStorage argusStorage) {
+            if(argusStorage == null) {
+                throw new IllegalArgumentException("Argus Storage cannot be null");
+            }
+
+            argus.argusStorage = argusStorage;
+            argus.argusSessionManager = new ArgusSessionManager(argusStorage);
+            return this;
+        }
+
         public Argus build() {
+            if(argus.argusStorage == null) {
+                throw new IllegalStateException("No ArgusStorage was provided.");
+            }
             return argus;
         }
     }
