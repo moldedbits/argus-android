@@ -43,6 +43,29 @@ public class Argus {
         argusSessionManager.setCurrentUser(user);
     }
 
+    /**
+     * Is a user currently logged in.
+     *
+     * @return True if a user is logged in, false otherwise
+     */
+    public boolean isLoggedIn() {
+        return argusSessionManager.isLoggedIn();
+    }
+
+    /**
+     * Get the currently logged in user.
+     *
+     * @return Currently logged in user, or null if no user is logged in.
+     */
+    @Nullable
+    public ArgusUser getCurrentUser() {
+        return argusSessionManager.getCurrentUser();
+    }
+
+    void setCurrentUser(ArgusUser user) {
+        argusSessionManager.setCurrentUser(user);
+    }
+
     public static class Builder {
 
         private Argus argus;
@@ -86,7 +109,6 @@ public class Argus {
             argus.argusSessionManager = new ArgusSessionManager(argusStorage);
             return this;
         }
-
         public Argus build() {
             if(argus.argusStorage == null) {
                 throw new IllegalStateException("No ArgusStorage was provided.");
@@ -94,28 +116,6 @@ public class Argus {
             Argus._instance = argus;
             return Argus.getInstance();
         }
-    }
 
-    /**
-     * Is a user currently logged in.
-     *
-     * @return True if a user is logged in, false otherwise
-     */
-    public boolean isLoggedIn() {
-        return argusSessionManager.isLoggedIn();
-    }
-
-    /**
-     * Get the currently logged in user.
-     *
-     * @return Currently logged in user, or null if no user is logged in.
-     */
-    @Nullable
-    public ArgusUser getCurrentUser() {
-        return argusSessionManager.getCurrentUser();
-    }
-
-    void setCurrentUser(ArgusUser user) {
-        argusSessionManager.setCurrentUser(user);
     }
 }
