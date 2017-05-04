@@ -58,6 +58,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     public void onConnectionSuspended(int i) {
     }
 
+    //TODO create a confif file for printing logs from classes depending on Log level.
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d("CONNECT_FAILED", "onConnectionFailed:" + connectionResult);
