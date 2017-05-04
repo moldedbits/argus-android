@@ -69,4 +69,6 @@ public abstract class BaseFragment extends Fragment implements LoginListener {
             provider.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+   protected abstract List<BaseProvider> getProviders();
 }

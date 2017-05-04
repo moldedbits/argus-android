@@ -27,7 +27,7 @@ public class SignupFragment extends BaseFragment {
         View view = inflater.inflate(getLayoutId(), container, false);
 
         ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.signup_container);
-        setView(view, signupContainer, Argus.getInstance().getSignupProviders());
+        setView(view, signupContainer, getProviders());
         return view;
     }
 
@@ -35,7 +35,7 @@ public class SignupFragment extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         List<BaseProvider> providers = Argus.getInstance().getSignupProviders();
-        onProviderActivityResult(requestCode, resultCode, data, providers);
+        onProviderActivityResult(requestCode, resultCode, data, getProviders());
     }
 
     private int getLayoutId() {
@@ -43,5 +43,10 @@ public class SignupFragment extends BaseFragment {
             return Argus.getInstance().getSignupLayout();
         }
         return R.layout.fragment_signup;
+    }
+
+    @Override
+    protected List<BaseProvider> getProviders() {
+        return Argus.getInstance().getSignupProviders();
     }
 }

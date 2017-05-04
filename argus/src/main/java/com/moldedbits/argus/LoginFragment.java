@@ -28,15 +28,14 @@ public class LoginFragment extends BaseFragment {
         View view = inflater.inflate(getLayoutId(), container, false);
 
         ViewGroup loginContainer = (ViewGroup) view.findViewById(R.id.login_container);
-        setView(view, loginContainer, Argus.getInstance().getLoginProviders());
+        setView(view, loginContainer, getProviders());
         return view;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        List<BaseProvider> baseProviders = Argus.getInstance().getLoginProviders();
-        onProviderActivityResult(requestCode, resultCode, data, baseProviders);
+        onProviderActivityResult(requestCode, resultCode, data, getProviders());
     }
 
     public int getLayoutId() {
@@ -44,5 +43,10 @@ public class LoginFragment extends BaseFragment {
             return Argus.getInstance().getLoginLayout();
         }
         return R.layout.fragment_login;
+    }
+
+    @Override
+    protected List<BaseProvider> getProviders() {
+        return Argus.getInstance().getLoginProviders();
     }
 }
