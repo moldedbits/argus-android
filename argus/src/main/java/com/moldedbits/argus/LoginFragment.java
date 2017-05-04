@@ -18,17 +18,11 @@ public class LoginFragment extends BaseFragment {
         return fragment;
     }
 
-    @Override
     public int getLayoutId() {
         if (Argus.getInstance().getLoginLayout() != 0) {
             return Argus.getInstance().getLoginLayout();
         }
         return R.layout.fragment_login;
-    }
-
-    @Override
-    protected int getLayoutContainerId() {
-        return R.id.login_container;
     }
 
     @Override

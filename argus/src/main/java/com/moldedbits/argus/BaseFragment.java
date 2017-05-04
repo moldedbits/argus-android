@@ -3,7 +3,6 @@ package com.moldedbits.argus;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,26 +23,19 @@ public abstract class BaseFragment extends Fragment implements LoginListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
-        ViewGroup loginContainer = (ViewGroup) view.findViewById(getLayoutContainerId());
-        setView(view, loginContainer, getProviders());
+        setView(view, getProviders());
         return view;
     }
 
-    protected void setView(View view, @Nullable ViewGroup container,
-                           List<BaseProvider> providerList) {
+    protected void setView(View view, List<BaseProvider> providerList) {
         for (BaseProvider provider : providerList) {
-            if (provider.getContainerId() == BaseProvider.DEFAULT_CONTAINER_ID) {
-                container.addView(provider.loginView(this, container, this));
-            } else {
-                View containerView = view.findViewById(provider.getContainerId());
-                if (containerView == null || !(containerView instanceof ViewGroup)) {
-                    throw new RuntimeException("Did you forget to define container in your " +
-                                                       "layout");
-                }
-                ((ViewGroup) containerView)
-                        .addView(provider.loginView(this, (ViewGroup) containerView, this));
 
+            View containerView = view.findViewById(provider.getContainerId());
+            if (containerView == null || !(containerView instanceof ViewGroup)) {
+                throw new RuntimeException("Did you forget to define container in your layout");
             }
+            ((ViewGroup) containerView)
+                    .addView(provider.loginView(this, (ViewGroup) containerView, this));
         }
     }
 
@@ -86,8 +78,6 @@ public abstract class BaseFragment extends Fragment implements LoginListener {
             provider.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-    protected abstract int getLayoutContainerId();
 
     protected abstract int getLayoutId();
 

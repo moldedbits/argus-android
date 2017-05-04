@@ -15,10 +15,6 @@ public class SignupFragment extends BaseFragment {
         return fragment;
     }
 
-    @Override
-    protected int getLayoutContainerId() {
-        return R.id.signup_container;
-    }
 
     @Override
     protected int getLayoutId() {
