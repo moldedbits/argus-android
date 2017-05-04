@@ -33,15 +33,7 @@ public class Argus {
      */
     private ArgusStorage argusStorage;
 
-    private Argus() {
-    }
-
-    public static void initialize(Argus argus) {
-        if (_instance != null) {
-            throw new RuntimeException("Argus is already initialized");
-        }
-        _instance = argus;
-    }
+    private Argus() {}
 
     public static Argus getInstance() {
         return _instance;
@@ -99,7 +91,8 @@ public class Argus {
             if(argus.argusStorage == null) {
                 throw new IllegalStateException("No ArgusStorage was provided.");
             }
-            return argus;
+            Argus._instance = argus;
+            return Argus.getInstance();
         }
     }
 
