@@ -51,4 +51,9 @@ public class EmailSignupProvider extends BaseProvider {
         }
         return true;
     }
+
+    @Override
+    public int getContainerId() {
+        return R.id.container_signup;
+    }
 }

@@ -70,7 +70,7 @@ public class FacebookHelper {
     }
 
 
-    public void logoutFromFacebook() {
+    public void logout() {
         if (AccessToken.getCurrentAccessToken() == null) {
             return;
             // already logged out

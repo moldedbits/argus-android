@@ -17,16 +17,16 @@ import com.google.android.gms.common.api.Status;
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
-public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
-        , GoogleApiClient.OnConnectionFailedListener {
+public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
+
     public static final int RC_SIGN_IN = 10001;
     private Fragment fragment;
     private LoginListener listener;
     private GoogleApiClient googleApiClient = null;
-    boolean isResolving;
-    boolean shouldResolve;
+    private boolean isResolving;
+    private boolean shouldResolve;
     private Boolean mGooglePlusLogoutClicked;
-
 
     public GoogleHelper(Fragment fragment, LoginListener listener) {
         this.fragment = fragment;
@@ -100,7 +100,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks
                     .setResultCallback(new ResultCallback<Status>() {
                         @Override
                         public void onResult(Status status) {
-                            //AppUtils.takeToLoginActivity(context);
+                            //TODO handle logic for onlogout
                         }
                     });
         } else {

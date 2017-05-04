@@ -61,12 +61,12 @@ public class Argus {
             return this;
         }
 
-        public Builder setLoginLayout(int layout) {
+        public Builder loginLayout(int layout) {
             argus.loginLayout = layout;
             return this;
         }
 
-        public Builder setSignupLayout(int layout) {
+        public Builder signupLayout(int layout) {
             argus.signupLayout = layout;
             return this;
         }
@@ -79,7 +79,7 @@ public class Argus {
             return this;
         }
 
-        public Builder signupProvider(List<BaseProvider> providers) {
+        public Builder signupProviders(List<BaseProvider> providers) {
            if(argus.signupProviders == null) {
                argus.signupProviders = new ArrayList<>();
            }
@@ -87,7 +87,7 @@ public class Argus {
             return this;
         }
 
-        public Builder loginProvider(List<BaseProvider> providers) {
+        public Builder loginProviders(List<BaseProvider> providers) {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
             }
