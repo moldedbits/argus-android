@@ -4,6 +4,16 @@ apply plugin: 'checkstyle'
 preBuild.dependsOn 'checkstyle'
 check.dependsOn 'checkstyle'
 
+// auto increment version stuff
+import com.moldedbits.android.MBIncrementVersionTask
+
+task incrementVersionTask(type: MBIncrementVersionTask)
+tasks.whenTaskAdded { task ->
+    if (task.name == 'generateReleaseBuildConfig') {
+        task.dependsOn 'incrementVersionTask'
+    }
+}
+
 task checkstyle(type: Checkstyle) {
     configFile file("${project.rootDir}/config/quality/checkstyle.xml")
     source 'src'
@@ -24,10 +34,14 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode incrementVersionTask.getCurrentVersionCode()
+        versionName incrementVersionTask.getCurrentVersionName()
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // setting custom name for output
+        project.ext.set("archivesBaseName", "Argus-android-" + defaultConfig.versionName
+                + "-vc" + defaultConfig.versionCode);
     }
 
     buildTypes {
