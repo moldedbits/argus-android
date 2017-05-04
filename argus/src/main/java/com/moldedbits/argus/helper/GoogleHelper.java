@@ -17,6 +17,7 @@ import com.google.android.gms.common.api.Status;
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
+//TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -58,6 +59,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     public void onConnectionSuspended(int i) {
     }
 
+    //TODO create a confif file for printing logs from classes depending on Log level.
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d("CONNECT_FAILED", "onConnectionFailed:" + connectionResult);
@@ -114,6 +116,8 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
                 listener.onSuccess(new ArgusUser(acct.getDisplayName()));
+            } else {
+                listener.onFailure("login failed");
             }
         } else {
             // Signed out, show unauthenticated UI.

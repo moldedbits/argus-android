@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider.sociallogin;
+package com.moldedbits.argus.provider.social;
 
 import android.content.Intent;
 import android.view.LayoutInflater;

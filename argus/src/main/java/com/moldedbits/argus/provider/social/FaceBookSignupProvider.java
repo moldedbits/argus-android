@@ -1,4 +1,4 @@
-package com.moldedbits.argus.provider.sociallogin;
+package com.moldedbits.argus.provider.social;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -25,7 +25,6 @@ public class FaceBookSignupProvider extends BaseProvider implements LoginListene
     @Override
     protected void performLogin() {
         facebookHelper.initiateLogin(fragment, new FacebookConfig().getFaceBookPermissions());
-
     }
 
     @Override
@@ -47,7 +46,7 @@ public class FaceBookSignupProvider extends BaseProvider implements LoginListene
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebookHelper.getCallbackManager().onActivityResult(requestCode, resultCode, data);
+        facebookHelper.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

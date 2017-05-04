@@ -17,22 +17,22 @@ import lombok.Getter;
 public class Argus {
 
     private static Argus _instance;
+
     private ArgusSessionManager argusSessionManager;
 
     @Getter
     private NextScreenProvider nextScreenProvider;
 
     @Getter
+    private List<BaseProvider> signupProviders;
+    @Getter
     private List<BaseProvider> loginProviders;
 
     @Getter
     private int loginLayout;
-
     @Getter
     private int signupLayout;
 
-    @Getter
-    private List<BaseProvider> signupProviders;
 
     private Argus() {
     }
