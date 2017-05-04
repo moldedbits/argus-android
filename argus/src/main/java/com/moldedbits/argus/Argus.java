@@ -1,22 +1,23 @@
 package com.moldedbits.argus;
 
-import android.util.Patterns;
+import android.support.annotation.Nullable;
 
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.LoginProvider;
+import com.moldedbits.argus.storage.ArgusStorage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import lombok.Getter;
 
 /**
- * Main interaction point for Argus
+ * Single contact point for client
  */
 public class Argus {
 
     private static Argus _instance;
+    private ArgusSessionManager argusSessionManager;
 
     @Getter
     private NextScreenProvider nextScreenProvider;
@@ -27,22 +28,42 @@ public class Argus {
     @Getter
     private int loginLayout;
 
-    private Argus() {
-    }
+    /**
+     * Required Argus storage instance in order to store ArgusUser
+     */
+    private ArgusStorage argusStorage;
 
-    public static void initialize(Argus argus) {
-        if (_instance != null) {
-            throw new RuntimeException("Argus is already initialized");
-        }
-        _instance = argus;
-    }
+    private Argus() {}
 
     public static Argus getInstance() {
         return _instance;
     }
 
     public void loginUser(ArgusUser user) {
-        ArgusSessionManager.setCurrentUser(user);
+        argusSessionManager.setCurrentUser(user);
+    }
+
+    /**
+     * Is a user currently logged in.
+     *
+     * @return True if a user is logged in, false otherwise
+     */
+    public boolean isLoggedIn() {
+        return argusSessionManager.isLoggedIn();
+    }
+
+    /**
+     * Get the currently logged in user.
+     *
+     * @return Currently logged in user, or null if no user is logged in.
+     */
+    @Nullable
+    public ArgusUser getCurrentUser() {
+        return argusSessionManager.getCurrentUser();
+    }
+
+    void setCurrentUser(ArgusUser user) {
+        argusSessionManager.setCurrentUser(user);
     }
 
     public static class Builder {
@@ -79,8 +100,22 @@ public class Argus {
             return this;
         }
 
+        public Builder argusStorage(ArgusStorage argusStorage) {
+            if(argusStorage == null) {
+                throw new IllegalArgumentException("Argus Storage cannot be null");
+            }
+
+            argus.argusStorage = argusStorage;
+            argus.argusSessionManager = new ArgusSessionManager(argusStorage);
+            return this;
+        }
+
         public Argus build() {
-            return argus;
+            if(argus.argusStorage == null) {
+                throw new IllegalStateException("No ArgusStorage was provided.");
+            }
+            Argus._instance = argus;
+            return Argus.getInstance();
         }
     }
 }
