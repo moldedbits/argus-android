@@ -31,7 +31,7 @@ public class DefaultArgusStorage implements ArgusStorage {
     }
 
     public void setCurrentUser(ArgusUser user) {
-        mSharedPreferencesEditor.putString(ARGUS_USER, new Gson().toJson(user));
+        mSharedPreferencesEditor.putString(ARGUS_USER, new Gson().toJson(user)).apply();
     }
 
     public ArgusUser getCurrentUser() {

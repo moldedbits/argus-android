@@ -109,6 +109,7 @@ public class Argus {
             argus.argusSessionManager = new ArgusSessionManager(argusStorage);
             return this;
         }
+
         public Argus build() {
             if(argus.argusStorage == null) {
                 throw new IllegalStateException("No ArgusStorage was provided.");
@@ -116,6 +117,5 @@ public class Argus {
             Argus._instance = argus;
             return Argus.getInstance();
         }
-
     }
 }
