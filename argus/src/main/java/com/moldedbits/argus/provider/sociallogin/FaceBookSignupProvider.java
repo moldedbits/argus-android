@@ -47,7 +47,7 @@ public class FaceBookSignupProvider extends BaseProvider implements LoginListene
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebookHelper.getCallbackManager().onActivityResult(requestCode, resultCode, data);
+        facebookHelper.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

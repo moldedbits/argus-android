@@ -17,6 +17,7 @@ import com.google.android.gms.common.api.Status;
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
+//TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
