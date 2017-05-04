@@ -54,6 +54,6 @@ public class EmailSignupProvider extends BaseProvider {
 
     @Override
     public int getContainerId() {
-        return R.id.container_signup;
+        return R.id.container_email;
     }
 }
