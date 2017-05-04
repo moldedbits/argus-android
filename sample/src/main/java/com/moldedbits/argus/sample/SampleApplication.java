@@ -4,8 +4,8 @@ import android.app.Application;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.SimpleNextScreenProvider;
-import com.moldedbits.argus.provider.login.EmailLoginProvider;
 import com.moldedbits.argus.provider.BaseProvider;
+import com.moldedbits.argus.provider.login.EmailLoginProvider;
 import com.moldedbits.argus.provider.signup.EmailSignupProvider;
 import com.moldedbits.argus.provider.sociallogin.FaceBookSignupProvider;
 import com.moldedbits.argus.provider.sociallogin.GoogleSignupProvider;
@@ -18,11 +18,12 @@ public class SampleApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ArrayList<BaseProvider> baseProviders = new ArrayList<>();
+        ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         ArrayList<BaseProvider> signupProviders = new ArrayList<>();
-        baseProviders.add(new EmailLoginProvider());
-        baseProviders.add(new FaceBookSignupProvider());
-        baseProviders.add(new GoogleSignupProvider());
+        loginProviders.add(new EmailLoginProvider());
+        loginProviders.add(new FaceBookSignupProvider());
+        loginProviders.add(new GoogleSignupProvider());
+
         signupProviders.add(new EmailSignupProvider());
         signupProviders.add(new FaceBookSignupProvider());
         signupProviders.add(new GoogleSignupProvider());
@@ -32,7 +33,7 @@ public class SampleApplication extends Application {
                 .signupProvider(signupProviders)
                 .setLoginLayout(R.layout.custom_login_fragment)
                 .setSignupLayout(R.layout.custom_signup_layout)
-                .loginProvider(baseProviders)
+                .loginProvider(loginProviders)
                 .build();
 
         Argus.initialize(argus);

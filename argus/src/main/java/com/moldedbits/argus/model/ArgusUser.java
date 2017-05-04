@@ -17,10 +17,6 @@ public class ArgusUser {
      * email
      */
     @Getter @Setter String email;
-    /**
-     * password
-     */
-    @Getter @Setter String password;
 
     public ArgusUser(String username) {
         this.username = username;

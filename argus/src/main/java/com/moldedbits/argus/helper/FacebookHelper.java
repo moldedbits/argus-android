@@ -23,7 +23,7 @@ import java.util.List;
 
 public class FacebookHelper {
     private AccessToken token;
-    private static CallbackManager callbackManager;
+    private CallbackManager callbackManager;
     private LoginListener loginListener;
 
     public FacebookHelper(LoginListener loginListener) {
@@ -31,7 +31,7 @@ public class FacebookHelper {
         callbackManager = CallbackManager.Factory.create();
     }
 
-    public void setupFacebookCallback() {
+    public void initialize() {
         LoginManager.getInstance()
                 .registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
@@ -46,12 +46,12 @@ public class FacebookHelper {
                                                 token = AccessToken.getCurrentAccessToken();
                                                 if (loginListener != null) {
                                                     loginListener.onSuccess(
-                                                            new ArgusUser(token.toString()));
+                                                            new ArgusUser("Facebook"));
                                                 }
                                             }
                                         });
                         Bundle parameters = new Bundle();
-                        parameters.putString("fields", "name,email,public_profile");
+                        parameters.putString("fields", "public_profile");
                         graphRequest.setParameters(parameters);
                         graphRequest.executeAsync();
                     }

@@ -11,13 +11,8 @@ import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
-/**
- * Created by shishank on 03/05/17.
- */
 
 public class GoogleSignupProvider extends BaseProvider implements LoginListener {
-
-
     private GoogleHelper googleHelper;
 
     @Override

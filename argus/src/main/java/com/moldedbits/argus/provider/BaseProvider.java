@@ -2,6 +2,7 @@ package com.moldedbits.argus.provider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,10 @@ public abstract class BaseProvider {
 
     public static final int DEFAULT_CONTAINER_ID = -1;
 
+    @Nullable
     protected Context context;
 
+    @Nullable
     protected LoginListener loginListener;
 
     protected Fragment fragment;
@@ -38,11 +41,11 @@ public abstract class BaseProvider {
         this.fragment = fragment;
 
         View view = inflateLoginView(parentView);
-        if (view.findViewById(getLoginButtonId()) == null) {
+        if (view.findViewById(getActionButtonId()) == null) {
             throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
 
-        view.findViewById(getLoginButtonId()).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(getActionButtonId()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performLogin();
@@ -58,8 +61,8 @@ public abstract class BaseProvider {
      *
      * @return Login button id
      */
-    protected int getLoginButtonId() {
-        return R.id.login;
+    protected int getActionButtonId() {
+        return R.id.action;
     }
 
     /**

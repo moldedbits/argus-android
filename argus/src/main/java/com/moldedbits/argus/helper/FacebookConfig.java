@@ -26,7 +26,5 @@ public class FacebookConfig {
     private void setDefaultPermission() {
         faceBookPermissions = new ArrayList<>();
         faceBookPermissions.add(PUBLIC_PROFILE);
-        faceBookPermissions.add(EMAIL);
-        faceBookPermissions.add(USER_PHOTOS);
     }
 }

@@ -42,7 +42,6 @@ public class SignupFragment extends Fragment implements LoginListener {
                 }
                 ((ViewGroup) containerView).addView(
                         provider.loginView(this, (ViewGroup) containerView, this));
-
             }
         }
         return view;

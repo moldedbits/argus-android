@@ -91,7 +91,7 @@ public class Argus {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
             }
-            argus.loginProviders.addAll(providers);
+            argus.loginProviders = providers;
             return this;
         }
 

@@ -19,7 +19,7 @@ public class FaceBookSignupProvider extends BaseProvider implements LoginListene
 
     public FaceBookSignupProvider() {
         facebookHelper = new FacebookHelper(this);
-        facebookHelper.setupFacebookCallback();
+        facebookHelper.initialize();
     }
 
     @Override
