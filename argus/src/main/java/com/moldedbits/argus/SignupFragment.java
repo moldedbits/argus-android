@@ -26,8 +26,7 @@ public class SignupFragment extends BaseFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
 
-        ViewGroup signupContainer = (ViewGroup) view.findViewById(R.id.signup_container);
-        setView(view, signupContainer, Argus.getInstance().getSignupProviders());
+        setView(view, Argus.getInstance().getSignupProviders());
         return view;
     }
 

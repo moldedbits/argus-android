@@ -27,8 +27,7 @@ public class LoginFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
 
-        ViewGroup loginContainer = (ViewGroup) view.findViewById(R.id.login_container);
-        setView(view, loginContainer, Argus.getInstance().getLoginProviders());
+        setView(view, Argus.getInstance().getLoginProviders());
         return view;
     }
 

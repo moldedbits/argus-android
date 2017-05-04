@@ -2,7 +2,6 @@ package com.moldedbits.argus;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +17,8 @@ public abstract class BaseFragment extends Fragment implements LoginListener {
 
     private LoginListener listener;
 
-    protected void setView(View view, @Nullable ViewGroup container,
-                           List<BaseProvider> providerList) {
+    protected void setView(View view, List<BaseProvider> providerList) {
         for (BaseProvider provider : providerList) {
-                if (provider.getContainerId() == BaseProvider.DEFAULT_CONTAINER_ID) {
-                    container.addView(provider.loginView(this, container, this));
-            } else {
                 View containerView = view.findViewById(provider.getContainerId());
                 if (containerView == null || !(containerView instanceof ViewGroup)) {
                     throw new RuntimeException("Did you forget to define container in your " +
@@ -31,8 +26,6 @@ public abstract class BaseFragment extends Fragment implements LoginListener {
                 }
                 ((ViewGroup) containerView)
                         .addView(provider.loginView(this, (ViewGroup) containerView, this));
-
-            }
         }
     }
 
