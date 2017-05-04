@@ -23,13 +23,11 @@ public class SampleApplication extends Application {
         loginProviders.add(new GoogleLoginProvider());
         loginProviders.add(new FaceBookLoginProvider());
 
-        Argus argus = new Argus.Builder()
+        new Argus.Builder()
                 .argusStorage(new DefaultArgusStorage(getApplicationContext()))
                 .nextScreenProvider(new SimpleNextScreenProvider(MainActivity.class))
                 .setLoginLayout(R.layout.custom_login_fragment)
                 .loginProvider(loginProviders)
                 .build();
-
-        Argus.initialize(argus);
     }
 }
