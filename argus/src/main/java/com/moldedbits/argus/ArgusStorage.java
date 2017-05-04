@@ -11,9 +11,8 @@ import com.moldedbits.argus.model.ArgusUser;
 
 
 class ArgusStorage {
-    private static final String HUE_SHARED_PREFERENCES_STORE = "com.moldedbits.argus.sharedprefs";
+    private static final String ARGUS_PREFERENCES_STORE = "com.moldedbits.argus.sharedprefs";
     private static final String ARGUS_USER = "com.moldedbits.argus.argususer";
-    private static ArgusStorage instance = null;
     private SharedPreferences mSharedPreferences = null;
 
     private Editor mSharedPreferencesEditor = null;
@@ -24,7 +23,7 @@ class ArgusStorage {
 
     @SuppressLint("CommitPrefEdits")
     ArgusStorage(@NonNull final Context context) {
-        mSharedPreferences = context.getSharedPreferences(HUE_SHARED_PREFERENCES_STORE, 0); // 0 - for private mode
+        mSharedPreferences = context.getSharedPreferences(ARGUS_PREFERENCES_STORE, 0); // 0 - for private mode
         mSharedPreferencesEditor = mSharedPreferences.edit();
     }
 
