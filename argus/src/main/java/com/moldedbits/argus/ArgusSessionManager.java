@@ -14,16 +14,6 @@ public class ArgusSessionManager {
      * implementation.
      */
     static ArgusUser currentUser;
-    static boolean isLoggedIn;
-
-    /**
-     * Is a user currently logged in.
-     *
-     * @return True if a user is logged in, false otherwise
-     */
-    public static boolean isLoggedIn() {
-        return isLoggedIn;
-    }
 
     /**
      * Get the currently logged in user.
@@ -37,10 +27,5 @@ public class ArgusSessionManager {
 
     static void setCurrentUser(ArgusUser user) {
         currentUser = user;
-    }
-
-    //TODO will moved to local storage
-    public static void setIsLoggedIn(boolean isLoggedIn) {
-        ArgusSessionManager.isLoggedIn = isLoggedIn;
     }
 }
