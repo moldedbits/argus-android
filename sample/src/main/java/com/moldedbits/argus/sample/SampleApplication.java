@@ -29,7 +29,7 @@ public class SampleApplication extends Application {
         signupProviders.add(new FaceBookSignupProvider());
         signupProviders.add(new GoogleSignupProvider());
 
-        Argus argus = new Argus.Builder()
+        new Argus.Builder()
                 .argusStorage(new DefaultArgusStorage(getApplicationContext()))
                 .nextScreenProvider(new SimpleNextScreenProvider(MainActivity.class))
                 .signupProviders(signupProviders)
