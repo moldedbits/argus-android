@@ -11,7 +11,7 @@ import com.moldedbits.argus.model.ArgusUser;
 
 
 class ArgusStorage {
-    private static final String HUE_SHARED_PREFERENCES_STORE = "HueSharedPrefs";
+    private static final String HUE_SHARED_PREFERENCES_STORE = "com.moldedbits.argus.sharedprefs";
     private static final String ARGUS_USER = "com.moldedbits.argus.argususer";
     private static ArgusStorage instance = null;
     private SharedPreferences mSharedPreferences = null;
