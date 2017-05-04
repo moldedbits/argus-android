@@ -1,4 +1,21 @@
 apply plugin: 'com.android.library'
+apply plugin: 'checkstyle'
+
+preBuild.dependsOn 'checkstyle'
+check.dependsOn 'checkstyle'
+
+task checkstyle(type: Checkstyle) {
+    configFile file("${project.rootDir}/config/quality/checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/*.kt'
+
+    classpath = files()
+
+    // set to false if you want to consider warning as error
+    ignoreFailures = true
+}
 
 android {
     compileSdkVersion 25
