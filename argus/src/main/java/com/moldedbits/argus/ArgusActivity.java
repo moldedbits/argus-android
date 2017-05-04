@@ -17,22 +17,20 @@ public class ArgusActivity extends AppCompatActivity implements LoginListener {
         if (Argus.getInstance() == null) {
             throw new RuntimeException("Argus not initialized");
         }
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, LoginFragment.newInstance())
                 .commit();
     }
 
-    @Override
-    public void onLoginSuccess(ArgusUser user) {
+    public void onSuccess(ArgusUser user) {
         Argus.getInstance().loginUser(user);
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
     }
 
     @Override
-    public void onLoginFailure(String message) {
+    public void onFailure(String message) {
         //TODO handle failure correctly
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

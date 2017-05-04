@@ -21,6 +21,7 @@ class ArgusSessionManager {
 
     /**
      * Is a user currently logged in.
+     *
      * @return True if a user is logged in, false otherwise
      */
     boolean isLoggedIn() {

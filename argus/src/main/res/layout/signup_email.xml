@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -27,6 +26,16 @@
         android:layout_marginBottom="@dimen/default_margin"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:fontFamily="sans-serif"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:hint="@string/email"
+        android:maxLength="10"
+        android:inputType="textEmailAddress"
         android:fontFamily="sans-serif"/>
 
     <Button

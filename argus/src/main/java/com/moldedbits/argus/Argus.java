@@ -3,7 +3,7 @@ package com.moldedbits.argus;
 import android.support.annotation.Nullable;
 
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.LoginProvider;
+import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.storage.ArgusStorage;
 
 import java.util.ArrayList;
@@ -17,23 +17,31 @@ import lombok.Getter;
 public class Argus {
 
     private static Argus _instance;
+
     private ArgusSessionManager argusSessionManager;
 
     @Getter
     private NextScreenProvider nextScreenProvider;
 
     @Getter
-    private List<LoginProvider> loginProviders;
+    private List<BaseProvider> signupProviders;
+    @Getter
+    private List<BaseProvider> loginProviders;
 
     @Getter
     private int loginLayout;
+    @Getter
+    private int signupLayout;
+
+
+    private Argus() {
+    }
 
     /**
      * Required Argus storage instance in order to store ArgusUser
      */
     private ArgusStorage argusStorage;
 
-    private Argus() {}
 
     public static Argus getInstance() {
         return _instance;
@@ -79,12 +87,17 @@ public class Argus {
             return this;
         }
 
-        public Builder setLoginLayout(int layout) {
+        public Builder loginLayout(int layout) {
             argus.loginLayout = layout;
             return this;
         }
 
-        public Builder loginProvider(LoginProvider provider) {
+        public Builder signupLayout(int layout) {
+            argus.signupLayout = layout;
+            return this;
+        }
+
+        public Builder loginProvider(BaseProvider provider) {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
             }
@@ -92,16 +105,24 @@ public class Argus {
             return this;
         }
 
-        public Builder loginProvider(List<LoginProvider> providers) {
+        public Builder signupProviders(List<BaseProvider> providers) {
+            if (argus.signupProviders == null) {
+                argus.signupProviders = new ArrayList<>();
+            }
+            argus.signupProviders = providers;
+            return this;
+        }
+
+        public Builder loginProviders(List<BaseProvider> providers) {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
             }
-            argus.loginProviders.addAll(providers);
+            argus.loginProviders = providers;
             return this;
         }
 
         public Builder argusStorage(ArgusStorage argusStorage) {
-            if(argusStorage == null) {
+            if (argusStorage == null) {
                 throw new IllegalArgumentException("Argus Storage cannot be null");
             }
 
@@ -111,7 +132,7 @@ public class Argus {
         }
 
         public Argus build() {
-            if(argus.argusStorage == null) {
+            if (argus.argusStorage == null) {
                 throw new IllegalStateException("No ArgusStorage was provided.");
             }
             Argus._instance = argus;

@@ -2,6 +2,7 @@ package com.moldedbits.argus.provider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,14 @@ import com.moldedbits.argus.model.ArgusUser;
 /**
  * Provides login functionality for specific end point
  */
-public abstract class LoginProvider {
+public abstract class BaseProvider {
 
     public static final int DEFAULT_CONTAINER_ID = -1;
 
+    @Nullable
     protected Context context;
 
+    @Nullable
     protected LoginListener loginListener;
 
     protected Fragment fragment;
@@ -38,16 +41,17 @@ public abstract class LoginProvider {
         this.fragment = fragment;
 
         View view = inflateLoginView(parentView);
-        if (view.findViewById(getLoginButtonId()) == null) {
-            throw new RuntimeException("LoginProvider view needs a button with id R.id.login");
+        if (view.findViewById(getActionButtonId()) == null) {
+            throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
 
-        view.findViewById(getLoginButtonId()).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(getActionButtonId()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performLogin();
             }
         });
+
 
         return view;
     }
@@ -57,8 +61,8 @@ public abstract class LoginProvider {
      *
      * @return Login button id
      */
-    protected int getLoginButtonId() {
-        return R.id.login;
+    protected int getActionButtonId() {
+        return R.id.action_button;
     }
 
     /**
@@ -78,15 +82,15 @@ public abstract class LoginProvider {
      * Perform login here. Implementations should take care of showing loading overlay to block
      * out UI
      */
-    abstract void performLogin();
+   protected abstract void performLogin();
 
 
     protected void onLoginSuccess(ArgusUser user) {
-        loginListener.onLoginSuccess(user);
+        loginListener.onSuccess(user);
     }
 
     protected void onLoginFail(String message) {
-        loginListener.onLoginFailure(message);
+        loginListener.onFailure(message);
     }
 
     public int getContainerId() {

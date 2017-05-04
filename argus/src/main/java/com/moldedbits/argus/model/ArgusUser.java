@@ -8,7 +8,15 @@ import lombok.Setter;
  */
 
 public class ArgusUser {
-    @Getter @Setter String username;
+    @Getter
+    @Setter
+    String username;
+    /**
+     * email
+     */
+    @Getter
+    @Setter
+    String email;
 
     public ArgusUser(String username) {
         this.username = username;
