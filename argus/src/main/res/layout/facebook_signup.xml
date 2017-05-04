@@ -5,7 +5,7 @@
               android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/action"
+        android:id="@+id/action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_fb"/>

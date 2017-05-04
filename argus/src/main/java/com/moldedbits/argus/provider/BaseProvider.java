@@ -62,7 +62,7 @@ public abstract class BaseProvider {
      * @return Login button id
      */
     protected int getActionButtonId() {
-        return R.id.action;
+        return R.id.action_button;
     }
 
     /**

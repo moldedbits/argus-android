@@ -12,9 +12,9 @@ import lombok.Setter;
 
 public class FacebookConfig {
 
-    public static String PUBLIC_PROFILE = "public_profile";
-    public static String EMAIL = "email";
-    public static String USER_PHOTOS = "user_photos";
+    public static final String PUBLIC_PROFILE = "public_profile";
+    public static final String EMAIL = "email";
+    public static final String USER_PHOTOS = "user_photos";
     @Getter
     @Setter
     public List<String> faceBookPermissions;
