@@ -9,6 +9,7 @@ import com.moldedbits.argus.provider.login.EmailLoginProvider;
 import com.moldedbits.argus.provider.signup.EmailSignupProvider;
 import com.moldedbits.argus.provider.sociallogin.FaceBookSignupProvider;
 import com.moldedbits.argus.provider.sociallogin.GoogleSignupProvider;
+import com.moldedbits.argus.storage.DefaultArgusStorage;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,10 @@ public class SampleApplication extends Application {
         signupProviders.add(new GoogleSignupProvider());
 
         Argus argus = new Argus.Builder()
+                .argusStorage(new DefaultArgusStorage(getApplicationContext()))
                 .nextScreenProvider(new SimpleNextScreenProvider(MainActivity.class))
                 .signupProviders(signupProviders)
                 .loginProviders(loginProviders)
                 .build();
-
-        Argus.initialize(argus);
     }
 }
