@@ -19,7 +19,7 @@ public class ArgusActivity extends AppCompatActivity implements LoginListener {
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, SignupFragment.newInstance())
+                .replace(R.id.content, LoginFragment.newInstance())
                 .commit();
     }
 
