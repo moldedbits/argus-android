@@ -1,4 +1,4 @@
-package com.moldedbits.argus.helper;
+package com.moldedbits.argus.provider.social.helper;
 
 import java.util.ArrayList;
 import java.util.List;

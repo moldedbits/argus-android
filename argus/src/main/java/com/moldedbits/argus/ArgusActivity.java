@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.listener.PhoneNoValidationListener;
 import com.moldedbits.argus.listener.SignUpListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 public class ArgusActivity extends AppCompatActivity
-        implements LoginListener, SignUpListener, PhoneNoValidationListener {
+        implements ResultListener, SignUpListener, PhoneNoValidationListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class ArgusActivity extends AppCompatActivity
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, LoginFragment.newInstance())
+                .replace(R.id.content, ResultFragment.newInstance())
                 .commit();
     }
 

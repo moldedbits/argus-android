@@ -8,16 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
 import java.util.List;
 
 
-public abstract class BaseFragment extends Fragment implements LoginListener {
+public abstract class BaseFragment extends Fragment implements ResultListener {
 
-    private LoginListener listener;
+    private ResultListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,21 +41,21 @@ public abstract class BaseFragment extends Fragment implements LoginListener {
 
     @Override
     public void onLoginSuccess(ArgusUser user) {
-        listener.onLoginSuccess(user);
+        listener.onSuccess(user);
     }
 
     @Override
     public void onLoginFailure(String message) {
-        listener.onLoginFailure(message);
+        listener.onFailure(message);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof LoginListener) {
-            listener = (LoginListener) context;
+        if (context instanceof ResultListener) {
+            listener = (ResultListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement LoginListener");
+            throw new RuntimeException(context.toString() + " must implement ResultListener");
         }
     }
 

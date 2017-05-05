@@ -5,15 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.AccessToken;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.helper.FacebookConfig;
-import com.moldedbits.argus.helper.FacebookHelper;
-import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.provider.social.helper.FacebookConfig;
+import com.moldedbits.argus.provider.social.helper.FacebookHelper;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
 
-public class FacebookOnBoardingProvider extends BaseProvider implements LoginListener {
+public class FacebookOnBoardingProvider extends BaseProvider implements FacebookHelper.FBLoginResultListener {
 
     private FacebookHelper facebookHelper;
 
@@ -34,16 +35,6 @@ public class FacebookOnBoardingProvider extends BaseProvider implements LoginLis
     }
 
     @Override
-    public void onLoginSuccess(ArgusUser user) {
-        onLoginSuccess(user);
-    }
-
-    @Override
-    public void onLoginFailure(String message) {
-        onLoginFail(message);
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         facebookHelper.onActivityResult(requestCode, resultCode, data);
@@ -52,5 +43,19 @@ public class FacebookOnBoardingProvider extends BaseProvider implements LoginLis
     @Override
     public int getContainerId() {
         return R.id.container_fb;
+    }
+
+    @Override
+    public void onSuccess(AccessToken token) {
+        if (resultListener != null) {
+            resultListener.onSuccess(new ArgusUser("Facebook"), ResultListener.ResultState.LOGIN);
+        }
+    }
+
+    @Override
+    public void onFailure(String message) {
+        if (resultListener != null) {
+            resultListener.onFailure(message, ResultListener.ResultState.LOGIN);
+        }
     }
 }
