@@ -33,7 +33,7 @@ public class EmailLoginProvider extends BaseProvider {
     public void performLogin() {
         //TODO create a TestHelper class to get mock data
         if (validateInput()) {
-            loginListener.onSuccess(new ArgusUser("Mock User"));
+            loginListener.onLoginSuccess(new ArgusUser("Mock User"));
         }
     }
 

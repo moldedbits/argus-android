@@ -86,11 +86,11 @@ public abstract class BaseProvider {
 
 
     protected void onLoginSuccess(ArgusUser user) {
-        loginListener.onSuccess(user);
+        loginListener.onLoginSuccess(user);
     }
 
     protected void onLoginFail(String message) {
-        loginListener.onFailure(message);
+        loginListener.onLoginFailure(message);
     }
 
     public int getContainerId() {

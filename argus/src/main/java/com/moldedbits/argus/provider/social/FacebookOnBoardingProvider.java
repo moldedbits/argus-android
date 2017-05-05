@@ -34,12 +34,12 @@ public class FacebookOnBoardingProvider extends BaseProvider implements LoginLis
     }
 
     @Override
-    public void onSuccess(ArgusUser user) {
+    public void onLoginSuccess(ArgusUser user) {
         onLoginSuccess(user);
     }
 
     @Override
-    public void onFailure(String message) {
+    public void onLoginFailure(String message) {
         onLoginFail(message);
     }
 

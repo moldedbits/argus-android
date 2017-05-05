@@ -37,12 +37,12 @@ public class GoogleOnBoardingProvider extends BaseProvider implements LoginListe
     }
 
     @Override
-    public void onSuccess(ArgusUser user) {
+    public void onLoginSuccess(ArgusUser user) {
         onLoginSuccess(user);
     }
 
     @Override
-    public void onFailure(String message) {
+    public void onLoginFailure(String message) {
         onLoginFail(message);
     }
 

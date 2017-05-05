@@ -115,14 +115,14 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
-                listener.onSuccess(new ArgusUser(acct.getDisplayName()));
+                listener.onLoginSuccess(new ArgusUser(acct.getDisplayName()));
             } else {
-                listener.onFailure("login failed");
+                listener.onLoginFailure("login failed");
             }
         } else {
             // Signed out, show unauthenticated UI.
             // TODO Show correct message
-            listener.onFailure("Error");
+            listener.onLoginFailure("Error");
         }
     }
 

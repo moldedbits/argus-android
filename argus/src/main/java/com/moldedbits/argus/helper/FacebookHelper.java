@@ -46,7 +46,7 @@ public class FacebookHelper {
                                                                           GraphResponse response) {
                                                       token = AccessToken.getCurrentAccessToken();
                                                       if (loginListener != null) {
-                                                          loginListener.onSuccess(
+                                                          loginListener.onLoginSuccess(
                                                                   new ArgusUser("Facebook"));
                                                       }
                                                   }
@@ -63,7 +63,7 @@ public class FacebookHelper {
 
                     @Override
                     public void onError(FacebookException error) {
-                        loginListener.onFailure(error.getMessage());
+                        loginListener.onLoginFailure(error.getMessage());
                         Log.d("FACEBOOK", error.getMessage());
                     }
                 });
