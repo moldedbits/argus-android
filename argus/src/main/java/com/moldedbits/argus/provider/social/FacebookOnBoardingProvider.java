@@ -13,11 +13,11 @@ import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
 
-public class FacebookSignupProvider extends BaseProvider implements LoginListener {
+public class FacebookOnBoardingProvider extends BaseProvider implements LoginListener {
 
     private FacebookHelper facebookHelper;
 
-    public FacebookSignupProvider() {
+    public FacebookOnBoardingProvider() {
         facebookHelper = new FacebookHelper(this);
         facebookHelper.initialize();
     }

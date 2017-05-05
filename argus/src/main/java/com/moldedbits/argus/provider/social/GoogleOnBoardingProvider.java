@@ -12,7 +12,7 @@ import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
 
-public class GoogleSignupProvider extends BaseProvider implements LoginListener {
+public class GoogleOnBoardingProvider extends BaseProvider implements LoginListener {
     private GoogleHelper googleHelper;
 
     @Override
