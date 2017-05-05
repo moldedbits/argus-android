@@ -10,6 +10,13 @@
     android:padding="@dimen/default_padding"
     tools:context="com.moldedbits.argus.ArgusActivity">
 
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:src="@drawable/ic_wb_cloudy"/>
+
     <FrameLayout
         android:id="@id/container_email"
         android:layout_width="match_parent"

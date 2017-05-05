@@ -1,5 +1,6 @@
 package com.moldedbits.argus.provider.login;
 
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,8 @@ public class EmailLoginProvider extends BaseProvider {
 
         usernameInput = (EditText) loginView.findViewById(R.id.username);
         passwordInput = (EditText) loginView.findViewById(R.id.password);
-
+        loginView.findViewById(R.id.action_button).setBackgroundColor(
+                Color.BLUE);
         return loginView;
     }
 

@@ -33,7 +33,6 @@ public class Argus {
     @Getter
     private int signupLayout;
 
-
     private Argus() {
     }
 
@@ -130,6 +129,7 @@ public class Argus {
             argus.argusSessionManager = new ArgusSessionManager(argusStorage);
             return this;
         }
+
 
         public Argus build() {
             if (argus.argusStorage == null) {

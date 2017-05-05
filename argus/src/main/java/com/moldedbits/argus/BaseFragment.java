@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
@@ -23,6 +24,7 @@ public abstract class BaseFragment extends Fragment implements LoginListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
+        ((ImageView)view.findViewById(R.id.iv_logo)).setImageResource(ArgusTheme.getInstance().getLogo());
         setView(view, getProviders());
         return view;
     }

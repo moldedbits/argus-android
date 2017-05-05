@@ -3,6 +3,7 @@ package com.moldedbits.argus.sample;
 import android.app.Application;
 
 import com.moldedbits.argus.Argus;
+import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.SimpleNextScreenProvider;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.login.EmailLoginProvider;
@@ -29,13 +30,17 @@ public class SampleApplication extends Application {
         signupProviders.add(new FaceBookSignupProvider());
         signupProviders.add(new GoogleSignupProvider());
 
+        ArgusTheme argusTheme = new ArgusTheme.Builder().buttonColor(android.R.color.holo_blue_dark)
+                .logo(R.drawable.com_facebook_button_icon)
+                .build();
+
         new Argus.Builder()
                 .argusStorage(new DefaultArgusStorage(getApplicationContext()))
                 .nextScreenProvider(new SimpleNextScreenProvider(MainActivity.class))
                 .signupProviders(signupProviders)
                 .loginProviders(loginProviders)
-                .loginLayout(R.layout.custom_login_fragment)
                 .signupLayout(R.layout.custom_signup_layout)
                 .build();
+
     }
 }

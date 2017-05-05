@@ -29,10 +29,9 @@ public abstract class BaseProvider {
     /**
      * Provide the login view which will be shown on the login screen for this provider
      *
-     * @param fragment Login fragment. This is needed to inject activity result callbacks
+     * @param fragment   Login fragment. This is needed to inject activity result callbacks
      * @param parentView Parent view in which this view will be inflated.
-     * @param listener Login listener
-     *
+     * @param listener   Login listener
      * @return Inflated view to be shown on screen
      */
     public View loginView(Fragment fragment, ViewGroup parentView, LoginListener listener) {
@@ -44,7 +43,6 @@ public abstract class BaseProvider {
         if (view.findViewById(getActionButtonId()) == null) {
             throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
-
         view.findViewById(getActionButtonId()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +66,8 @@ public abstract class BaseProvider {
     /**
      * Override this if you want to listen to the onActivityResult of the parent fragment
      */
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {}
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    }
 
     /**
      * Inflate your login view here
@@ -82,7 +81,7 @@ public abstract class BaseProvider {
      * Perform login here. Implementations should take care of showing loading overlay to block
      * out UI
      */
-   protected abstract void performLogin();
+    protected abstract void performLogin();
 
 
     protected void onLoginSuccess(ArgusUser user) {
