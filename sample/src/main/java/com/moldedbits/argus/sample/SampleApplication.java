@@ -7,7 +7,7 @@ import com.moldedbits.argus.SimpleNextScreenProvider;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.login.EmailLoginProvider;
 import com.moldedbits.argus.provider.signup.EmailSignupProvider;
-import com.moldedbits.argus.provider.social.FaceBookSignupProvider;
+import com.moldedbits.argus.provider.social.FacebookSignupProvider;
 import com.moldedbits.argus.provider.social.GoogleSignupProvider;
 import com.moldedbits.argus.storage.DefaultArgusStorage;
 
@@ -22,11 +22,11 @@ public class SampleApplication extends Application {
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         ArrayList<BaseProvider> signupProviders = new ArrayList<>();
         loginProviders.add(new EmailLoginProvider());
-        loginProviders.add(new FaceBookSignupProvider());
+        loginProviders.add(new FacebookSignupProvider());
         loginProviders.add(new GoogleSignupProvider());
 
         signupProviders.add(new EmailSignupProvider());
-        signupProviders.add(new FaceBookSignupProvider());
+        signupProviders.add(new FacebookSignupProvider());
         signupProviders.add(new GoogleSignupProvider());
 
         new Argus.Builder()

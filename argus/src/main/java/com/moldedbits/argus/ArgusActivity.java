@@ -7,7 +7,8 @@ import android.widget.Toast;
 import com.moldedbits.argus.listener.LoginListener;
 import com.moldedbits.argus.model.ArgusUser;
 
-public class ArgusActivity extends AppCompatActivity implements LoginListener {
+public class ArgusActivity extends AppCompatActivity
+        implements LoginListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
