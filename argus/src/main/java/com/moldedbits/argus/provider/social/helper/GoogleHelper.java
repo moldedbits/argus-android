@@ -1,4 +1,4 @@
-package com.moldedbits.argus.helper;
+package com.moldedbits.argus.provider.social.helper;
 
 import android.content.Intent;
 import android.content.IntentSender;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
+import com.facebook.AccessToken;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -14,22 +15,27 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 //TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
+    public interface GoogleLoginResultListener {
+        void onSuccess(GoogleSignInAccount account);
+        void onFailure(String message);
+    }
+
     public static final int RC_SIGN_IN = 10001;
     private Fragment fragment;
-    private LoginListener listener;
+    private GoogleLoginResultListener listener;
     private GoogleApiClient googleApiClient = null;
     private boolean isResolving;
     private boolean shouldResolve;
     private Boolean mGooglePlusLogoutClicked;
 
-    public GoogleHelper(Fragment fragment, LoginListener listener) {
+    public GoogleHelper(Fragment fragment, GoogleLoginResultListener listener) {
         this.fragment = fragment;
         this.listener = listener;
     }
@@ -115,7 +121,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
-                listener.onSuccess(new ArgusUser(acct.getDisplayName()));
+                listener.onSuccess(acct);
             } else {
                 listener.onFailure("login failed");
             }

@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * Login Fragment
  */
-public class LoginFragment extends BaseFragment {
+public class ResultFragment extends BaseFragment {
 
-    public static LoginFragment newInstance() {
-        LoginFragment fragment = new LoginFragment();
+    public static ResultFragment newInstance() {
+        ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

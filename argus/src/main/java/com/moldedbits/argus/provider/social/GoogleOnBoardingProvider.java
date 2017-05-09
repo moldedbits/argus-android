@@ -5,14 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.helper.GoogleHelper;
-import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.provider.social.helper.GoogleHelper;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
 
-public class GoogleSignupProvider extends BaseProvider implements LoginListener {
+public class GoogleOnBoardingProvider extends BaseProvider implements GoogleHelper.GoogleLoginResultListener {
     private GoogleHelper googleHelper;
 
     @Override
@@ -37,17 +38,22 @@ public class GoogleSignupProvider extends BaseProvider implements LoginListener 
     }
 
     @Override
-    public void onSuccess(ArgusUser user) {
-        onLoginSuccess(user);
+    public int getContainerId() {
+        return R.id.container_google;
+    }
+
+    @Override
+    public void onSuccess(GoogleSignInAccount account) {
+        if (resultListener != null) {
+            resultListener.onSuccess(new ArgusUser(account.getDisplayName()),
+                    ResultListener.ResultState.SIGNED_IN);
+        }
     }
 
     @Override
     public void onFailure(String message) {
-        onLoginFail(message);
-    }
-
-    @Override
-    public int getContainerId() {
-        return R.id.container_google;
+        if (resultListener != null) {
+            resultListener.onFailure(message, ResultListener.ResultState.SIGNED_IN);
+        }
     }
 }

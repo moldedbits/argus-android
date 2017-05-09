@@ -1,4 +1,4 @@
-package com.moldedbits.argus.helper;
+package com.moldedbits.argus.provider.social.helper;
 
 
 import android.content.Intent;
@@ -15,7 +15,7 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 
 import org.json.JSONObject;
@@ -23,12 +23,18 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class FacebookHelper {
+
+    public interface FBLoginResultListener {
+        void onSuccess(AccessToken token);
+        void onFailure(String message);
+    }
+
     private AccessToken token;
     private CallbackManager callbackManager;
-    private LoginListener loginListener;
+    private FBLoginResultListener resultListener;
 
-    public FacebookHelper(LoginListener loginListener) {
-        this.loginListener = loginListener;
+    public FacebookHelper(FBLoginResultListener resultListener) {
+        this.resultListener = resultListener;
         callbackManager = CallbackManager.Factory.create();
     }
 
@@ -45,9 +51,8 @@ public class FacebookHelper {
                                                   public void onCompleted(JSONObject object,
                                                                           GraphResponse response) {
                                                       token = AccessToken.getCurrentAccessToken();
-                                                      if (loginListener != null) {
-                                                          loginListener.onSuccess(
-                                                                  new ArgusUser("Facebook"));
+                                                      if (resultListener != null) {
+                                                          resultListener.onSuccess(token);
                                                       }
                                                   }
                                               });
@@ -63,7 +68,7 @@ public class FacebookHelper {
 
                     @Override
                     public void onError(FacebookException error) {
-                        loginListener.onFailure(error.getMessage());
+                        resultListener.onFailure(error.getMessage());
                         Log.d("FACEBOOK", error.getMessage());
                     }
                 });
