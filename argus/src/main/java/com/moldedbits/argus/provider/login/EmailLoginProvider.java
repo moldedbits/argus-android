@@ -1,12 +1,13 @@
 package com.moldedbits.argus.provider.login;
 
-import android.graphics.Color;
+import android.support.design.widget.TextInputEditText;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
@@ -16,18 +17,21 @@ import com.moldedbits.argus.provider.BaseProvider;
  */
 public class EmailLoginProvider extends BaseProvider {
 
-    private EditText usernameInput;
-    private EditText passwordInput;
+    private TextInputEditText usernameInput;
+    private TextInputEditText passwordInput;
 
     @Override
     public View inflateLoginView(ViewGroup parentView) {
+
         View loginView = LayoutInflater.from(context)
                 .inflate(R.layout.login_email, parentView, false);
-
-        usernameInput = (EditText) loginView.findViewById(R.id.username);
-        passwordInput = (EditText) loginView.findViewById(R.id.password);
-        loginView.findViewById(R.id.action_button).setBackgroundColor(
-                Color.BLUE);
+        if (context != null) {
+            usernameInput = (TextInputEditText) loginView.findViewById(R.id.username);
+            passwordInput = (TextInputEditText) loginView.findViewById(R.id.password);
+            loginView.findViewById(R.id.action_button).setBackgroundColor(
+                    ContextCompat.getColor(context,
+                                           Argus.getInstance().getArgusTheme().getButtonColor()));
+        }
         return loginView;
     }
 

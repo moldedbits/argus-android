@@ -10,4 +10,9 @@
     <string name="empty_username">Invalid</string>
     <string name="empty_email">Email cannot be blank</string>
     <string name="email">Email</string>
+    <string name="i_already_have_a_account">I already have a Account</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="email_address">Email address:</string>
+    <string name="signin">SIGNIN</string>
+    <string name="sign_in_with">Sign in with</string>
 </resources>

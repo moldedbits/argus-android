@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="@dimen/default_padding"
     tools:context="com.moldedbits.argus.ArgusActivity">
 
@@ -14,21 +13,31 @@
         android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:src="@drawable/ic_wb_cloudy"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_x"
+        android:layout_marginTop="@dimen/margin_2x"
+        android:src="@drawable/logo_3x"/>
 
     <FrameLayout
         android:id="@id/container_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+    </FrameLayout>
 
-    <FrameLayout
-        android:id="@id/container_fb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
-    <FrameLayout
-        android:id="@id/container_google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <FrameLayout
+            android:id="@id/container_fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@id/container_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </LinearLayout>
