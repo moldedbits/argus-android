@@ -40,13 +40,13 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     }
 
     @Override
-    public void onLoginSuccess(ArgusUser user) {
-        listener.onSuccess(user);
+    public void onSuccess(ArgusUser user, ResultState state) {
+        listener.onSuccess(user, state);
     }
 
     @Override
-    public void onLoginFailure(String message) {
-        listener.onFailure(message);
+    public void onFailure(String message, ResultState state) {
+        listener.onFailure(message, state);
     }
 
     @Override

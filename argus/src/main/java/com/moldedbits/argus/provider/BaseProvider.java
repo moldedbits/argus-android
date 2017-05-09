@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
-import com.moldedbits.argus.model.ArgusUser;
 
 /**
  * Provides login functionality for specific end point

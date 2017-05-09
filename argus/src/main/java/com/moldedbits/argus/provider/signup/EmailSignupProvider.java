@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
@@ -21,7 +22,9 @@ public class EmailSignupProvider extends BaseProvider {
         if (validateInput()) {
             ArgusUser user = new ArgusUser(username.getText().toString());
             user.setEmail(email.getText().toString());
-            onLoginSuccess(new ArgusUser("New User Welcome"));
+            if (resultListener != null) {
+                resultListener.onSuccess(new ArgusUser("New User Welcome"), ResultListener.ResultState.SIGN_UP);
+            }
         }
     }
 
