@@ -1,13 +1,11 @@
 package com.moldedbits.argus.provider.login;
 
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
@@ -29,9 +27,6 @@ public class EmailLoginProvider extends BaseProvider {
         if (context != null) {
             usernameInput = (TextInputEditText) loginView.findViewById(R.id.username);
             passwordInput = (TextInputEditText) loginView.findViewById(R.id.password);
-            loginView.findViewById(R.id.action_button).setBackgroundColor(
-                    ContextCompat.getColor(context,
-                                           Argus.getInstance().getArgusTheme().getButtonColor()));
         }
         return loginView;
     }

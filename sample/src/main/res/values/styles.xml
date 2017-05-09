@@ -12,10 +12,10 @@
         <item name="android:textColor">@color/colorText</item>
         <item name="android:background">@color/colorBackground</item>
         <item name="buttonStyle">@style/ButtonColor</item>
-        <item name="android:button">@color/buttonColor</item>
     </style>
 
-    <style name="ButtonColor" parent="android:Widget.Material.Button" tools:ignore="NewApi">
+    <style name="ButtonColor" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textColor">@android:color/white</item>
+        <item name="colorButtonNormal">@color/buttonColor</item>
     </style>
 </resources>
