@@ -4,10 +4,9 @@ import com.moldedbits.argus.model.ArgusUser;
 
 public interface ResultListener {
     enum ResultState {
-        SIGN_UP,
-        PHONE_VALIDATION,
-        LOGIN,
-        FORGOT_PASSWORD
+        SIGNED_UP,
+        PHONE_VALIDATED,
+        SIGNED_IN
     }
 
     void onSuccess(ArgusUser user, ResultState resultState);

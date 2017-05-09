@@ -23,7 +23,7 @@ public class EmailSignupProvider extends BaseProvider {
             ArgusUser user = new ArgusUser(username.getText().toString());
             user.setEmail(email.getText().toString());
             if (resultListener != null) {
-                resultListener.onSuccess(new ArgusUser("New User Welcome"), ResultListener.ResultState.SIGN_UP);
+                resultListener.onSuccess(new ArgusUser("New User Welcome"), ResultListener.ResultState.SIGNED_UP);
             }
         }
     }

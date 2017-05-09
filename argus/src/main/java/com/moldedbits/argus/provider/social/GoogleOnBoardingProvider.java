@@ -46,14 +46,14 @@ public class GoogleOnBoardingProvider extends BaseProvider implements GoogleHelp
     public void onSuccess(GoogleSignInAccount account) {
         if (resultListener != null) {
             resultListener.onSuccess(new ArgusUser(account.getDisplayName()),
-                    ResultListener.ResultState.LOGIN);
+                    ResultListener.ResultState.SIGNED_IN);
         }
     }
 
     @Override
     public void onFailure(String message) {
         if (resultListener != null) {
-            resultListener.onFailure(message, ResultListener.ResultState.LOGIN);
+            resultListener.onFailure(message, ResultListener.ResultState.SIGNED_IN);
         }
     }
 }

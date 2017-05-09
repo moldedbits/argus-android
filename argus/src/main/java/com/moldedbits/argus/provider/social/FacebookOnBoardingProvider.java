@@ -48,14 +48,14 @@ public class FacebookOnBoardingProvider extends BaseProvider implements Facebook
     @Override
     public void onSuccess(AccessToken token) {
         if (resultListener != null) {
-            resultListener.onSuccess(new ArgusUser("Facebook"), ResultListener.ResultState.LOGIN);
+            resultListener.onSuccess(new ArgusUser("Facebook"), ResultListener.ResultState.SIGNED_IN);
         }
     }
 
     @Override
     public void onFailure(String message) {
         if (resultListener != null) {
-            resultListener.onFailure(message, ResultListener.ResultState.LOGIN);
+            resultListener.onFailure(message, ResultListener.ResultState.SIGNED_IN);
         }
     }
 }
