@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.moldedbits.argus.listener.LoginListener;
+import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 
-public class ArgusActivity extends AppCompatActivity implements LoginListener {
+public class ArgusActivity extends AppCompatActivity
+        implements ResultListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,18 +20,19 @@ public class ArgusActivity extends AppCompatActivity implements LoginListener {
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, LoginFragment.newInstance())
+                .replace(R.id.content, ResultFragment.newInstance())
                 .commit();
     }
 
-    public void onSuccess(ArgusUser user) {
+    @Override
+    public void onSuccess(ArgusUser user, ResultState resultState) {
         Argus.getInstance().loginUser(user);
         startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
         finish();
     }
 
     @Override
-    public void onFailure(String message) {
+    public void onFailure(String message, ResultState resultState) {
         //TODO handle failure correctly
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.listener.LoginListener;
-import com.moldedbits.argus.model.ArgusUser;
+import com.moldedbits.argus.listener.ResultListener;
 
 /**
  * Provides login functionality for specific end point
@@ -22,7 +21,7 @@ public abstract class BaseProvider {
     protected Context context;
 
     @Nullable
-    protected LoginListener loginListener;
+    protected ResultListener resultListener;
 
     protected Fragment fragment;
 
@@ -34,8 +33,8 @@ public abstract class BaseProvider {
      * @param listener   Login listener
      * @return Inflated view to be shown on screen
      */
-    public View loginView(Fragment fragment, ViewGroup parentView, LoginListener listener) {
-        this.loginListener = listener;
+    public View loginView(Fragment fragment, ViewGroup parentView, ResultListener listener) {
+        this.resultListener = listener;
         this.context = fragment.getContext();
         this.fragment = fragment;
 
@@ -82,15 +81,6 @@ public abstract class BaseProvider {
      * out UI
      */
     protected abstract void performLogin();
-
-
-    protected void onLoginSuccess(ArgusUser user) {
-        loginListener.onSuccess(user);
-    }
-
-    protected void onLoginFail(String message) {
-        loginListener.onFailure(message);
-    }
 
     public int getContainerId() {
         return DEFAULT_CONTAINER_ID;
