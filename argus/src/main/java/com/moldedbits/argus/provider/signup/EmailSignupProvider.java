@@ -1,6 +1,5 @@
 package com.moldedbits.argus.provider.signup;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,7 @@ import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
-import com.moldedbits.argus.validations.Validation;
 import com.moldedbits.argus.validations.ValidationEngine;
-
-import java.util.List;
 
 public class EmailSignupProvider extends BaseProvider {
 
@@ -55,31 +51,11 @@ public class EmailSignupProvider extends BaseProvider {
         }
 
         // we want to run all validations
-        boolean result1 = validateEditText(usernameEt);
-        boolean result2 = validateEditText(passwordEt);
-        boolean result3 = validateEditText(emailEt);
+        boolean result1 = ValidationEngine.validateEditText(usernameEt, validationEngine);
+        boolean result2 = ValidationEngine.validateEditText(passwordEt, validationEngine);
+        boolean result3 = ValidationEngine.validateEditText(emailEt, validationEngine);
 
         return result1 && result2 && result3;
-    }
-
-    private boolean validateEditText(EditText editText) {
-        if(editText.getTag() == null) {
-            ArgusLogger.w(TAG, "Not performing validations for this EditText");
-        }
-
-        boolean allWell = true;
-
-        // get validations for tag
-        List<Validation> validations = validationEngine.getValidationsByKey(editText.getTag().toString());
-        if(validations != null && !validations.isEmpty()) {
-           String errors = ValidationEngine.validate(editText.getText().toString(), validations);
-           if(!TextUtils.isEmpty(errors)) {
-               editText.setError(errors);
-               allWell = false;
-           }
-        }
-
-        return allWell;
     }
 
     @Override

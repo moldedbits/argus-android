@@ -1,6 +1,10 @@
 package com.moldedbits.argus.validations;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.widget.EditText;
+
+import com.moldedbits.argus.logger.ArgusLogger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +19,7 @@ import java.util.Map;
 public class ValidationEngine {
     private static final String EMAIL_KEY = "email";
     private static final String PASSWORD_KEY = "password";
+    private static final String TAG = "ValidationEngine";
     private final Map<String, List<Validation>> validators;
 
     public ValidationEngine() {
@@ -79,4 +84,23 @@ public class ValidationEngine {
         return errors;
     }
 
+    public static boolean validateEditText(final EditText editText, final ValidationEngine validationEngine) {
+        if(editText.getTag() == null) {
+            ArgusLogger.w(TAG, "Not performing validations for this EditText");
+        }
+
+        boolean allWell = true;
+
+        // get validations for tag
+        List<Validation> validations = validationEngine.getValidationsByKey(editText.getTag().toString());
+        if(validations != null && !validations.isEmpty()) {
+            String errors = ValidationEngine.validate(editText.getText().toString(), validations);
+            if(!TextUtils.isEmpty(errors)) {
+                editText.setError(errors);
+                allWell = false;
+            }
+        }
+
+        return allWell;
+    }
 }
