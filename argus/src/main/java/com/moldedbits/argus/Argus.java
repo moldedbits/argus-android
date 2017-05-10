@@ -34,6 +34,9 @@ public class Argus {
     @Getter
     private int signupLayout;
 
+    @Getter
+    private ArgusThemeBuilder argusTheme;
+
     private Argus() {
     }
 
@@ -128,6 +131,16 @@ public class Argus {
 
             argus.argusStorage = argusStorage;
             argus.argusSessionManager = new ArgusSessionManager(argusStorage);
+            return this;
+        }
+
+        public Builder theme(ArgusThemeBuilder argusThemeBuilder) {
+            argus.argusTheme = argusThemeBuilder;
+            return this;
+        }
+
+        public Builder loginLogo(int logo) {
+            argus.getArgusTheme().logo(logo);
             return this;
         }
 

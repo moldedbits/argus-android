@@ -1,6 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -10,12 +10,18 @@
         <item name="android:textColorSecondary">@color/colorText</item>
         <item name="android:textColorHint">@color/colorText</item>
         <item name="android:textColor">@color/colorText</item>
+        <item name="android:colorControlHighlight">@color/colorText
+        </item>
+        <item name="android:colorControlActivated">@color/colorText
+        </item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
         <item name="android:background">@color/colorBackground</item>
         <item name="buttonStyle">@style/ButtonColor</item>
     </style>
 
     <style name="ButtonColor" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textColor">@android:color/white</item>
-        <item name="colorButtonNormal">@color/buttonColor</item>
+        <item name="android:colorButtonNormal">@color/buttonColor</item>
     </style>
+
 </resources>
