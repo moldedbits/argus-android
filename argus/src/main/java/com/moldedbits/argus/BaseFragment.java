@@ -1,6 +1,5 @@
 package com.moldedbits.argus;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -40,29 +39,13 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     }
 
     @Override
-    public void onSuccess(ArgusUser user, ResultState state) {
+    public void onSuccess(ArgusUser user, ArgusState state) {
         listener.onSuccess(user, state);
     }
 
     @Override
-    public void onFailure(String message, ResultState state) {
+    public void onFailure(String message, ArgusState state) {
         listener.onFailure(message, state);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof ResultListener) {
-            listener = (ResultListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement ResultListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
     }
 
     @Override
@@ -82,4 +65,8 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     protected abstract int getLayoutId();
 
     protected abstract List<BaseProvider> getProviders();
+
+    public void setListener(ResultListener listener) {
+        this.listener = listener;
+    }
 }

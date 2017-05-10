@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.validations.ValidationEngine;
-import com.moldedbits.argus.validations.ValidationEngine;
 
 import lombok.Getter;
 
@@ -88,6 +87,10 @@ public abstract class BaseProvider {
      * out UI
      */
     protected abstract void performLogin();
+
+    public Fragment getProgressView() {
+        return fragment;
+    }
 
     public int getContainerId() {
         return DEFAULT_CONTAINER_ID;

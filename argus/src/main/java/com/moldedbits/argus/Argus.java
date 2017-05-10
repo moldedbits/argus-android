@@ -77,6 +77,22 @@ public class Argus {
         argusSessionManager.setCurrentUser(user);
     }
 
+    public ArgusState getState() {
+        return argusSessionManager.getCurrentState();
+    }
+
+    public void setState(ArgusState state) {
+        argusSessionManager.setCurrentState(state);
+    }
+
+    public BaseProvider getProviderInProgress() {
+        return argusSessionManager.getProviderInProgress(loginProviders, signupProviders);
+    }
+
+    public void setProviderInProgress(BaseProvider provider) {
+        argusSessionManager.setProviderInProgres(provider);
+    }
+
     public static class Builder {
 
         private Argus argus;
@@ -138,7 +154,7 @@ public class Argus {
             argus.argusTheme = argusTheme;
             return this;
         }
-        
+
         public Argus build() {
             if (argus.argusStorage == null) {
                 throw new IllegalStateException("No ArgusStorage was provided.");

@@ -1,8 +1,6 @@
 package com.moldedbits.argus.sample;
 
 import android.app.Application;
-import android.text.TextUtils;
-import android.util.Patterns;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
@@ -13,8 +11,6 @@ import com.moldedbits.argus.provider.signup.EmailSignupProvider;
 import com.moldedbits.argus.provider.social.FacebookOnBoardingProvider;
 import com.moldedbits.argus.provider.social.GoogleOnBoardingProvider;
 import com.moldedbits.argus.storage.DefaultArgusStorage;
-import com.moldedbits.argus.validations.LengthValidation;
-import com.moldedbits.argus.validations.RegexValidation;
 
 import java.util.ArrayList;
 
@@ -31,10 +27,10 @@ public class SampleApplication extends Application {
         loginProviders.add(new GoogleOnBoardingProvider());
 
         EmailSignupProvider emailSignupProvider = new EmailSignupProvider();
-        emailSignupProvider.getValidationEngine()
-                .addPasswordValidation(new LengthValidation(4, 8, getString(R.string.password_length)))
-                .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                        getString(R.string.enter_valid_email)));
+//        emailSignupProvider.getValidationEngine()
+//                .addPasswordValidation(new LengthValidation(4, 8, getString(R.string.password_length)))
+//                .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+//                        getString(R.string.enter_valid_email)));
 
         signupProviders.add(emailSignupProvider);
         signupProviders.add(new FacebookOnBoardingProvider());

@@ -38,4 +38,14 @@ public class DefaultArgusStorage implements ArgusStorage {
         String userString = mSharedPreferences.getString(ARGUS_USER, "");
         return new Gson().fromJson(userString, ArgusUser.class);
     }
+
+    @Override
+    public void putString(String key, String value) {
+        mSharedPreferencesEditor.putString(key, value).apply();
+    }
+
+    @Override
+    public String getString(String key, String defaultValue) {
+        return mSharedPreferences.getString(key, defaultValue);
+    }
 }
