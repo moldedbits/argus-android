@@ -24,10 +24,6 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
         setView(view, getProviders());
-        //((ImageView) view.findViewById(R.id.iv_logo)).setImageResource(Argus.getInstance()
-          //                                                                     .getArgusTheme()
-            //                                                                   .getLogo());
-
         return view;
     }
 

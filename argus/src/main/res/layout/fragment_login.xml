@@ -52,9 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
             android:text="@string/don_t_have_any_account"
-            android:textSize="12sp"/>
+            android:textSize="@dimen/text_12"/>
 
         <TextView
             android:id="@+id/tv_signup"
@@ -62,6 +61,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/sign_up"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/text_14"/>
     </LinearLayout>
 </LinearLayout>
