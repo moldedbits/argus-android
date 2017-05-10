@@ -30,7 +30,7 @@ public class SampleApplication extends Application {
         signupProviders.add(new FacebookOnBoardingProvider());
         signupProviders.add(new GoogleOnBoardingProvider());
 
-        ArgusTheme argusTheme = new ArgusTheme()
+        ArgusTheme argusTheme = new ArgusTheme.Builder()
                 .buttonColor(R.color.com_facebook_blue)
                 .build();
 

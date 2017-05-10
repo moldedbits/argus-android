@@ -9,17 +9,28 @@ public class ArgusTheme {
     @Getter
     private int logo;
 
-    public ArgusTheme buttonColor(int color) {
-       this.buttonColor = color;
-        return this;
-    }
 
-    public ArgusTheme logo(int logo) {
-        this.logo = logo;
-        return this;
-    }
+    public static class Builder {
 
-    public ArgusTheme build() {
-        return this;
+        public ArgusTheme argusTheme;
+
+        public Builder() {
+            argusTheme = new ArgusTheme();
+        }
+
+
+        public Builder buttonColor(int color) {
+            argusTheme.buttonColor = color;
+            return this;
+        }
+
+        public Builder logo(int logo) {
+            argusTheme.logo = logo;
+            return this;
+        }
+
+        public ArgusTheme build() {
+            return argusTheme;
+        }
     }
 }
