@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
+import com.moldedbits.argus.validations.ValidationEngine;
+import com.moldedbits.argus.validations.ValidationEngine;
+
+import lombok.Getter;
 
 /**
  * Provides login functionality for specific end point
@@ -24,6 +28,9 @@ public abstract class BaseProvider {
     protected ResultListener resultListener;
 
     protected Fragment fragment;
+
+    @Getter
+    protected ValidationEngine validationEngine;
 
     /**
      * Provide the login view which will be shown on the login screen for this provider

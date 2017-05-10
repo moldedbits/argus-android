@@ -20,7 +20,7 @@ public class ArgusActivity extends AppCompatActivity
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, ResultFragment.newInstance())
+                .replace(R.id.content, LoginFragment.newInstance())
                 .commit();
     }
 
@@ -35,5 +35,9 @@ public class ArgusActivity extends AppCompatActivity
     public void onFailure(String message, ResultState resultState) {
         //TODO handle failure correctly
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void onSignUpClicked() {
+
     }
 }

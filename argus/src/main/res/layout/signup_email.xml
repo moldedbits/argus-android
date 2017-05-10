@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
-        android:hint="@string/username"/>
+        android:hint="@string/username"
+        android:tag="username"/>
 
     <EditText
         android:id="@+id/password"
@@ -26,7 +27,8 @@
         android:layout_marginBottom="@dimen/default_margin"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:fontFamily="sans-serif"/>
+        android:fontFamily="sans-serif"
+        android:tag="password"/>
 
     <EditText
         android:id="@+id/email"
@@ -36,7 +38,8 @@
         android:hint="@string/email"
         android:maxLength="10"
         android:inputType="textEmailAddress"
-        android:fontFamily="sans-serif"/>
+        android:fontFamily="sans-serif"
+        android:tag="email"/>
 
     <Button
         android:id="@+id/action_button"
