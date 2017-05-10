@@ -10,14 +10,15 @@ import lombok.Setter;
  * on 09/05/17.
  */
 
-public class LengthValidator implements Validator {
+public class LengthValidation extends AbstractValidation {
     @Getter @Setter
     private int maxLength;
 
     @Getter @Setter
     private int minLength;
 
-    public LengthValidator(int min, int max) {
+    public LengthValidation(int min, int max, String errorMessage) {
+        super(errorMessage);
         if(min > max) {
             throw new IllegalArgumentException("Minimum length must be less than max value");
         }

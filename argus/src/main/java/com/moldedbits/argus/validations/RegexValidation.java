@@ -11,12 +11,13 @@ import lombok.Setter;
  * on 09/05/17.
  */
 
-public class RegexValidator implements Validator {
+public class RegexValidation extends AbstractValidation {
 
     @Setter @Getter
     private Pattern pattern;
 
-    public RegexValidator(String regex) {
+    public RegexValidation(String regex, String errorMessage) {
+        super(errorMessage);
         this.pattern = Pattern.compile(regex);
     }
 
@@ -24,5 +25,10 @@ public class RegexValidator implements Validator {
     public boolean validate(String str) {
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
+    }
+
+    @Override
+    public String getErrorMessage() {
+        return null;
     }
 }

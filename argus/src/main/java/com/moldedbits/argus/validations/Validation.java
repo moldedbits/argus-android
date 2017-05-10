@@ -5,7 +5,7 @@ package com.moldedbits.argus.validations;
  * on 09/05/17.
  */
 
-public interface Validator {
+public interface Validation {
     boolean validate(String str);
-//    String getErrorMessage();
+    String getErrorMessage();
 }
