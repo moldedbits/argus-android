@@ -7,4 +7,7 @@
     <dimen name="padding_x2">4dp</dimen>
     <dimen name="padding_x">8dp</dimen>
     <dimen name="margin_3x">24dp</dimen>
+    <dimen name="button_size">50dp</dimen>
+    <dimen name="text_14">14sp</dimen>
+    <dimen name="text_12">12sp</dimen>
 </resources>

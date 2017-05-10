@@ -35,7 +35,7 @@ public class Argus {
     private int signupLayout;
 
     @Getter
-    private ArgusThemeBuilder argusTheme;
+    private ArgusTheme argusTheme;
 
     private Argus() {
     }
@@ -134,16 +134,11 @@ public class Argus {
             return this;
         }
 
-        public Builder theme(ArgusThemeBuilder argusThemeBuilder) {
-            argus.argusTheme = argusThemeBuilder;
+        public Builder theme(ArgusTheme argusTheme) {
+            argus.argusTheme = argusTheme;
             return this;
         }
-
-        public Builder loginLogo(int logo) {
-            argus.getArgusTheme().logo(logo);
-            return this;
-        }
-
+        
         public Argus build() {
             if (argus.argusStorage == null) {
                 throw new IllegalStateException("No ArgusStorage was provided.");

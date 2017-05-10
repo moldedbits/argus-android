@@ -2,24 +2,24 @@ package com.moldedbits.argus;
 
 import lombok.Getter;
 
-public class ArgusThemeBuilder {
+public class ArgusTheme {
 
     @Getter
     private int buttonColor;
     @Getter
     private int logo;
 
-    public ArgusThemeBuilder buttonColor(int color) {
+    public ArgusTheme buttonColor(int color) {
        this.buttonColor = color;
         return this;
     }
 
-    public ArgusThemeBuilder logo(int logo) {
+    public ArgusTheme logo(int logo) {
         this.logo = logo;
         return this;
     }
 
-    public ArgusThemeBuilder build() {
+    public ArgusTheme build() {
         return this;
     }
 }

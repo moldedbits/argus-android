@@ -1,10 +1,10 @@
 package com.moldedbits.argus.provider.login;
 
-import android.support.design.widget.TextInputEditText;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
@@ -16,26 +16,29 @@ import com.moldedbits.argus.provider.BaseProvider;
  */
 public class EmailLoginProvider extends BaseProvider {
 
-    private TextInputEditText usernameInput;
-    private TextInputEditText passwordInput;
+    private EditText usernameInput;
+    private EditText passwordInput;
 
     @Override
     public View inflateLoginView(ViewGroup parentView) {
-
-        View loginView = LayoutInflater.from(context)
-                .inflate(R.layout.login_email, parentView, false);
         if (context != null) {
-            usernameInput = (TextInputEditText) loginView.findViewById(R.id.username);
-            passwordInput = (TextInputEditText) loginView.findViewById(R.id.password);
+            View loginView = LayoutInflater.from(context)
+                    .inflate(R.layout.login_email, parentView, false);
+
+            usernameInput = (EditText) loginView.findViewById(R.id.username);
+            passwordInput = (EditText) loginView.findViewById(R.id.password);
+            return loginView;
+        } else {
+            throw new RuntimeException("Context cannot be null");
         }
-        return loginView;
     }
 
     @Override
     public void performLogin() {
         //TODO create a TestHelper class to get mock data
         if (validateInput() && resultListener != null) {
-            resultListener.onSuccess(new ArgusUser("Mock User"), ResultListener.ResultState.SIGNED_IN);
+            resultListener
+                    .onSuccess(new ArgusUser("Mock User"), ResultListener.ResultState.SIGNED_IN);
         }
     }
 
