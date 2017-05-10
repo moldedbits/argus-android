@@ -50,17 +50,19 @@ public class EmailSignupProvider extends BaseProvider {
 
     private boolean validate() {
         if(validationEngine == null) {
-            ArgusLogger.w(TAG, "ValidationManager is null not validating SignUp form");
+            ArgusLogger.w(TAG, "ValidationEngine is null not validating SignUp form");
             return true;
         }
 
-        return !(!performValidation(usernameEt)
-                || !performValidation(passwordEt)
-                || !performValidation(emailEt));
+        // we want to run all validations
+        boolean result1 = validateEditText(usernameEt);
+        boolean result2 = validateEditText(passwordEt);
+        boolean result3 = validateEditText(emailEt);
 
+        return result1 && result2 && result3;
     }
 
-    private boolean performValidation(EditText editText) {
+    private boolean validateEditText(EditText editText) {
         if(editText.getTag() == null) {
             ArgusLogger.w(TAG, "Not performing validations for this EditText");
         }

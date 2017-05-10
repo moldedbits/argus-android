@@ -26,9 +26,4 @@ public class RegexValidation extends AbstractValidation {
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
     }
-
-    @Override
-    public String getErrorMessage() {
-        return null;
-    }
 }

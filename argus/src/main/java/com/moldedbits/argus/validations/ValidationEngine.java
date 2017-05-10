@@ -21,48 +21,42 @@ public class ValidationEngine {
         validators = new HashMap<>();
     }
 
-    public ValidationEngine addEmailValidation(Validation validation) {
-        if(!validators.containsKey(EMAIL_KEY)) {
-            List<Validation> emailValidations = new ArrayList<>();
-            emailValidations.add(validation);
-            validators.put(EMAIL_KEY, emailValidations);
+    private ValidationEngine addValidation(final String key, Validation validation) {
+        if(!validators.containsKey(key)) {
+            List<Validation> validations = new ArrayList<>();
+            validations.add(validation);
+            validators.put(key, validations);
         } else {
-            validators.get(EMAIL_KEY).add(validation);
+            validators.get(key).add(validation);
         }
 
         return this;
+    }
+
+    private ValidationEngine addValidations(final String key, List<Validation> validations) {
+        if(!validators.containsKey(key)) {
+            validators.put(EMAIL_KEY, validations);
+        } else {
+            validators.get(EMAIL_KEY).addAll(validations);
+        }
+
+        return this;
+    }
+
+    public ValidationEngine addEmailValidation(Validation validation) {
+        return addValidation(EMAIL_KEY, validation);
     }
 
     public ValidationEngine addEmailValidations(List<Validation> emailValidations) {
-        if(!validators.containsKey(EMAIL_KEY)) {
-            validators.put(EMAIL_KEY, emailValidations);
-        } else {
-            validators.get(EMAIL_KEY).addAll(emailValidations);
-        }
-
-        return this;
+        return addValidations(EMAIL_KEY, emailValidations);
     }
 
     public ValidationEngine addPasswordValidation(Validation validation) {
-        if(!validators.containsKey("password")) {
-            List<Validation> passwordValidations = new ArrayList<>();
-            passwordValidations.add(validation);
-            validators.put(EMAIL_KEY, passwordValidations);
-        } else {
-            validators.get(PASSWORD_KEY).add(validation);
-        }
-
-        return this;
+        return addValidation(PASSWORD_KEY, validation);
     }
 
     public ValidationEngine addPasswordValidations(List<Validation> passwordValidations) {
-        if(!validators.containsKey(EMAIL_KEY)) {
-            validators.put(EMAIL_KEY, passwordValidations);
-        } else {
-            validators.get(EMAIL_KEY).addAll(passwordValidations);
-        }
-
-        return this;
+        return addValidations(PASSWORD_KEY, passwordValidations);
     }
 
     @Nullable
