@@ -58,6 +58,10 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                     .addView(provider.loginView(this, (ViewGroup) containerView, this));
         }
 
+        ViewGroup viewGroup = (ViewGroup) view.findViewById(R.id.container_social);
+        if(viewGroup.getChildCount() == 0) {
+            view.findViewById(R.id.tv_social_header).setVisibility(View.GONE);
+        }
 
     }
 

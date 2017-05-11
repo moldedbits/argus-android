@@ -67,8 +67,7 @@
                 android:drawablePadding="@dimen/margin_x"
                 android:drawableStart="@drawable/password_icon"
                 android:fontFamily="sans-serif"
-                android:inputType="textPassword"
-                android:textSize="13sp"/>
+                android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
