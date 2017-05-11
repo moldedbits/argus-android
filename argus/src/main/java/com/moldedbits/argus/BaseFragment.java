@@ -57,6 +57,8 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
             ((ViewGroup) containerView)
                     .addView(provider.loginView(this, (ViewGroup) containerView, this));
         }
+
+
     }
 
     @Override

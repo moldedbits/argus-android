@@ -13,7 +13,8 @@ import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 
 
-public class GoogleOnBoardingProvider extends BaseProvider implements GoogleHelper.GoogleLoginResultListener {
+public class GoogleOnBoardingProvider extends BaseProvider
+        implements GoogleHelper.GoogleLoginResultListener {
     private GoogleHelper googleHelper;
 
     @Override
@@ -39,7 +40,7 @@ public class GoogleOnBoardingProvider extends BaseProvider implements GoogleHelp
 
     @Override
     public int getContainerId() {
-        return R.id.container_google;
+        return R.id.container_social;
     }
 
     @Override
