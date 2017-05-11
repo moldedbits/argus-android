@@ -6,6 +6,7 @@ public class ArgusTheme {
 
     @Getter
     private int buttonColor;
+
     @Getter
     private int logo;
 

@@ -52,6 +52,5 @@ public class SampleApplication extends Application {
                 .theme(argusTheme)
                 .signupLayout(R.layout.custom_signup_layout)
                 .build();
-
     }
 }
