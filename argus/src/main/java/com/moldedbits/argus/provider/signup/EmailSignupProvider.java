@@ -81,9 +81,9 @@ public class EmailSignupProvider extends BaseProvider implements
     public Fragment getProgressView() {
         switch (state) {
             case VERIFICATION_PENDING:
-                EmailVerificationFragment f = new EmailVerificationFragment();
-                f.setListener(this);
-                return f;
+                EmailVerificationFragment emailVerificationFragment = new EmailVerificationFragment();
+                emailVerificationFragment.setEmailVerificationListener(this);
+                return emailVerificationFragment;
             case UNSTARTED:
             default:
                 return null;

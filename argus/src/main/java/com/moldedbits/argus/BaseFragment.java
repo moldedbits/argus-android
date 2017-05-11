@@ -17,7 +17,7 @@ import java.util.List;
 
 public abstract class BaseFragment extends Fragment implements ResultListener {
 
-    private ResultListener listener;
+    private ResultListener resultListener;
 
     private View rootView;
 
@@ -30,7 +30,7 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     }
 
     protected void setView(View view, List<BaseProvider> providerList) {
-        // First set result listener for all providers
+        // First set result resultListener for all providers
         for (BaseProvider provider : providerList) {
             provider.setResultListener(this);
         }
@@ -68,7 +68,7 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
 
     @Override
     public void onSuccess(ArgusUser user, ArgusState state) {
-        listener.onSuccess(user, state);
+        resultListener.onSuccess(user, state);
 
         // If state was changed to IN_PROGRESS, then update the UI to show the progress view of the
         // in progress provider. If state was changed to SIGNED_OUT, then update the UI to show all
@@ -78,14 +78,14 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
 
     @Override
     public void onFailure(String message, ArgusState state) {
-        listener.onFailure(message, state);
+        resultListener.onFailure(message, state);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof ResultListener) {
-            listener = (ResultListener) context;
+            resultListener = (ResultListener) context;
         } else {
             throw new RuntimeException(context.toString() + " must implement ResultListener");
         }
@@ -94,7 +94,7 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     @Override
     public void onDetach() {
         super.onDetach();
-        listener = null;
+        resultListener = null;
     }
 
     @Override
@@ -123,7 +123,6 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                 return provider;
             }
         }
-
         return null;
     }
 }

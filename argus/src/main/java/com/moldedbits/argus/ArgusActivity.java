@@ -14,6 +14,9 @@ public class ArgusActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (Argus.getInstance() == null) {
+            throw new RuntimeException("Argus not initialized");
+        }
         // If user is logged in, proceed to next screen
         if (Argus.getInstance().getState() == ArgusState.SIGNED_IN) {
             showNextScreen();
@@ -23,18 +26,15 @@ public class ArgusActivity extends AppCompatActivity
         // Otherwise, show login flow
         setContentView(R.layout.activity_argus);
 
-        if (Argus.getInstance() == null) {
-            throw new RuntimeException("Argus not initialized");
-        }
         showLoginFragment();
     }
 
     // TODO:: Add support for login and signup fragments
     private void showLoginFragment() {
-        BaseFragment f = SignupFragment.newInstance();
+        BaseFragment baseFragment = SignupFragment.newInstance();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, f)
+                .replace(R.id.content, baseFragment)
                 .commit();
     }
 

@@ -25,7 +25,7 @@ public class EmailVerificationFragment extends Fragment {
     private View btnValidate, btnCancel;
 
     @Setter
-    private EmailVerificationListener listener;
+    private EmailVerificationListener emailVerificationListener;
 
     @Nullable
     @Override
@@ -42,14 +42,14 @@ public class EmailVerificationFragment extends Fragment {
         btnValidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onValidated();
+                emailVerificationListener.onValidated();
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onCancelled();
+                emailVerificationListener.onCancelled();
             }
         });
     }
