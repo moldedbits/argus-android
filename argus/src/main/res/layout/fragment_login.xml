@@ -14,9 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_x"
-        android:layout_marginTop="@dimen/margin_2x"
-        android:src="@drawable/logo_3x"/>
+        android:layout_marginBottom="@dimen/margin_2x"/>
 
     <FrameLayout
         android:id="@id/container_email"
