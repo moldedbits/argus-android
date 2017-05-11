@@ -12,8 +12,6 @@ class ArgusSessionManager {
 
     private static final String KEY_ARGUS_STATE = "argus_state";
 
-    private static final String KEY_PROVIDER_IN_PROGRESS = "provider_in_progress";
-
     /**
      * Responsible for storing all data in shared preferences
      */
