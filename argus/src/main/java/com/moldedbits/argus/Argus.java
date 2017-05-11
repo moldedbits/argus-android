@@ -52,6 +52,7 @@ public class Argus {
 
     public void loginUser(ArgusUser user) {
         argusSessionManager.setCurrentUser(user);
+        setState(ArgusState.SIGNED_IN);
     }
 
     /**
@@ -81,16 +82,12 @@ public class Argus {
         return argusSessionManager.getCurrentState();
     }
 
-    public void setState(ArgusState state) {
+    void setState(ArgusState state) {
         argusSessionManager.setCurrentState(state);
     }
 
-    public BaseProvider getProviderInProgress() {
-        return argusSessionManager.getProviderInProgress(loginProviders, signupProviders);
-    }
-
-    public void setProviderInProgress(BaseProvider provider) {
-        argusSessionManager.setProviderInProgres(provider);
+    public ArgusStorage getStorage() {
+        return argusStorage;
     }
 
     public static class Builder {

@@ -23,9 +23,12 @@ public class EmailSignupProvider extends BaseProvider implements
     }
 
     private static final String TAG = "EmailSignupProvider";
+    private static final String KEY_STATE = "email_signup_provider_state";
+
     private EditText usernameEt;
     private EditText emailEt;
     private EditText passwordEt;
+
     private State state = State.UNSTARTED;
 
     public EmailSignupProvider() {
@@ -39,7 +42,7 @@ public class EmailSignupProvider extends BaseProvider implements
             user.setEmail(emailEt.getText().toString());
             if (resultListener != null) {
                 state = State.VERIFICATION_PENDING;
-                Argus.getInstance().setProviderInProgress(this);
+                Argus.getInstance().getStorage().putString(KEY_STATE, state.toString());
                 resultListener.onSuccess(new ArgusUser("New User Welcome"), ArgusState.IN_PROGRESS);
             }
         }
@@ -88,12 +91,23 @@ public class EmailSignupProvider extends BaseProvider implements
     }
 
     @Override
+    public boolean isInProgress() {
+        state = State.valueOf(Argus.getInstance().getStorage()
+                .getString(KEY_STATE, State.UNSTARTED.toString()));
+        return state == State.VERIFICATION_PENDING;
+    }
+
+    @Override
     public void onValidated() {
-        resultListener.onSuccess(new ArgusUser("Mock User"), ArgusState.SIGNED_IN);
+        if (resultListener != null) {
+            resultListener.onSuccess(new ArgusUser("Mock User"), ArgusState.SIGNED_IN);
+        }
     }
 
     @Override
     public void onCancelled() {
-
+        if (resultListener != null) {
+            resultListener.onSuccess(null, ArgusState.SIGNED_OUT);
+        }
     }
 }

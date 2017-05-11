@@ -1,13 +1,11 @@
 package com.moldedbits.argus;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.BaseProvider;
 
 public class ArgusActivity extends AppCompatActivity
         implements ResultListener {
@@ -15,45 +13,25 @@ public class ArgusActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // If user is logged in, proceed to next screen
+        if (Argus.getInstance().getState() == ArgusState.SIGNED_IN) {
+            showNextScreen();
+            return;
+        }
+
+        // Otherwise, show login flow
         setContentView(R.layout.activity_argus);
 
         if (Argus.getInstance() == null) {
             throw new RuntimeException("Argus not initialized");
         }
-
-        setupView();
+        showLoginFragment();
     }
 
-    private void setupView() {
-        switch (Argus.getInstance().getState()) {
-            case SIGNED_OUT:
-                showLoginFragment();
-                break;
-            case IN_PROGRESS:
-                showProgressView();
-                break;
-            case SIGNED_IN:
-                showNextScreen();
-                break;
-        }
-    }
-
-    private void showProgressView() {
-        BaseProvider provider = Argus.getInstance().getProviderInProgress();
-        Fragment progressView = provider == null ? null : provider.getProgressView();
-        if (progressView == null) {
-            showLoginFragment();
-        } else {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.content, progressView)
-                    .commit();
-        }
-    }
-
+    // TODO:: Add support for login and signup fragments
     private void showLoginFragment() {
         BaseFragment f = SignupFragment.newInstance();
-        f.setListener(this);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, f)
@@ -67,7 +45,9 @@ public class ArgusActivity extends AppCompatActivity
             Argus.getInstance().loginUser(user);
             showNextScreen();
         } else {
-            setupView();
+            // TODO:: This is a hack to update view when sign in is cancelled. We will fix this
+            // in a future update.
+            showLoginFragment();
         }
     }
 

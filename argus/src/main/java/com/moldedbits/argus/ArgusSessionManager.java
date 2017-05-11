@@ -3,10 +3,7 @@ package com.moldedbits.argus;
 import android.support.annotation.Nullable;
 
 import com.moldedbits.argus.model.ArgusUser;
-import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.storage.ArgusStorage;
-
-import java.util.List;
 
 /**
  * Helper to access Session information
@@ -56,27 +53,5 @@ class ArgusSessionManager {
 
     void setCurrentState(ArgusState argusState) {
         argusStorage.putString(KEY_ARGUS_STATE, argusState.toString());
-    }
-
-    void setProviderInProgres(BaseProvider providerInProgres) {
-        argusStorage.putString(KEY_PROVIDER_IN_PROGRESS, providerInProgres.getClass().getName());
-    }
-
-    BaseProvider getProviderInProgress(List<BaseProvider> loginProviders,
-                                       List<BaseProvider> signupProviders) {
-        String providerClass = argusStorage.getString(KEY_PROVIDER_IN_PROGRESS, null);
-
-        for (BaseProvider provider : loginProviders) {
-            if (provider.getClass().getName().equals(providerClass)) {
-                return provider;
-            }
-        }
-        for (BaseProvider provider : signupProviders) {
-            if (provider.getClass().getName().equals(providerClass)) {
-                return provider;
-            }
-        }
-
-        return null;
     }
 }

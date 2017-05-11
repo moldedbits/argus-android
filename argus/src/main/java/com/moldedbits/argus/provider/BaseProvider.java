@@ -12,6 +12,7 @@ import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.validations.ValidationEngine;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Provides login functionality for specific end point
@@ -24,6 +25,7 @@ public abstract class BaseProvider {
     protected Context context;
 
     @Nullable
+    @Setter
     protected ResultListener resultListener;
 
     protected Fragment fragment;
@@ -36,11 +38,9 @@ public abstract class BaseProvider {
      *
      * @param fragment   Login fragment. This is needed to inject activity result callbacks
      * @param parentView Parent view in which this view will be inflated.
-     * @param listener   Login listener
      * @return Inflated view to be shown on screen
      */
-    public View loginView(Fragment fragment, ViewGroup parentView, ResultListener listener) {
-        this.resultListener = listener;
+    public View loginView(Fragment fragment, ViewGroup parentView) {
         this.context = fragment.getContext();
         this.fragment = fragment;
 
@@ -94,5 +94,9 @@ public abstract class BaseProvider {
 
     public int getContainerId() {
         return DEFAULT_CONTAINER_ID;
+    }
+
+    public boolean isInProgress() {
+        return false;
     }
 }
