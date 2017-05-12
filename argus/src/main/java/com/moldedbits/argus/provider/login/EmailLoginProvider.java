@@ -1,6 +1,7 @@
 package com.moldedbits.argus.provider.login;
 
-import android.text.TextUtils;
+import android.support.annotation.Nullable;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,19 +9,31 @@ import android.widget.EditText;
 
 import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
+import com.moldedbits.argus.validations.RegexValidation;
+import com.moldedbits.argus.validations.ValidationEngine;
 
 /**
  * Allow user to login with email and password
  */
 public class EmailLoginProvider extends BaseProvider {
 
+    private static final String TAG = "EmailLoginProvider";
+
     private EditText usernameInput;
     private EditText passwordInput;
 
+    @Nullable
     @Override
     public View inflateLoginView(ViewGroup parentView) {
+        if(context == null)
+            return null;
+
+        getValidationEngine().addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+                context.getString(R.string.invalid_email)));
+
         if (context != null) {
             View loginView = LayoutInflater.from(context)
                     .inflate(R.layout.login_email, parentView, false);
@@ -42,17 +55,16 @@ public class EmailLoginProvider extends BaseProvider {
     }
 
     private boolean validateInput() {
-        if (TextUtils.isEmpty(usernameInput.getText())) {
-            usernameInput.setError(context.getString(R.string.empty_username));
-            return false;
+        if(validationEngine == null) {
+            ArgusLogger.w(TAG, "ValidationEngine is null not validating SignUp form");
+            return true;
         }
 
-        if (TextUtils.isEmpty(passwordInput.getText())) {
-            passwordInput.setError(context.getString(R.string.empty_password));
-            return false;
-        }
+        // we want to run all validations
+        boolean result1 = ValidationEngine.validateEditText(usernameInput, validationEngine);
+        boolean result2 = ValidationEngine.validateEditText(passwordInput, validationEngine);
 
-        return true;
+        return result1 && result2;
     }
 
     @Override

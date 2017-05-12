@@ -6,7 +6,7 @@
 
     <string name="empty_password">Invalid</string>
     <string name="empty_username">Invalid</string>
-    <string name="empty_email">Email cannot be blank</string>
+    <string name="invalid_email">Invalid Email</string>
     <string name="email">Email</string>
     <string name="i_already_have_a_account">I already have an Account</string>
     <string name="forgot_password">Forgot Password?</string>

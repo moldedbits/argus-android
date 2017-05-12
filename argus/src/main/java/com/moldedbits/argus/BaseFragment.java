@@ -29,7 +29,6 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         rootView = inflater.inflate(getLayoutId(), container, false);
         setView(rootView, getProviders());
         applyTheme(rootView);
@@ -43,8 +42,7 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
             iv.setImageResource(theme.getLogo());
         }
 
-        PorterDuffColorFilter filter = new PorterDuffColorFilter(
-                ViewUtils.fetchAccentColor(getContext()), PorterDuff.Mode.SRC_ATOP);
+        PorterDuffColorFilter filter = new PorterDuffColorFilter(ViewUtils.fetchAccentColor(getContext()), PorterDuff.Mode.MULTIPLY);
         ContextCompat.getDrawable(getContext(), R.drawable.email_icon).setColorFilter(filter);
         ContextCompat.getDrawable(getContext(), R.drawable.password_icon).setColorFilter(filter);
     }
