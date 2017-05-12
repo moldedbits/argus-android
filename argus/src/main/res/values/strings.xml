@@ -13,6 +13,7 @@
     <string name="email_address">Email</string>
     <string name="signin">Sign In</string>
     <string name="sign_in_with">Sign in with</string>
+    <string name="name">Name</string>
     <string name="sign_up">Sign Up</string>
     <string name="don_t_have_any_account">Don\'t have an account?</string>
 </resources>
