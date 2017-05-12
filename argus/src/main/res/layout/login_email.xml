@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_x"
+    android:layout_margin="@dimen/margin_2x"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -18,22 +18,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_2x"
-        android:layout_marginLeft="@dimen/margin_x"
-        android:layout_marginStart="@dimen/margin_x"
-        android:layout_marginTop="@dimen/margin_2x"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/email_icon"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/margin_x"
+            android:layout_marginRight="@dimen/margin_x"
             android:hint="@string/email_address">
 
             <android.support.design.widget.TextInputEditText
@@ -47,21 +45,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_2x"
-        android:layout_marginLeft="@dimen/margin_x"
-        android:layout_marginStart="@dimen/margin_x"
-        android:layout_marginTop="@dimen/margin_2x"
         android:gravity="center"
+        android:layout_marginTop="@dimen/margin_2x"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/password_icon"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_x"
+            android:layout_marginRight="@dimen/margin_x"
             android:layout_gravity="center"
             android:hint="@string/password">
 
