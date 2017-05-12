@@ -10,6 +10,8 @@ import com.moldedbits.argus.storage.ArgusStorage;
  */
 class ArgusSessionManager {
 
+    private static final String KEY_ARGUS_STATE = "argus_state";
+
     /**
      * Responsible for storing all data in shared preferences
      */
@@ -40,5 +42,14 @@ class ArgusSessionManager {
 
     void setCurrentUser(ArgusUser user) {
         argusStorage.setCurrentUser(user);
+    }
+
+    ArgusState getCurrentState() {
+        return ArgusState.valueOf(argusStorage.getString(KEY_ARGUS_STATE,
+                                                         ArgusState.SIGNED_OUT.toString()));
+    }
+
+    void setCurrentState(ArgusState argusState) {
+        argusStorage.putString(KEY_ARGUS_STATE, argusState.toString());
     }
 }
