@@ -37,9 +37,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email_icon"
                 android:drawablePadding="@dimen/margin_x"
-                android:drawableStart="@drawable/email_icon"
-                android:textSize="13sp"/>
-
+                android:drawableStart="@drawable/email_icon"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
@@ -65,12 +63,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawableLeft="@drawable/passowrd_icon"
+                android:drawableLeft="@drawable/password_icon"
                 android:drawablePadding="@dimen/margin_x"
-                android:drawableStart="@drawable/passowrd_icon"
+                android:drawableStart="@drawable/password_icon"
                 android:fontFamily="sans-serif"
-                android:inputType="textPassword"
-                android:textSize="13sp"/>
+                android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
@@ -94,12 +91,5 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:text="@string/signin"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/sign_in_with"
-        android:textSize="12sp"/>
 
 </LinearLayout>
