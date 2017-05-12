@@ -55,8 +55,7 @@ public class EmailSignupProvider extends BaseProvider implements
         if (context != null) {
             getValidationEngine()
                     .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                                                            context.getString(
-                                                                    R.string.invalid_email)));
+                                                            context.getString(R.string.invalid_email)));
         }
 
         View signUpView = LayoutInflater.from(context)
