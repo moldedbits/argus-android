@@ -17,15 +17,17 @@ public final class ViewUtils {
         throw new RuntimeException("Not suppose to create an object of utility class");
     }
 
+    // caching accent color
+    private static int accentColor = -1;
     public static int fetchAccentColor(final Context context) {
-        TypedValue typedValue = new TypedValue();
+        if(accentColor == -1) {
+            TypedValue typedValue = new TypedValue();
+            TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
+            accentColor = a.getColor(0, 0);
+            a.recycle();
+        }
 
-        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[] { R.attr.colorAccent });
-        int color = a.getColor(0, 0);
-
-        a.recycle();
-
-        return color;
+        return accentColor;
     }
 
 }
