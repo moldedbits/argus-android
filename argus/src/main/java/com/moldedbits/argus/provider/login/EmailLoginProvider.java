@@ -25,6 +25,10 @@ public class EmailLoginProvider extends BaseProvider {
     private EditText usernameInput;
     private EditText passwordInput;
 
+    public EmailLoginProvider() {
+        validationEngine = new ValidationEngine();
+    }
+
     @Nullable
     @Override
     public View inflateLoginView(ViewGroup parentView) {

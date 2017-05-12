@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_2x"
+        android:layout_marginBottom="@dimen/margin_x"
         android:layout_marginLeft="@dimen/margin_x"
         android:layout_marginStart="@dimen/margin_x"
         android:layout_marginTop="@dimen/margin_2x"
@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email_icon"
                 android:drawablePadding="@dimen/margin_x"
+                android:tag="name"
                 android:drawableStart="@drawable/email_icon"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -40,10 +41,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_2x"
+        android:layout_marginBottom="@dimen/margin_x"
         android:layout_marginLeft="@dimen/margin_x"
         android:layout_marginStart="@dimen/margin_x"
-        android:layout_marginTop="@dimen/margin_2x"
+        android:layout_marginTop="@dimen/margin_x"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -57,11 +58,11 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/default_margin"
                 android:inputType="textEmailAddress"
                 android:fontFamily="sans-serif"
                 android:drawableLeft="@drawable/email_icon"
                 android:drawablePadding="@dimen/margin_x"
+                android:tag="email"
                 android:drawableStart="@drawable/email_icon"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -70,10 +71,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_2x"
+        android:layout_marginBottom="@dimen/margin_x"
         android:layout_marginLeft="@dimen/margin_x"
         android:layout_marginStart="@dimen/margin_x"
-        android:layout_marginTop="@dimen/margin_2x"
+        android:layout_marginTop="@dimen/margin_x"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -92,6 +93,7 @@
                 android:drawablePadding="@dimen/margin_x"
                 android:drawableStart="@drawable/password_icon"
                 android:fontFamily="sans-serif"
+                android:tag="password"
                 android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>

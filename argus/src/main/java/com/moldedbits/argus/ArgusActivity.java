@@ -72,6 +72,7 @@ public class ArgusActivity extends AppCompatActivity
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, baseFragment)
+                .addToBackStack("login")
                 .commit();
     }
 }
