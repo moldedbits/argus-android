@@ -25,6 +25,10 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
     abstract public void doServerLogin(String username, String password);
 
+    public EmailLoginProvider() {
+        validationEngine = new ValidationEngine();
+    }
+
     @Nullable
     @Override
     public View inflateLoginView(ViewGroup parentView) {

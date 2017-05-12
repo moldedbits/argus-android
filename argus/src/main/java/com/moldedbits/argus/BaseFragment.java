@@ -39,10 +39,13 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
         ArgusTheme theme = Argus.getInstance().getArgusTheme();
         if (theme.getLogo() != 0) {
             ImageView iv = (ImageView) view.findViewById(R.id.iv_logo);
-            iv.setImageResource(theme.getLogo());
+            if(iv!=null) {
+                iv.setImageResource(theme.getLogo());
+            }
         }
 
-        PorterDuffColorFilter filter = new PorterDuffColorFilter(ViewUtils.fetchAccentColor(getContext()), PorterDuff.Mode.MULTIPLY);
+        PorterDuffColorFilter filter = new PorterDuffColorFilter(
+                ViewUtils.fetchAccentColor(getContext()), PorterDuff.Mode.MULTIPLY);
         ContextCompat.getDrawable(getContext(), R.drawable.email_icon).setColorFilter(filter);
         ContextCompat.getDrawable(getContext(), R.drawable.password_icon).setColorFilter(filter);
     }
@@ -84,10 +87,13 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
         }
 
         ViewGroup viewGroup = (ViewGroup) view.findViewById(R.id.container_social);
-        if (viewGroup.getChildCount() == 0) {
-            view.findViewById(R.id.tv_social_header).setVisibility(View.GONE);
+        if (viewGroup != null) {
+            if (viewGroup.getChildCount() == 0) {
+                if (view.findViewById(R.id.tv_social_header) != null) {
+                    view.findViewById(R.id.tv_social_header).setVisibility(View.GONE);
+                }
+            }
         }
-
     }
 
     @Override

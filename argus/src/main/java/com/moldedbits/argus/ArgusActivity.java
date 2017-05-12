@@ -2,6 +2,7 @@ package com.moldedbits.argus;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.moldedbits.argus.listener.ResultListener;
@@ -31,7 +32,7 @@ public class ArgusActivity extends AppCompatActivity
 
     // TODO:: Add support for login and signup fragments
     private void showLoginFragment() {
-        BaseFragment baseFragment = SignupFragment.newInstance();
+        BaseFragment baseFragment = LoginFragment.newInstance();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, baseFragment)
@@ -62,7 +63,16 @@ public class ArgusActivity extends AppCompatActivity
         finish();
     }
 
-    private void onSignUpClicked() {
+    public void onSignupClick(View view) {
+        showSignUpScreen();
+    }
 
+    private void showSignUpScreen() {
+        BaseFragment baseFragment = SignupFragment.newInstance();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, baseFragment)
+                .addToBackStack("login")
+                .commit();
     }
 }
