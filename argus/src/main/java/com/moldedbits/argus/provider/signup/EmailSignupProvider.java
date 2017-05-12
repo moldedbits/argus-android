@@ -53,8 +53,9 @@ public class EmailSignupProvider extends BaseProvider implements
     @Override
     protected View inflateLoginView(ViewGroup parentView) {
         if (context != null) {
-            getValidationEngine().addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                    context.getString(R.string.invalid_email)));
+            getValidationEngine()
+                    .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+                                                            context.getString(R.string.invalid_email)));
         }
 
         View signUpView = LayoutInflater.from(context)
@@ -66,7 +67,7 @@ public class EmailSignupProvider extends BaseProvider implements
     }
 
     private boolean validate() {
-        if(validationEngine == null) {
+        if (validationEngine == null) {
             ArgusLogger.w(TAG, "ValidationEngine is null not validating SignUp form");
             return true;
         }
@@ -100,7 +101,7 @@ public class EmailSignupProvider extends BaseProvider implements
     @Override
     public boolean isInProgress() {
         state = State.valueOf(Argus.getInstance().getStorage()
-                .getString(KEY_STATE, State.UNSTARTED.toString()));
+                                      .getString(KEY_STATE, State.UNSTARTED.toString()));
         return state == State.VERIFICATION_PENDING;
     }
 

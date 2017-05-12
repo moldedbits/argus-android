@@ -10,18 +10,30 @@
     android:padding="@dimen/default_padding"
     tools:context="com.moldedbits.argus.ArgusActivity">
 
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_2x"/>
+
     <FrameLayout
         android:id="@id/container_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <FrameLayout
-        android:id="@id/container_fb"
+    <TextView
+        android:id="@+id/tv_social_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sign_in_with"
+        android:textSize="12sp"/>
 
-    <FrameLayout
-        android:id="@id/container_google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/container_social"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"/>
+
 </LinearLayout>
