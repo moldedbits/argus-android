@@ -1,15 +1,14 @@
 package com.moldedbits.argus.provider.login;
 
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
@@ -51,8 +50,7 @@ public class EmailLoginProvider extends BaseProvider {
     public void performLogin() {
         //TODO create a TestHelper class to get mock data
         if (validateInput() && resultListener != null) {
-            resultListener.onSuccess(new ArgusUser("Mock User"),
-                    ResultListener.ResultState.SIGNED_IN);
+            resultListener.onSuccess(new ArgusUser("Mock User"), ArgusState.SIGNED_IN);
         }
     }
 

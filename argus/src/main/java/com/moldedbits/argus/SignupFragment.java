@@ -25,6 +25,11 @@ public class SignupFragment extends BaseFragment {
     }
 
     @Override
+    protected int getContainerId() {
+        return R.id.container_signup;
+    }
+
+    @Override
     protected List<BaseProvider> getProviders() {
         return Argus.getInstance().getSignupProviders();
     }

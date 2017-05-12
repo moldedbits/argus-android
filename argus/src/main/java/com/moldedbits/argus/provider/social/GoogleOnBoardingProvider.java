@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.provider.social.helper.GoogleHelper;
-import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
+import com.moldedbits.argus.provider.social.helper.GoogleHelper;
 
 
 public class GoogleOnBoardingProvider extends BaseProvider
@@ -47,14 +47,14 @@ public class GoogleOnBoardingProvider extends BaseProvider
     public void onSuccess(GoogleSignInAccount account) {
         if (resultListener != null) {
             resultListener.onSuccess(new ArgusUser(account.getDisplayName()),
-                    ResultListener.ResultState.SIGNED_IN);
+                    ArgusState.SIGNED_IN);
         }
     }
 
     @Override
     public void onFailure(String message) {
         if (resultListener != null) {
-            resultListener.onFailure(message, ResultListener.ResultState.SIGNED_IN);
+            resultListener.onFailure(message, ArgusState.SIGNED_IN);
         }
     }
 }
