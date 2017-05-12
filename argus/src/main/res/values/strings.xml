@@ -4,16 +4,14 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty_password">Invalid</string>
     <string name="empty_username">Invalid</string>
     <string name="empty_email">Email cannot be blank</string>
     <string name="email">Email</string>
     <string name="i_already_have_a_account">I already have an Account</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="email_address">Email address:</string>
-    <string name="signin">SIGNIN</string>
+    <string name="email_address">Email</string>
+    <string name="signin">Sign In</string>
     <string name="sign_in_with">Sign in with</string>
     <string name="sign_up">Sign Up</string>
     <string name="don_t_have_any_account">Don\'t have an account?</string>

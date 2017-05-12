@@ -14,7 +14,8 @@ import com.moldedbits.argus.provider.social.helper.FacebookConfig;
 import com.moldedbits.argus.provider.social.helper.FacebookHelper;
 
 
-public class FacebookOnBoardingProvider extends BaseProvider implements FacebookHelper.FBLoginResultListener {
+public class FacebookOnBoardingProvider extends BaseProvider
+        implements FacebookHelper.FBLoginResultListener {
 
     private FacebookHelper facebookHelper;
 
@@ -42,7 +43,7 @@ public class FacebookOnBoardingProvider extends BaseProvider implements Facebook
 
     @Override
     public int getContainerId() {
-        return R.id.container_fb;
+        return R.id.container_social;
     }
 
     @Override

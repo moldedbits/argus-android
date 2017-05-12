@@ -19,7 +19,6 @@ task checkstyle(type: Checkstyle) {
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
-    exclude '**/*.kt'
 
     classpath = files()
 

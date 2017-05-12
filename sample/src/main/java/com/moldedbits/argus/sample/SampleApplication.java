@@ -23,8 +23,8 @@ public class SampleApplication extends Application {
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         ArrayList<BaseProvider> signupProviders = new ArrayList<>();
         loginProviders.add(new EmailLoginProvider());
-        loginProviders.add(new FacebookOnBoardingProvider());
         loginProviders.add(new GoogleOnBoardingProvider());
+        loginProviders.add(new FacebookOnBoardingProvider());
 
         EmailSignupProvider emailSignupProvider = new EmailSignupProvider();
 //        emailSignupProvider.getValidationEngine()
@@ -33,8 +33,8 @@ public class SampleApplication extends Application {
 //                        getString(R.string.enter_valid_email)));
 
         signupProviders.add(emailSignupProvider);
-        signupProviders.add(new FacebookOnBoardingProvider());
         signupProviders.add(new GoogleOnBoardingProvider());
+        signupProviders.add(new FacebookOnBoardingProvider());
 
         ArgusTheme argusTheme = new ArgusTheme.Builder()
                 .buttonColor(R.color.com_facebook_blue)
@@ -48,6 +48,5 @@ public class SampleApplication extends Application {
                 .theme(argusTheme)
                 .signupLayout(R.layout.custom_signup_layout)
                 .build();
-
     }
 }

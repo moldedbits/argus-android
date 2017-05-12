@@ -2,15 +2,20 @@ package com.moldedbits.argus;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
+import com.moldedbits.argus.utils.ViewUtils;
 
 import java.util.List;
 
@@ -24,9 +29,24 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         rootView = inflater.inflate(getLayoutId(), container, false);
         setView(rootView, getProviders());
+        applyTheme(rootView);
         return rootView;
+    }
+
+    private void applyTheme(final View view) {
+        ArgusTheme theme = Argus.getInstance().getArgusTheme();
+        if (theme.getLogo() != 0) {
+            ImageView iv = (ImageView) view.findViewById(R.id.iv_logo);
+            iv.setImageResource(theme.getLogo());
+        }
+
+        PorterDuffColorFilter filter = new PorterDuffColorFilter(
+                ViewUtils.fetchAccentColor(getContext()), PorterDuff.Mode.SRC_ATOP);
+        ContextCompat.getDrawable(getContext(), R.drawable.email_icon).setColorFilter(filter);
+        ContextCompat.getDrawable(getContext(), R.drawable.password_icon).setColorFilter(filter);
     }
 
     protected void setView(View view, List<BaseProvider> providerList) {
@@ -64,6 +84,12 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                         .addView(provider.loginView(this, (ViewGroup) containerView));
             }
         }
+
+        ViewGroup viewGroup = (ViewGroup) view.findViewById(R.id.container_social);
+        if (viewGroup.getChildCount() == 0) {
+            view.findViewById(R.id.tv_social_header).setVisibility(View.GONE);
+        }
+
     }
 
     @Override
