@@ -1,5 +1,6 @@
 package com.moldedbits.argus.provider.signup;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
+import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
 
 public class EmailSignupProvider extends BaseProvider {
@@ -36,6 +38,11 @@ public class EmailSignupProvider extends BaseProvider {
 
     @Override
     protected View inflateLoginView(ViewGroup parentView) {
+        if (context != null) {
+            getValidationEngine().addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+                    context.getString(R.string.invalid_email)));
+        }
+
         View signUpView = LayoutInflater.from(context).inflate(R.layout.signup_email, parentView,
                                                                false);
         usernameEt = (EditText) signUpView.findViewById(R.id.username);
