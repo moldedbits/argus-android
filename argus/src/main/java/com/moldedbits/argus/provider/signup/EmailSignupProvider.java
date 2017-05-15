@@ -16,7 +16,7 @@ import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
 
-public class EmailSignupProvider extends BaseProvider implements
+public abstract class EmailSignupProvider extends BaseProvider implements
         EmailVerificationFragment.EmailVerificationListener {
 
     private enum State {
@@ -46,6 +46,9 @@ public class EmailSignupProvider extends BaseProvider implements
                 state = State.VERIFICATION_PENDING;
                 Argus.getInstance().getStorage().putString(KEY_STATE, state.toString());
                 resultListener.onSuccess(new ArgusUser("New User Welcome"), ArgusState.IN_PROGRESS);
+            } else {
+                doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
+                               passwordEt.getText().toString());
             }
         }
     }
@@ -55,7 +58,8 @@ public class EmailSignupProvider extends BaseProvider implements
         if (context != null) {
             getValidationEngine()
                     .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                                                            context.getString(R.string.invalid_email)));
+                                                            context.getString(
+                                                                    R.string.invalid_email)));
         }
 
         View signUpView = LayoutInflater.from(context)
@@ -118,4 +122,6 @@ public class EmailSignupProvider extends BaseProvider implements
             resultListener.onSuccess(null, ArgusState.SIGNED_OUT);
         }
     }
+
+    public abstract void doServerSignup(String username, String email, String password);
 }

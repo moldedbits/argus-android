@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
-import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
@@ -18,7 +16,7 @@ import com.moldedbits.argus.validations.ValidationEngine;
 /**
  * Allow user to login with email and password
  */
-public class EmailLoginProvider extends BaseProvider {
+public abstract class EmailLoginProvider extends BaseProvider {
 
     private static final String TAG = "EmailLoginProvider";
 
@@ -54,7 +52,7 @@ public class EmailLoginProvider extends BaseProvider {
     public void performLogin() {
         //TODO create a TestHelper class to get mock data
         if (validateInput() && resultListener != null) {
-            resultListener.onSuccess(new ArgusUser("Mock User"), ArgusState.SIGNED_IN);
+            doServerLogin(usernameInput.getText().toString(),passwordInput.getText().toString());
         }
     }
 
@@ -75,4 +73,6 @@ public class EmailLoginProvider extends BaseProvider {
     public int getContainerId() {
         return R.id.container_email;
     }
+
+    public abstract void doServerLogin(String username, String password);
 }

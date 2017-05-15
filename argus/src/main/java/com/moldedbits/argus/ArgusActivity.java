@@ -45,9 +45,7 @@ public class ArgusActivity extends AppCompatActivity
         if (resultState == ArgusState.SIGNED_IN) {
             Argus.getInstance().loginUser(user);
             showNextScreen();
-        } else {
-            // TODO:: This is a hack to update view when sign in is cancelled. We will fix this
-            // in a future update.
+        } else if(resultState == ArgusState.IN_PROGRESS) {
             showLoginFragment();
         }
     }
