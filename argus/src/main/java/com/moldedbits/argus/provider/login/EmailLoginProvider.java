@@ -30,11 +30,12 @@ public abstract class EmailLoginProvider extends BaseProvider {
     @Nullable
     @Override
     public View inflateLoginView(ViewGroup parentView) {
-        if(context == null)
+        if (context == null)
             return null;
 
-        getValidationEngine().addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                context.getString(R.string.invalid_email)));
+        getValidationEngine()
+                .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+                                                        context.getString(R.string.invalid_email)));
 
         if (context != null) {
             View loginView = LayoutInflater.from(context)
@@ -50,14 +51,13 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
     @Override
     public void performLogin() {
-        //TODO create a TestHelper class to get mock data
         if (validateInput() && resultListener != null) {
-            doServerLogin(usernameInput.getText().toString(),passwordInput.getText().toString());
+            doServerLogin(usernameInput.getText().toString(), passwordInput.getText().toString());
         }
     }
 
     private boolean validateInput() {
-        if(validationEngine == null) {
+        if (validationEngine == null) {
             ArgusLogger.w(TAG, "ValidationEngine is null not validating SignUp form");
             return true;
         }
@@ -74,5 +74,5 @@ public abstract class EmailLoginProvider extends BaseProvider {
         return R.id.container_email;
     }
 
-    public abstract void doServerLogin(String username, String password);
+    protected abstract void doServerLogin(String username, String password);
 }
