@@ -34,10 +34,12 @@
             android:layout_marginRight="@dimen/margin_x"
             android:hint="@string/email_address">
 
+            <!--dont remove tag, its used for validations-->
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:tag="email"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
@@ -62,13 +64,15 @@
             android:layout_gravity="center"
             android:hint="@string/password">
 
+            <!--dont remove tag, its used for validaions-->
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:tag="@string/password"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
