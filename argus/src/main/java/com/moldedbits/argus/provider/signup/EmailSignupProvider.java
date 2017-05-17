@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.moldedbits.argus.State;
+import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
@@ -74,23 +74,22 @@ public abstract class EmailSignupProvider extends BaseProvider implements
         return R.id.container_email;
     }
 
-    //
-    @Override
-    public void startValidationActivity() {
+
+    private void startValidationActivity() {
         fragment.startActivity(new Intent(fragment.getActivity(), ValidationActivity.class));
     }
 
     @Override
     public void onValidated() {
         if (resultListener != null) {
-            resultListener.onSuccess(State.SIGNED_IN);
+            resultListener.onSuccess(ArgusState.SIGNED_IN);
         }
     }
 
     @Override
     public void onCancelled() {
         if (resultListener != null) {
-            resultListener.onSuccess(State.SIGNED_OUT);
+            resultListener.onSuccess(ArgusState.SIGNED_OUT);
         }
     }
 
@@ -100,7 +99,7 @@ public abstract class EmailSignupProvider extends BaseProvider implements
             return;
         }
         if (resultListener != null) {
-            resultListener.onSuccess(State.SIGNED_IN);
+            resultListener.onSuccess(ArgusState.SIGNED_IN);
         }
     }
 

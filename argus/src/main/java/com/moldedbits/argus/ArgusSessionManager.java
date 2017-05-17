@@ -33,12 +33,12 @@ class ArgusSessionManager {
      * @return Currently logged in user, or null if no user is logged in.
      */
 
-    State getCurrentState() {
-        return State.valueOf(argusStorage.getString(KEY_ARGUS_STATE,
-                                                    State.SIGNED_OUT.toString()));
+    ArgusState getCurrentState() {
+        return ArgusState.valueOf(argusStorage.getString(KEY_ARGUS_STATE,
+                                                         ArgusState.SIGNED_OUT.toString()));
     }
 
-    void setCurrentState(State state) {
-        argusStorage.putString(KEY_ARGUS_STATE, state.toString());
+    void setCurrentState(ArgusState argusState) {
+        argusStorage.putString(KEY_ARGUS_STATE, argusState.toString());
     }
 }

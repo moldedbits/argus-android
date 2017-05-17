@@ -18,7 +18,7 @@ public class ArgusActivity extends AppCompatActivity
             throw new RuntimeException("Argus not initialized");
         }
         // If user is logged in, proceed to next screen
-        if (Argus.getInstance().getState() == State.SIGNED_IN) {
+        if (Argus.getInstance().getState() == ArgusState.SIGNED_IN) {
             showNextScreen();
             return;
         }
@@ -38,9 +38,9 @@ public class ArgusActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSuccess(State resultState) {
-        Argus.getInstance().setState(resultState);
-        if (resultState == State.SIGNED_IN) {
+    public void onSuccess(ArgusState argusState) {
+        Argus.getInstance().setState(argusState);
+        if (argusState == ArgusState.SIGNED_IN) {
             showNextScreen();
         }
     }

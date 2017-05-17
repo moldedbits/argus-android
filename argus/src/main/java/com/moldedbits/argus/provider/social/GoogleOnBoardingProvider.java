@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.State;
+import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.social.helper.GoogleHelper;
 
@@ -45,7 +45,7 @@ public class GoogleOnBoardingProvider extends BaseProvider
     @Override
     public void onSuccess(GoogleSignInAccount account) {
         if (resultListener != null) {
-            resultListener.onSuccess(State.SIGNED_IN);
+            resultListener.onSuccess(ArgusState.SIGNED_IN);
         }
     }
 

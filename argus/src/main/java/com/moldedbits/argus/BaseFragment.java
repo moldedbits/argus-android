@@ -76,8 +76,8 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     }
 
     @Override
-    public void onSuccess(State state) {
-        resultListener.onSuccess(state);
+    public void onSuccess(ArgusState argusState) {
+        resultListener.onSuccess(argusState);
     }
 
     @Override

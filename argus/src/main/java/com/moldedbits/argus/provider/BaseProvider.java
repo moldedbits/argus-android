@@ -88,8 +88,6 @@ public abstract class BaseProvider {
      */
     protected abstract void performLogin();
 
-    public void startValidationActivity() {
-    }
 
     public int getContainerId() {
         return DEFAULT_CONTAINER_ID;

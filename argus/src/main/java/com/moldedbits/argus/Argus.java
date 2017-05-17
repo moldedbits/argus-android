@@ -47,8 +47,8 @@ public class Argus {
         return _instance;
     }
 
-    public void loginUser() {
-        setState(State.SIGNED_IN);
+    public void setState() {
+        setState(ArgusState.SIGNED_IN);
     }
 
     /**
@@ -66,12 +66,12 @@ public class Argus {
      * @return Currently logged in user, or null if no user is logged in.
      */
 
-    public State getState() {
+    public ArgusState getState() {
         return argusSessionManager.getCurrentState();
     }
 
-    public void setState(State state) {
-        argusSessionManager.setCurrentState(state);
+    public void setState(ArgusState argusState) {
+        argusSessionManager.setCurrentState(argusState);
     }
 
     public ArgusStorage getStorage() {
@@ -142,7 +142,7 @@ public class Argus {
 
         public Argus build() {
             if (argus.argusStorage == null) {
-                throw new IllegalStateException("No ArgusStorage was provided.");
+                throw new IllegalStateException("No ArgausStorage was provided.");
             }
             Argus._instance = argus;
             return Argus.getInstance();
