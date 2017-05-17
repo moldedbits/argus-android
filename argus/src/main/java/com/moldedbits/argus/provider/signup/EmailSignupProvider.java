@@ -23,8 +23,10 @@ public abstract class EmailSignupProvider extends BaseProvider implements
     private EditText usernameEt;
     private EditText emailEt;
     private EditText passwordEt;
+    private boolean isValidationRequired;
 
-    public EmailSignupProvider() {
+    public EmailSignupProvider(boolean isValidationRequired) {
+        this.isValidationRequired = isValidationRequired;
         validationEngine = new ValidationEngine();
     }
 
@@ -33,7 +35,6 @@ public abstract class EmailSignupProvider extends BaseProvider implements
         if (validate()) {
             doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
                            passwordEt.getText().toString());
-
         }
     }
 
@@ -90,6 +91,16 @@ public abstract class EmailSignupProvider extends BaseProvider implements
     public void onCancelled() {
         if (resultListener != null) {
             resultListener.onSuccess(State.SIGNED_OUT);
+        }
+    }
+
+    protected void intiateSignin() {
+        if (isValidationRequired) {
+            startValidationActivity();
+            return;
+        }
+        if (resultListener != null) {
+            resultListener.onSuccess(State.SIGNED_IN);
         }
     }
 
