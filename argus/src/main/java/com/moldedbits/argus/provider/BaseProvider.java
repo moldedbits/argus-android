@@ -17,6 +17,7 @@ import lombok.Setter;
 /**
  * Provides login functionality for specific end point
  */
+//TODO need to rename methods
 public abstract class BaseProvider {
 
     public static final int DEFAULT_CONTAINER_ID = -1;
@@ -88,9 +89,6 @@ public abstract class BaseProvider {
      */
     protected abstract void performLogin();
 
-    public Fragment getProgressView() {
-        return fragment;
-    }
 
     public int getContainerId() {
         return DEFAULT_CONTAINER_ID;

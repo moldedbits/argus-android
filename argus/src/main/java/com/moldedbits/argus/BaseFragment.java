@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.moldedbits.argus.listener.ResultListener;
-import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.utils.ViewUtils;
 
@@ -39,7 +38,7 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
         ArgusTheme theme = Argus.getInstance().getArgusTheme();
         if (theme.getLogo() != 0) {
             ImageView iv = (ImageView) view.findViewById(R.id.iv_logo);
-            if(iv!=null) {
+            if (iv != null) {
                 iv.setImageResource(theme.getLogo());
             }
         }
@@ -54,36 +53,14 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
         // First set result resultListener for all providers
         for (BaseProvider provider : providerList) {
             provider.setResultListener(this);
-        }
 
-        // If state is IN_PROGRESS, find the provider in progress and populate.
-        if (Argus.getInstance().getState() == ArgusState.IN_PROGRESS) {
-            BaseProvider provider = getProviderInProgress(providerList);
-            // Exactly one provider should be in progress
-            if (provider == null) {
-                throw new RuntimeException("At least one provider should be in progress");
+            View containerView = view.findViewById(provider.getContainerId());
+            if (containerView == null || !(containerView instanceof ViewGroup)) {
+                throw new RuntimeException("Did you forget to define container in your layout");
             }
 
-            // Layout needs to define container id
-            if (rootView.findViewById(getContainerId()) == null) {
-                throw new RuntimeException("Did you forget to define container in your layout?");
-            }
-
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .replace(getContainerId(), provider.getProgressView())
-                    .commit();
-        } else { // Else populate all providers
-            for (BaseProvider provider : providerList) {
-
-                View containerView = view.findViewById(provider.getContainerId());
-                if (containerView == null || !(containerView instanceof ViewGroup)) {
-                    throw new RuntimeException("Did you forget to define container in your layout");
-                }
-
-                ((ViewGroup) containerView)
-                        .addView(provider.loginView(this, (ViewGroup) containerView));
-            }
+            ((ViewGroup) containerView)
+                    .addView(provider.loginView(this, (ViewGroup) containerView));
         }
 
         ViewGroup viewGroup = (ViewGroup) view.findViewById(R.id.container_social);
@@ -97,18 +74,13 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     }
 
     @Override
-    public void onSuccess(ArgusUser user, ArgusState state) {
-        resultListener.onSuccess(user, state);
-
-        // If state was changed to IN_PROGRESS, then update the UI to show the progress view of the
-        // in progress provider. If state was changed to SIGNED_OUT, then update the UI to show all
-        // the providers
-        setView(rootView, getProviders());
+    public void onSuccess(ArgusState argusState) {
+        resultListener.onSuccess(argusState);
     }
 
     @Override
-    public void onFailure(String message, ArgusState state) {
-        resultListener.onFailure(message, state);
+    public void onFailure(String message) {
+        resultListener.onFailure(message);
     }
 
     @Override

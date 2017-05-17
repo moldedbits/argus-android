@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.moldedbits.argus.listener.ResultListener;
-import com.moldedbits.argus.model.ArgusUser;
 
 public class ArgusActivity extends AppCompatActivity
         implements ResultListener {
@@ -26,8 +25,7 @@ public class ArgusActivity extends AppCompatActivity
 
         // Otherwise, show login flow
         setContentView(R.layout.activity_argus);
-
-        showLoginFragment();
+       showLoginFragment();
     }
 
     // TODO:: Add support for login and signup fragments
@@ -40,20 +38,15 @@ public class ArgusActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSuccess(ArgusUser user, ArgusState resultState) {
-        Argus.getInstance().setState(resultState);
-        if (resultState == ArgusState.SIGNED_IN) {
-            Argus.getInstance().loginUser(user);
+    public void onSuccess(ArgusState argusState) {
+        Argus.getInstance().setState(argusState);
+        if (argusState == ArgusState.SIGNED_IN) {
             showNextScreen();
-        } else {
-            // TODO:: This is a hack to update view when sign in is cancelled. We will fix this
-            // in a future update.
-            showLoginFragment();
         }
     }
 
     @Override
-    public void onFailure(String message, ArgusState resultState) {
+    public void onFailure(String message) {
         //TODO handle failure correctly
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -64,10 +57,10 @@ public class ArgusActivity extends AppCompatActivity
     }
 
     public void onSignupClick(View view) {
-        showSignUpScreen();
+        showSignupFragment();
     }
 
-    private void showSignUpScreen() {
+    private void showSignupFragment() {
         BaseFragment baseFragment = SignupFragment.newInstance();
         getSupportFragmentManager()
                 .beginTransaction()

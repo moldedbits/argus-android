@@ -1,28 +1,20 @@
 package com.moldedbits.argus.provider.signup;
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
-import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
 
-public class EmailSignupProvider extends BaseProvider implements
-        EmailVerificationFragment.EmailVerificationListener {
-
-    private enum State {
-        UNSTARTED,
-        VERIFICATION_PENDING
-    }
+public abstract class EmailSignupProvider extends BaseProvider{
 
     private static final String TAG = "EmailSignupProvider";
     private static final String KEY_STATE = "email_signup_provider_state";
@@ -30,23 +22,18 @@ public class EmailSignupProvider extends BaseProvider implements
     private EditText usernameEt;
     private EditText emailEt;
     private EditText passwordEt;
+    private boolean isValidationRequired;
 
-    private State state = State.UNSTARTED;
-
-    public EmailSignupProvider() {
+    public EmailSignupProvider(boolean isValidationRequired) {
+        this.isValidationRequired = isValidationRequired;
         validationEngine = new ValidationEngine();
     }
 
     @Override
     protected void performLogin() {
         if (validate()) {
-            ArgusUser user = new ArgusUser(usernameEt.getText().toString());
-            user.setEmail(emailEt.getText().toString());
-            if (resultListener != null) {
-                state = State.VERIFICATION_PENDING;
-                Argus.getInstance().getStorage().putString(KEY_STATE, state.toString());
-                resultListener.onSuccess(new ArgusUser("New User Welcome"), ArgusState.IN_PROGRESS);
-            }
+            doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
+                           passwordEt.getText().toString());
         }
     }
 
@@ -55,7 +42,8 @@ public class EmailSignupProvider extends BaseProvider implements
         if (context != null) {
             getValidationEngine()
                     .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                                                            context.getString(R.string.invalid_email)));
+                                                            context.getString(
+                                                                    R.string.invalid_email)));
         }
 
         View signUpView = LayoutInflater.from(context)
@@ -85,37 +73,20 @@ public class EmailSignupProvider extends BaseProvider implements
         return R.id.container_email;
     }
 
-    @Override
-    public Fragment getProgressView() {
-        switch (state) {
-            case VERIFICATION_PENDING:
-                EmailVerificationFragment emailVerificationFragment = new EmailVerificationFragment();
-                emailVerificationFragment.setEmailVerificationListener(this);
-                return emailVerificationFragment;
-            case UNSTARTED:
-            default:
-                return null;
+
+    private void startValidationActivity() {
+        fragment.startActivity(new Intent(fragment.getActivity(), ValidationActivity.class));
+    }
+
+    protected void intiateSignin() {
+        if (isValidationRequired) {
+            startValidationActivity();
+            return;
         }
-    }
-
-    @Override
-    public boolean isInProgress() {
-        state = State.valueOf(Argus.getInstance().getStorage()
-                                      .getString(KEY_STATE, State.UNSTARTED.toString()));
-        return state == State.VERIFICATION_PENDING;
-    }
-
-    @Override
-    public void onValidated() {
         if (resultListener != null) {
-            resultListener.onSuccess(new ArgusUser("Mock User"), ArgusState.SIGNED_IN);
+            resultListener.onSuccess(ArgusState.SIGNED_IN);
         }
     }
 
-    @Override
-    public void onCancelled() {
-        if (resultListener != null) {
-            resultListener.onSuccess(null, ArgusState.SIGNED_OUT);
-        }
-    }
+    public abstract void doServerSignup(String username, String email, String password);
 }

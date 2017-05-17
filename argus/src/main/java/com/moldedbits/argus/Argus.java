@@ -1,8 +1,5 @@
 package com.moldedbits.argus;
 
-import android.support.annotation.Nullable;
-
-import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.storage.ArgusStorage;
 
@@ -50,11 +47,6 @@ public class Argus {
         return _instance;
     }
 
-    public void loginUser(ArgusUser user) {
-        argusSessionManager.setCurrentUser(user);
-        setState(ArgusState.SIGNED_IN);
-    }
-
     /**
      * Is a user currently logged in.
      *
@@ -69,21 +61,13 @@ public class Argus {
      *
      * @return Currently logged in user, or null if no user is logged in.
      */
-    @Nullable
-    public ArgusUser getCurrentUser() {
-        return argusSessionManager.getCurrentUser();
-    }
-
-    void setCurrentUser(ArgusUser user) {
-        argusSessionManager.setCurrentUser(user);
-    }
 
     public ArgusState getState() {
         return argusSessionManager.getCurrentState();
     }
 
-    void setState(ArgusState state) {
-        argusSessionManager.setCurrentState(state);
+    public void setState(ArgusState argusState) {
+        argusSessionManager.setCurrentState(argusState);
     }
 
     public ArgusStorage getStorage() {

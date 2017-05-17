@@ -1,7 +1,5 @@
 package com.moldedbits.argus;
 
-import android.os.Bundle;
-
 import com.moldedbits.argus.provider.BaseProvider;
 
 import java.util.List;
@@ -9,10 +7,7 @@ import java.util.List;
 public class SignupFragment extends BaseFragment {
 
     public static SignupFragment newInstance() {
-        SignupFragment fragment = new SignupFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        return new SignupFragment();
     }
 
 

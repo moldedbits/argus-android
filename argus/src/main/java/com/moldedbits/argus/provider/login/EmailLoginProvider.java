@@ -23,8 +23,6 @@ public abstract class EmailLoginProvider extends BaseProvider {
     private EditText usernameInput;
     private EditText passwordInput;
 
-    abstract public void doServerLogin(String username, String password);
-
     public EmailLoginProvider() {
         validationEngine = new ValidationEngine();
     }
@@ -32,11 +30,12 @@ public abstract class EmailLoginProvider extends BaseProvider {
     @Nullable
     @Override
     public View inflateLoginView(ViewGroup parentView) {
-        if(context == null)
+        if (context == null)
             return null;
 
-        getValidationEngine().addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                context.getString(R.string.invalid_email)));
+        getValidationEngine()
+                .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+                                                        context.getString(R.string.invalid_email)));
 
         if (context != null) {
             View loginView = LayoutInflater.from(context)
@@ -58,7 +57,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
     }
 
     private boolean validateInput() {
-        if(validationEngine == null) {
+        if (validationEngine == null) {
             ArgusLogger.w(TAG, "ValidationEngine is null not validating SignUp form");
             return true;
         }
@@ -74,4 +73,6 @@ public abstract class EmailLoginProvider extends BaseProvider {
     public int getContainerId() {
         return R.id.container_email;
     }
+
+    protected abstract void doServerLogin(String username, String password);
 }

@@ -6,6 +6,5 @@ package com.moldedbits.argus;
 
 public enum ArgusState {
     SIGNED_OUT,
-    IN_PROGRESS,
     SIGNED_IN
 }

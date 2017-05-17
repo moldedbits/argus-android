@@ -6,9 +6,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.annotation.NonNull;
 
-import com.google.gson.Gson;
-import com.moldedbits.argus.model.ArgusUser;
-
 
 public class DefaultArgusStorage implements ArgusStorage {
     private static final String ARGUS_PREFERENCES_STORE = "com.moldedbits.argus.sharedprefs";
@@ -28,15 +25,6 @@ public class DefaultArgusStorage implements ArgusStorage {
         }
         mSharedPreferences = context.getSharedPreferences(ARGUS_PREFERENCES_STORE, 0); // 0 - for private mode
         mSharedPreferencesEditor = mSharedPreferences.edit();
-    }
-
-    public void setCurrentUser(ArgusUser user) {
-        mSharedPreferencesEditor.putString(ARGUS_USER, new Gson().toJson(user)).apply();
-    }
-
-    public ArgusUser getCurrentUser() {
-        String userString = mSharedPreferences.getString(ARGUS_USER, "");
-        return new Gson().fromJson(userString, ArgusUser.class);
     }
 
     @Override
