@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.moldedbits.argus.R;
 
-public class InProgressActivity extends AppCompatActivity {
+public class ValidationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

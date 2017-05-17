@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.moldedbits.argus.ArgusState;
+import com.moldedbits.argus.State;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
-import com.moldedbits.argus.model.ArgusUser;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
@@ -32,14 +31,11 @@ public abstract class EmailSignupProvider extends BaseProvider implements
     @Override
     protected void performLogin() {
         if (validate()) {
-            ArgusUser user = new ArgusUser(usernameEt.getText().toString());
-            user.setEmail(emailEt.getText().toString());
             doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
                            passwordEt.getText().toString());
 
         }
     }
-
 
     @Override
     protected View inflateLoginView(ViewGroup parentView) {
@@ -79,21 +75,21 @@ public abstract class EmailSignupProvider extends BaseProvider implements
 
     //
     @Override
-    public void getProgressView() {
-        fragment.startActivity(new Intent(fragment.getActivity(), InProgressActivity.class));
+    public void startValidationActivity() {
+        fragment.startActivity(new Intent(fragment.getActivity(), ValidationActivity.class));
     }
 
     @Override
     public void onValidated() {
         if (resultListener != null) {
-            resultListener.onSuccess(ArgusState.SIGNED_IN);
+            resultListener.onSuccess(State.SIGNED_IN);
         }
     }
 
     @Override
     public void onCancelled() {
         if (resultListener != null) {
-            resultListener.onSuccess(ArgusState.SIGNED_OUT);
+            resultListener.onSuccess(State.SIGNED_OUT);
         }
     }
 

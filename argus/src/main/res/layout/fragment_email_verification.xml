@@ -11,6 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/please_click_on_the_link_sent_over_the_mail_to_you_to_validate_your_account"/>
+        android:text="@string/validation_link"/>
 
 </RelativeLayout>

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.facebook.AccessToken;
-import com.moldedbits.argus.ArgusState;
+import com.moldedbits.argus.State;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.social.helper.FacebookConfig;
@@ -48,14 +48,14 @@ public class FacebookOnBoardingProvider extends BaseProvider
     @Override
     public void onSuccess(AccessToken token) {
         if (resultListener != null) {
-            resultListener.onSuccess(ArgusState.SIGNED_IN);
+            resultListener.onSuccess(State.SIGNED_IN);
         }
     }
 
     @Override
     public void onFailure(String message) {
         if (resultListener != null) {
-            resultListener.onFailure(message, ArgusState.SIGNED_IN);
+            resultListener.onFailure(message);
         }
     }
 }

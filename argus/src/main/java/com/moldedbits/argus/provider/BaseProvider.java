@@ -88,7 +88,7 @@ public abstract class BaseProvider {
      */
     protected abstract void performLogin();
 
-    public void getProgressView() {
+    public void startValidationActivity() {
     }
 
     public int getContainerId() {

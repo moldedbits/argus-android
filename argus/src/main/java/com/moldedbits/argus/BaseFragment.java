@@ -77,18 +77,13 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
     }
 
     @Override
-    public void onSuccess(ArgusState state) {
+    public void onSuccess(State state) {
         resultListener.onSuccess(state);
-
-        // If state was changed to IN_PROGRESS, then update the UI to show the progress view of the
-        // in progress provider. If state was changed to SIGNED_OUT, then update the UI to show all
-        // the providers
-        setView(rootView, getProviders());
     }
 
     @Override
-    public void onFailure(String message, ArgusState state) {
-        resultListener.onFailure(message, state);
+    public void onFailure(String message) {
+        resultListener.onFailure(message);
     }
 
     @Override

@@ -16,5 +16,5 @@
     <string name="name">Name</string>
     <string name="sign_up">Sign Up</string>
     <string name="don_t_have_any_account">Don\'t have an account?</string>
-    <string name="please_click_on_the_link_sent_over_the_mail_to_you_to_validate_your_account">Please click on the link sent over the mail to you to validate your Account.</string>
+    <string name="validation_link">Please click on the link sent over the mail to you to validate your Account.</string>
 </resources>

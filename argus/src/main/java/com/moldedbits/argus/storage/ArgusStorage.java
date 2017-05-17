@@ -1,7 +1,5 @@
 package com.moldedbits.argus.storage;
 
-import com.moldedbits.argus.model.ArgusUser;
-
 /**
  * Created by abhishek
  * on 04/05/17.
@@ -10,9 +8,6 @@ import com.moldedbits.argus.model.ArgusUser;
  */
 
 public interface ArgusStorage {
-    void setCurrentUser(ArgusUser user);
-
-    ArgusUser getCurrentUser();
 
     void putString(String key, String value);
 

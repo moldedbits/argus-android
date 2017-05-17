@@ -1,8 +1,8 @@
 package com.moldedbits.argus.listener;
 
-import com.moldedbits.argus.ArgusState;
+import com.moldedbits.argus.State;
 
 public interface ResultListener {
-    void onSuccess(ArgusState resultState);
-    void onFailure(String message, ArgusState resultState);
+    void onSuccess(State resultState);
+    void onFailure(String message);
 }

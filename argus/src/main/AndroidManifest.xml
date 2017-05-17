@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name=".provider.signup.InProgressActivity">
+        <activity android:name=".provider.signup.ValidationActivity">
         </activity>
     </application>
 
