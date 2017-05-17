@@ -88,8 +88,7 @@ public abstract class BaseProvider {
      */
     protected abstract void performLogin();
 
-    public Fragment getProgressView() {
-        return fragment;
+    public void getProgressView() {
     }
 
     public int getContainerId() {

@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.moldedbits.argus.listener.ResultListener;
-import com.moldedbits.argus.model.ArgusUser;
 
 public class ArgusActivity extends AppCompatActivity
         implements ResultListener {
@@ -26,8 +25,7 @@ public class ArgusActivity extends AppCompatActivity
 
         // Otherwise, show login flow
         setContentView(R.layout.activity_argus);
-
-        showLoginFragment();
+        showSignUpScreen();
     }
 
     // TODO:: Add support for login and signup fragments
@@ -40,13 +38,10 @@ public class ArgusActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSuccess(ArgusUser user, ArgusState resultState) {
+    public void onSuccess(ArgusState resultState) {
         Argus.getInstance().setState(resultState);
         if (resultState == ArgusState.SIGNED_IN) {
-            Argus.getInstance().loginUser(user);
             showNextScreen();
-        } else if(resultState == ArgusState.IN_PROGRESS) {
-            showLoginFragment();
         }
     }
 

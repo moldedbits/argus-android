@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.facebook.AccessToken;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -15,8 +14,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.moldedbits.argus.listener.ResultListener;
-import com.moldedbits.argus.model.ArgusUser;
 
 //TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
@@ -101,7 +98,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         fragment.startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    public void logOut() {
+    private void logOut() {
         mGooglePlusLogoutClicked = true;
         if (googleApiClient.isConnected()) {
             Auth.GoogleSignInApi.signOut(googleApiClient)
@@ -116,7 +113,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         }
     }
 
-    public void handleSignInResult(GoogleSignInResult result) {
+    private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();

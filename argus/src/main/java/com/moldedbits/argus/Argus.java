@@ -82,7 +82,7 @@ public class Argus {
         return argusSessionManager.getCurrentState();
     }
 
-    void setState(ArgusState state) {
+    public void setState(ArgusState state) {
         argusSessionManager.setCurrentState(state);
     }
 

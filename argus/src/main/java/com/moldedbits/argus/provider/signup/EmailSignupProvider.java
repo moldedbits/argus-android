@@ -1,13 +1,12 @@
 package com.moldedbits.argus.provider.signup;
 
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
@@ -19,19 +18,12 @@ import com.moldedbits.argus.validations.ValidationEngine;
 public abstract class EmailSignupProvider extends BaseProvider implements
         EmailVerificationFragment.EmailVerificationListener {
 
-    private enum State {
-        UNSTARTED,
-        VERIFICATION_PENDING
-    }
-
     private static final String TAG = "EmailSignupProvider";
     private static final String KEY_STATE = "email_signup_provider_state";
 
     private EditText usernameEt;
     private EditText emailEt;
     private EditText passwordEt;
-
-    private State state = State.UNSTARTED;
 
     public EmailSignupProvider() {
         validationEngine = new ValidationEngine();
@@ -42,16 +34,12 @@ public abstract class EmailSignupProvider extends BaseProvider implements
         if (validate()) {
             ArgusUser user = new ArgusUser(usernameEt.getText().toString());
             user.setEmail(emailEt.getText().toString());
-            if (resultListener != null) {
-                state = State.VERIFICATION_PENDING;
-                Argus.getInstance().getStorage().putString(KEY_STATE, state.toString());
-                resultListener.onSuccess(new ArgusUser("New User Welcome"), ArgusState.IN_PROGRESS);
-            } else {
-                doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
-                               passwordEt.getText().toString());
-            }
+            doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
+                           passwordEt.getText().toString());
+
         }
     }
+
 
     @Override
     protected View inflateLoginView(ViewGroup parentView) {
@@ -89,37 +77,23 @@ public abstract class EmailSignupProvider extends BaseProvider implements
         return R.id.container_email;
     }
 
+    //
     @Override
-    public Fragment getProgressView() {
-        switch (state) {
-            case VERIFICATION_PENDING:
-                EmailVerificationFragment emailVerificationFragment = new EmailVerificationFragment();
-                emailVerificationFragment.setEmailVerificationListener(this);
-                return emailVerificationFragment;
-            case UNSTARTED:
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public boolean isInProgress() {
-        state = State.valueOf(Argus.getInstance().getStorage()
-                                      .getString(KEY_STATE, State.UNSTARTED.toString()));
-        return state == State.VERIFICATION_PENDING;
+    public void getProgressView() {
+        fragment.startActivity(new Intent(fragment.getActivity(), InProgressActivity.class));
     }
 
     @Override
     public void onValidated() {
         if (resultListener != null) {
-            resultListener.onSuccess(new ArgusUser("Mock User"), ArgusState.SIGNED_IN);
+            resultListener.onSuccess(ArgusState.SIGNED_IN);
         }
     }
 
     @Override
     public void onCancelled() {
         if (resultListener != null) {
-            resultListener.onSuccess(null, ArgusState.SIGNED_OUT);
+            resultListener.onSuccess(ArgusState.SIGNED_OUT);
         }
     }
 
