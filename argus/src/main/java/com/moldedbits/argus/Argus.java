@@ -138,7 +138,7 @@ public class Argus {
 
         public Argus build() {
             if (argus.argusStorage == null) {
-                throw new IllegalStateException("No ArgausStorage was provided.");
+                throw new IllegalStateException("No ArgusStorage was provided.");
             }
             Argus._instance = argus;
             return Argus.getInstance();

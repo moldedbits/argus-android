@@ -14,8 +14,7 @@ import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
 
-public abstract class EmailSignupProvider extends BaseProvider implements
-        EmailVerificationFragment.EmailVerificationListener {
+public abstract class EmailSignupProvider extends BaseProvider{
 
     private static final String TAG = "EmailSignupProvider";
     private static final String KEY_STATE = "email_signup_provider_state";
@@ -77,20 +76,6 @@ public abstract class EmailSignupProvider extends BaseProvider implements
 
     private void startValidationActivity() {
         fragment.startActivity(new Intent(fragment.getActivity(), ValidationActivity.class));
-    }
-
-    @Override
-    public void onValidated() {
-        if (resultListener != null) {
-            resultListener.onSuccess(ArgusState.SIGNED_IN);
-        }
-    }
-
-    @Override
-    public void onCancelled() {
-        if (resultListener != null) {
-            resultListener.onSuccess(ArgusState.SIGNED_OUT);
-        }
     }
 
     protected void intiateSignin() {

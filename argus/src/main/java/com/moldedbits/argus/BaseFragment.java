@@ -53,8 +53,6 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
         // First set result resultListener for all providers
         for (BaseProvider provider : providerList) {
             provider.setResultListener(this);
-        }
-        for (BaseProvider provider : providerList) {
 
             View containerView = view.findViewById(provider.getContainerId());
             if (containerView == null || !(containerView instanceof ViewGroup)) {

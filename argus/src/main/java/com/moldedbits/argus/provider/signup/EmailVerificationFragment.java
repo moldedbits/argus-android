@@ -9,24 +9,13 @@ import android.view.ViewGroup;
 
 import com.moldedbits.argus.R;
 
-import lombok.Setter;
-
 
 public class EmailVerificationFragment extends Fragment {
 
-    public interface EmailVerificationListener {
-        void onValidated();
-        void onCancelled();
-    }
 
     public static EmailVerificationFragment newInstance() {
         return new EmailVerificationFragment();
     }
-
-    private View btnValidate, btnCancel;
-
-    @Setter
-    private EmailVerificationListener emailVerificationListener;
 
     @Nullable
     @Override
