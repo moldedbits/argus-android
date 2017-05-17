@@ -47,10 +47,6 @@ public class Argus {
         return _instance;
     }
 
-    public void setState() {
-        setState(ArgusState.SIGNED_IN);
-    }
-
     /**
      * Is a user currently logged in.
      *
