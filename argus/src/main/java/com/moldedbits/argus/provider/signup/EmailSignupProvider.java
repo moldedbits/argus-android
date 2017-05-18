@@ -30,7 +30,7 @@ public abstract class EmailSignupProvider extends BaseProvider{
     }
 
     @Override
-    protected void performLogin() {
+    protected void performAction() {
         if (validate()) {
             doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
                            passwordEt.getText().toString());
@@ -38,7 +38,7 @@ public abstract class EmailSignupProvider extends BaseProvider{
     }
 
     @Override
-    protected View inflateLoginView(ViewGroup parentView) {
+    protected View inflateView(ViewGroup parentView) {
         if (context != null) {
             getValidationEngine()
                     .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),

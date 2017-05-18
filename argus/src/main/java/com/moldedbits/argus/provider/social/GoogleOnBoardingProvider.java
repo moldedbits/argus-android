@@ -17,14 +17,14 @@ public class GoogleOnBoardingProvider extends BaseProvider
     private GoogleHelper googleHelper;
 
     @Override
-    protected void performLogin() {
+    protected void performAction() {
         googleHelper = new GoogleHelper(fragment, this);
         googleHelper.initializeGoogleApiClient();
         googleHelper.onSignInClicked();
     }
 
     @Override
-    protected View inflateLoginView(ViewGroup parentView) {
+    protected View inflateView(ViewGroup parentView) {
         return LayoutInflater.from(context).inflate(R.layout.google_signup, parentView, false);
     }
 

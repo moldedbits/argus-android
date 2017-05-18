@@ -24,12 +24,12 @@ public class FacebookOnBoardingProvider extends BaseProvider
     }
 
     @Override
-    protected void performLogin() {
+    protected void performAction() {
         facebookHelper.initiateLogin(fragment, new FacebookConfig().getFaceBookPermissions());
     }
 
     @Override
-    protected View inflateLoginView(ViewGroup parentView) {
+    protected View inflateView(ViewGroup parentView) {
         return LayoutInflater.from(context)
                 .inflate(R.layout.facebook_signup, parentView, false);
     }

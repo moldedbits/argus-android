@@ -29,7 +29,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
     @Nullable
     @Override
-    public View inflateLoginView(ViewGroup parentView) {
+    public View inflateView(ViewGroup parentView) {
         if (context == null)
             return null;
 
@@ -50,7 +50,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
     }
 
     @Override
-    public void performLogin() {
+    public void performAction() {
         if (validateInput() && resultListener != null) {
             doServerLogin(usernameInput.getText().toString(), passwordInput.getText().toString());
         }
