@@ -115,16 +115,6 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
 
     protected abstract int getLayoutId();
 
-    protected abstract int getContainerId();
-
     protected abstract List<BaseProvider> getProviders();
 
-    private static BaseProvider getProviderInProgress(List<BaseProvider> providers) {
-        for (BaseProvider provider : providers) {
-            if (provider.isInProgress()) {
-                return provider;
-            }
-        }
-        return null;
-    }
 }

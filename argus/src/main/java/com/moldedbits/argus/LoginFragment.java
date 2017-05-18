@@ -25,10 +25,6 @@ public class LoginFragment extends BaseFragment {
         return R.layout.fragment_login;
     }
 
-    @Override
-    protected int getContainerId() {
-        return R.id.container_login;
-    }
 
     @Override
     protected List<BaseProvider> getProviders() {
