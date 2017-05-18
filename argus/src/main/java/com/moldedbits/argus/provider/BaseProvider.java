@@ -17,7 +17,6 @@ import lombok.Setter;
 /**
  * Provides login functionality for specific end point
  */
-//TODO need to rename methods
 public abstract class BaseProvider {
 
     public static final int DEFAULT_CONTAINER_ID = -1;
@@ -45,14 +44,14 @@ public abstract class BaseProvider {
         this.context = fragment.getContext();
         this.fragment = fragment;
 
-        View view = inflateLoginView(parentView);
+        View view = inflateView(parentView);
         if (view.findViewById(getActionButtonId()) == null) {
             throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
         view.findViewById(getActionButtonId()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performLogin();
+                performAction();
             }
         });
 
@@ -81,13 +80,13 @@ public abstract class BaseProvider {
      * @param parentView Parent view
      * @return Inflated view
      */
-    abstract protected View inflateLoginView(ViewGroup parentView);
+    abstract protected View inflateView(ViewGroup parentView);
 
     /**
      * Perform login here. Implementations should take care of showing loading overlay to block
      * out UI
      */
-    protected abstract void performLogin();
+    protected abstract void performAction();
 
 
     public int getContainerId() {
