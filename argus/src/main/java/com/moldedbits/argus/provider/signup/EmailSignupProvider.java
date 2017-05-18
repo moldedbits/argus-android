@@ -74,11 +74,11 @@ public abstract class EmailSignupProvider extends BaseProvider{
     }
 
 
-    private void startValidationActivity() {
+    protected void startValidationActivity() {
         fragment.startActivity(new Intent(fragment.getActivity(), ValidationActivity.class));
     }
 
-    protected void intiateSignin() {
+    protected void onSignupSuccess() {
         if (isValidationRequired) {
             startValidationActivity();
             return;
