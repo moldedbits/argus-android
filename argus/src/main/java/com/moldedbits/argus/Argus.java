@@ -26,6 +26,9 @@ public class Argus {
     private List<BaseProvider> loginProviders;
 
     @Getter
+    private BaseProvider forgotPasswordProvider;
+
+    @Getter
     private int loginLayout;
 
     @Getter
@@ -33,6 +36,9 @@ public class Argus {
 
     @Getter
     private ArgusTheme argusTheme;
+
+    @Getter
+    private int forgetPasswordLayout;
 
     private Argus() {
     }
@@ -74,6 +80,7 @@ public class Argus {
         return argusStorage;
     }
 
+
     public static class Builder {
 
         private Argus argus;
@@ -97,6 +104,11 @@ public class Argus {
             return this;
         }
 
+        public Builder forgetPasswordLayout(int layout) {
+            argus.forgetPasswordLayout = layout;
+            return this;
+        }
+
         public Builder loginProvider(BaseProvider provider) {
             if (argus.loginProviders == null) {
                 argus.loginProviders = new ArrayList<>();
@@ -110,6 +122,11 @@ public class Argus {
                 argus.signupProviders = new ArrayList<>();
             }
             argus.signupProviders = providers;
+            return this;
+        }
+
+        public Builder forgotPasswordProvider(BaseProvider provider) {
+            argus.forgotPasswordProvider = provider;
             return this;
         }
 

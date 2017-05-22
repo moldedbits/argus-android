@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
@@ -13,13 +14,14 @@ import com.moldedbits.argus.validations.ValidationEngine;
 
 import static com.facebook.login.widget.ProfilePictureView.TAG;
 
-/**
- * Created by shishank on 22/05/17.
- */
 
 public abstract class ForgotPasswordProvider extends BaseProvider {
 
     private EditText emailInput;
+
+    public ForgotPasswordProvider() {
+        validationEngine = new ValidationEngine();
+    }
 
     @Override
     protected View inflateView(ViewGroup parentView) {
@@ -57,5 +59,15 @@ public abstract class ForgotPasswordProvider extends BaseProvider {
         return ValidationEngine.validateEditText(emailInput, validationEngine);
     }
 
+    @Override
+    public int getContainerId() {
+        return R.id.container_forgot_password;
+    }
+
     public abstract void sendPasswordResetEmail(String email);
+
+    protected void showSuccessDialog(String s){
+        //TODO need to create dialogbox or can be override in app dialog according to app.
+        Toast.makeText(fragment.getActivity(),s,Toast.LENGTH_SHORT).show();
+    }
 }

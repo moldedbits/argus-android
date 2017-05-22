@@ -5,4 +5,5 @@
     <item name="container_email" type="id"/>
     <item name="container_fb" type="id"/>
     <item name="container_google" type="id"/>
+    <item name="container_forgot_password" type="id"/>
 </resources>

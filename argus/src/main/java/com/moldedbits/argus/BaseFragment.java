@@ -60,7 +60,7 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
             }
 
             ((ViewGroup) containerView)
-                    .addView(provider.loginView(this, (ViewGroup) containerView));
+                    .addView(provider.providerView(this, (ViewGroup) containerView));
         }
 
         ViewGroup viewGroup = (ViewGroup) view.findViewById(R.id.container_social);
@@ -71,6 +71,7 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                 }
             }
         }
+
     }
 
     @Override
