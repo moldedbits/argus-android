@@ -81,13 +81,13 @@
         android:id="@+id/tv_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="left|start"
         android:layout_marginBottom="@dimen/margin_x"
         android:layout_marginLeft="@dimen/margin_2x"
         android:layout_marginRight="@dimen/margin_2x"
         android:layout_marginTop="@dimen/margin_x"
         android:text="@string/forgot_password"
-        android:textSize="11sp"/>
+        android:textSize="@dimen/text_12"/>
 
     <Button
         android:id="@+id/action_button"

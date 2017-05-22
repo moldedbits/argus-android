@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="container_login" type="id" />
-    <item name="container_signup" type="id" />
-    <item name="container_email" type="id" />
-    <item name="container_fb" type="id" />
-    <item name="container_google" type="id" />
+    <item name="container_login" type="id"/>
+    <item name="container_signup" type="id"/>
+    <item name="container_email" type="id"/>
+    <item name="container_fb" type="id"/>
+    <item name="container_google" type="id"/>
 </resources>
