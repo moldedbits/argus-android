@@ -62,8 +62,9 @@ public class ForgotPasswordFragment extends Fragment implements ResultListener {
         super.onDetach();
         resultListener = null;
     }
-    private int getLayoutId(){
-        if (Argus.getInstance().getForgetPasswordLayout() != 0) {
+
+    private int getLayoutId() {
+        if (Argus.getInstance().getForgotPasswordLayout() != 0) {
             return Argus.getInstance().getLoginLayout();
         }
         return R.layout.fragment_forgot_password;

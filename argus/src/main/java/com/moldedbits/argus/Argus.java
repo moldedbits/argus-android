@@ -38,7 +38,7 @@ public class Argus {
     private ArgusTheme argusTheme;
 
     @Getter
-    private int forgetPasswordLayout;
+    private int forgotPasswordLayout;
 
     private Argus() {
     }
@@ -104,8 +104,8 @@ public class Argus {
             return this;
         }
 
-        public Builder forgetPasswordLayout(int layout) {
-            argus.forgetPasswordLayout = layout;
+        public Builder forgotPasswordLayout(int layout) {
+            argus.forgotPasswordLayout = layout;
             return this;
         }
 

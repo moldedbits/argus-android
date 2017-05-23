@@ -85,11 +85,9 @@ public abstract class EmailLoginProvider extends BaseProvider {
     protected abstract void doServerLogin(String username, String password);
 
     private void showForgotPasswordFragment() {
-        ForgotPasswordFragment forgotPasswordFragment = ForgotPasswordFragment
-                .newInstance();
         fragment.getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, forgotPasswordFragment)
+                .replace(R.id.content, ForgotPasswordFragment.newInstance())
                 .commit();
     }
 }

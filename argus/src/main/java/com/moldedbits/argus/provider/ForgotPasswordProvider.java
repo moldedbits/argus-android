@@ -1,11 +1,11 @@
 package com.moldedbits.argus.provider;
 
+import android.support.design.widget.Snackbar;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
@@ -52,7 +52,7 @@ public abstract class ForgotPasswordProvider extends BaseProvider {
 
     private boolean validate() {
         if (validationEngine == null) {
-            ArgusLogger.w(TAG, "ValidationEngine is null not validating SignUp form");
+            ArgusLogger.w(TAG, "ValidationEngine is null not validating Email field");
             return true;
         }
 
@@ -66,8 +66,8 @@ public abstract class ForgotPasswordProvider extends BaseProvider {
 
     public abstract void sendPasswordResetEmail(String email);
 
-    protected void showSuccessDialog(String s){
+    protected void showSuccessDialog(String s) {
         //TODO need to create dialogbox or can be override in app dialog according to app.
-        Toast.makeText(fragment.getActivity(),s,Toast.LENGTH_SHORT).show();
+        Snackbar.make(emailInput, s, Snackbar.LENGTH_SHORT).show();
     }
 }
