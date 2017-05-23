@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
@@ -68,6 +69,10 @@ public abstract class ForgotPasswordProvider extends BaseProvider {
 
     protected void showSuccessDialog(String s) {
         //TODO need to create dialogbox or can be override in app dialog according to app.
-        Snackbar.make(emailInput, s, Snackbar.LENGTH_SHORT).show();
+        Snackbar snackbar = Snackbar.make(emailInput, s, Snackbar.LENGTH_SHORT);
+        View view = snackbar.getView();
+        TextView textView= (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setMaxLines(5);
+        snackbar.show();
     }
 }
