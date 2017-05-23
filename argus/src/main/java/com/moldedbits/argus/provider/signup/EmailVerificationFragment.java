@@ -21,7 +21,6 @@ public class EmailVerificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_email_verification, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_email_verification, container, false);
     }
 }

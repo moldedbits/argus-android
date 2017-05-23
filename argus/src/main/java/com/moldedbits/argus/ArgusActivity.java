@@ -25,7 +25,7 @@ public class ArgusActivity extends AppCompatActivity
 
         // Otherwise, show login flow
         setContentView(R.layout.activity_argus);
-       showLoginFragment();
+        showLoginFragment();
     }
 
     // TODO:: Add support for login and signup fragments

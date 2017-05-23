@@ -15,6 +15,8 @@
     <string name="sign_in_with">Sign in with</string>
     <string name="name">Name</string>
     <string name="sign_up">Sign Up</string>
+    <string name="reset_password">Reset Password</string>
     <string name="don_t_have_any_account">Don\'t have an account?</string>
     <string name="validation_link">Please click on the link sent over the mail to you to validate your Account.</string>
+    <string name="reset_password_info">We just need your registered Email Id to sent your password reset instructions</string>
 </resources>

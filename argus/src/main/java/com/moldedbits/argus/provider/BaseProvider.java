@@ -40,7 +40,7 @@ public abstract class BaseProvider {
      * @param parentView Parent view in which this view will be inflated.
      * @return Inflated view to be shown on screen
      */
-    public View loginView(Fragment fragment, ViewGroup parentView) {
+    public View providerView(Fragment fragment, ViewGroup parentView) {
         this.context = fragment.getContext();
         this.fragment = fragment;
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
@@ -43,6 +44,13 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
             usernameInput = (EditText) loginView.findViewById(R.id.username);
             passwordInput = (EditText) loginView.findViewById(R.id.password);
+            loginView.findViewById(R.id.tv_forgot_password).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showForgotPasswordFragment();
+                        }
+                    });
             return loginView;
         } else {
             throw new RuntimeException("Context cannot be null");
@@ -75,4 +83,11 @@ public abstract class EmailLoginProvider extends BaseProvider {
     }
 
     protected abstract void doServerLogin(String username, String password);
+
+    private void showForgotPasswordFragment() {
+        fragment.getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, ForgotPasswordFragment.newInstance())
+                .commit();
+    }
 }
