@@ -78,7 +78,7 @@ public abstract class ForgotPasswordProvider extends BaseProvider {
 
     //Made the snackbar view 2 lines so it can handle lengthy error messages from server
     protected void showFailureDialog(String s) {
-        //TODO need to create dialogbox or can be override in app dialog according to app.
+        //TODO need to create dialog box for handling error messages
         Snackbar snackbar = Snackbar.make(emailInput, s, Snackbar.LENGTH_SHORT);
         View view = snackbar.getView();
         TextView textView= (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
