@@ -75,4 +75,13 @@ public abstract class ForgotPasswordProvider extends BaseProvider {
         textView.setMaxLines(5);
         snackbar.show();
     }
+
+    protected void showFailureDialog(String s) {
+        //TODO need to create dialogbox or can be override in app dialog according to app.
+        Snackbar snackbar = Snackbar.make(emailInput, s, Snackbar.LENGTH_SHORT);
+        View view = snackbar.getView();
+        TextView textView= (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setMaxLines(2);
+        snackbar.show();
+    }
 }
