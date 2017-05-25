@@ -1,9 +1,9 @@
-#Argus- Onboarding Simplified
+# Argus- Onboarding Simplified
 
 Argus Android makes it hassle free of managing all onboarding related tasks such as Signup/Login/Forgot Password and Social Logins.
 
-##Features
-####1. Built in Login/Signup Providers
+## Features
+#### 1. Built in Login/Signup Providers
 Argus comes with built in social login providers as well as an `EmailLoginProvider` which can be easily 
  integrated with your custom APIs. Adding different providers is as simple as this
  
@@ -19,17 +19,17 @@ Argus comes with built in social login providers as well as an `EmailLoginProvid
    new Argus.Builder().loginProviders(loginProviders)
 ```
    
-####2. Custom Layouts for Signup and Login
+#### 2. Custom Layouts for Signup and Login
 If you don't like Argus default UI you can provide your own layout and Argus will take care of rest
 
 ```Java
 new Argus.Builder().signupLayout(R.layout.custom_signup_layout)
 ```
 
-####3. Adaptive Look and Feel
+#### 3. Adaptive Look and Feel
 Argus is built keeping Material design in mind it automatically adapts colors defined in your `styles.xml`
  
-####4. Customizable Look and Feel
+#### 4. Customizable Look and Feel
 Argus can be customized as per your needs using `ArgusTheme`
 
 ```Java
@@ -40,7 +40,7 @@ ArgusTheme argusTheme
     .build();
 ```
 
-##Usage
+## Usage
 Argus exposes `ArgusActivity` which can be set as launcher activity in `AndroidManifest` or started using an Intent.
 Currently it redirects to Login screen by default but in future we would let developer choose where he want to start.
 
