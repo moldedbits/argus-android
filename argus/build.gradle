@@ -5,7 +5,7 @@ preBuild.dependsOn 'checkstyle'
 check.dependsOn 'checkstyle'
 
 task checkstyle(type: Checkstyle) {
-    configFile file("${project.rootDir}/config/quality/checkstyle.xml")
+    configFile file("${project.projectDir}/config/quality/checkstyle.xml")
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
