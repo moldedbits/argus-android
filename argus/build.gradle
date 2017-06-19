@@ -4,16 +4,6 @@ apply plugin: 'checkstyle'
 preBuild.dependsOn 'checkstyle'
 check.dependsOn 'checkstyle'
 
-// auto increment version stuff
-import com.moldedbits.android.MBIncrementVersionTask
-
-task incrementVersionTask(type: MBIncrementVersionTask)
-tasks.whenTaskAdded { task ->
-    if (task.name == 'generateReleaseBuildConfig') {
-        task.dependsOn 'incrementVersionTask'
-    }
-}
-
 task checkstyle(type: Checkstyle) {
     configFile file("${project.rootDir}/config/quality/checkstyle.xml")
     source 'src'
@@ -33,8 +23,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode incrementVersionTask.getCurrentVersionCode()
-        versionName incrementVersionTask.getCurrentVersionName()
+        versionCode 1
+        versionName "0.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
