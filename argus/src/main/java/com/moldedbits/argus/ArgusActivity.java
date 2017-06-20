@@ -25,6 +25,12 @@ public class ArgusActivity extends AppCompatActivity
 
         // Otherwise, show login flow
         setContentView(R.layout.activity_argus);
+
+        int backgroundDrawable = Argus.getInstance().getArgusTheme().getBackgroundDrawable();
+        if(backgroundDrawable != -1) {
+            findViewById(R.id.argus_content).setBackgroundResource(backgroundDrawable);
+        }
+        
         showLoginFragment();
     }
 
@@ -33,7 +39,7 @@ public class ArgusActivity extends AppCompatActivity
         BaseFragment baseFragment = LoginFragment.newInstance();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, baseFragment)
+                .replace(R.id.argus_content, baseFragment)
                 .commit();
     }
 
@@ -64,7 +70,7 @@ public class ArgusActivity extends AppCompatActivity
         BaseFragment baseFragment = SignupFragment.newInstance();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, baseFragment)
+                .replace(R.id.argus_content, baseFragment)
                 .addToBackStack("login")
                 .commit();
     }
