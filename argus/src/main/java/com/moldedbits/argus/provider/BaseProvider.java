@@ -2,11 +2,14 @@ package com.moldedbits.argus.provider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.ValueIterator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moldedbits.argus.Argus;
+import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.validations.ValidationEngine;
@@ -45,9 +48,16 @@ public abstract class BaseProvider {
         this.fragment = fragment;
 
         View view = inflateView(parentView);
-        if (view.findViewById(getActionButtonId()) == null) {
+        View actionView = view.findViewById(getActionButtonId());
+        if (actionView == null) {
             throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
+
+        ArgusTheme theme = Argus.getInstance().getArgusTheme();
+        if(theme.getButtonDrawable() != 0) {
+            actionView.setBackgroundResource(theme.getButtonDrawable());
+        }
+
         view.findViewById(getActionButtonId()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

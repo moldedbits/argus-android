@@ -6,14 +6,14 @@ import lombok.Getter;
 
 public class ArgusTheme {
 
-    @Getter
-    private int buttonColor;
-
     @Getter @DrawableRes
     private int logo;
 
     @Getter @DrawableRes
     private int backgroundDrawable = -1;
+
+    @Getter @DrawableRes
+    private int buttonDrawable = -1;
 
 
     public static class Builder {
@@ -24,9 +24,8 @@ public class ArgusTheme {
             argusTheme = new ArgusTheme();
         }
 
-
-        public Builder buttonColor(int color) {
-            argusTheme.buttonColor = color;
+        public Builder buttonDrawable(@DrawableRes int buttonDrawable) {
+            argusTheme.buttonDrawable = buttonDrawable;
             return this;
         }
 
