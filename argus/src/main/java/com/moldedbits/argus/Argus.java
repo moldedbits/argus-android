@@ -1,5 +1,6 @@
 package com.moldedbits.argus;
 
+import com.moldedbits.argus.nextscreenproviders.NextScreenProvider;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.storage.ArgusStorage;
 
