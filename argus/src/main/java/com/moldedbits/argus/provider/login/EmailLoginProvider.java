@@ -1,11 +1,13 @@
 package com.moldedbits.argus.provider.login;
 
 import android.support.annotation.Nullable;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ForgotPasswordFragment;
@@ -14,6 +16,8 @@ import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
+
+import lombok.Setter;
 
 /**
  * Allow user to login with email and password
@@ -24,6 +28,10 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
     private EditText usernameInput;
     private EditText passwordInput;
+    private ImageView ivShowPassword;
+
+    @Setter
+    private boolean showPasswordEnabled;
 
     public EmailLoginProvider() {
         validationEngine = new ValidationEngine();
@@ -42,6 +50,18 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
             usernameInput = (EditText) loginView.findViewById(R.id.username);
             passwordInput = (EditText) loginView.findViewById(R.id.password);
+
+            if(showPasswordEnabled) {
+                ivShowPassword = (ImageView) loginView.findViewById(R.id.iv_show_pwd);
+                if (ivShowPassword != null) {
+                    ivShowPassword.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            toggleShowPwd();
+                        }
+                    });
+                }
+            }
 
             if(Argus.getInstance().getForgotPasswordProvider() == null) {
                 loginView.findViewById(R.id.tv_forgot_password).setVisibility(View.GONE);
@@ -93,5 +113,17 @@ public abstract class EmailLoginProvider extends BaseProvider {
                 .beginTransaction()
                 .replace(R.id.argus_content, ForgotPasswordFragment.newInstance())
                 .commit();
+    }
+
+    protected void toggleShowPwd() {
+        if (passwordInput.getTransformationMethod() != null) {
+            passwordInput.setTransformationMethod(null);
+            passwordInput.setSelection(passwordInput.getText().length());
+            ivShowPassword.setImageResource(R.drawable.ic_hide_pwd);
+        } else {
+            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+            passwordInput.setSelection(passwordInput.getText().length());
+            ivShowPassword.setImageResource(R.drawable.icn_show_pwd);
+        }
     }
 }
