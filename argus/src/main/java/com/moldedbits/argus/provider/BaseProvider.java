@@ -1,5 +1,6 @@
 package com.moldedbits.argus.provider;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -7,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moldedbits.argus.Argus;
+import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.validations.ValidationEngine;
@@ -32,6 +35,7 @@ public abstract class BaseProvider {
 
     @Getter
     protected ValidationEngine validationEngine;
+    private ProgressDialog progressDialog;
 
     /**
      * Provide the login view which will be shown on the login screen for this provider
@@ -45,9 +49,16 @@ public abstract class BaseProvider {
         this.fragment = fragment;
 
         View view = inflateView(parentView);
-        if (view.findViewById(getActionButtonId()) == null) {
+        View actionView = view.findViewById(getActionButtonId());
+        if (actionView == null) {
             throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
+
+        ArgusTheme theme = Argus.getInstance().getArgusTheme();
+        if(theme.getButtonDrawable() != 0) {
+            actionView.setBackgroundResource(theme.getButtonDrawable());
+        }
+
         view.findViewById(getActionButtonId()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,5 +106,20 @@ public abstract class BaseProvider {
 
     public boolean isInProgress() {
         return false;
+    }
+
+    protected void showProgressDialog(String message) {
+        hideProgressDialog();
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage(message);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
+
+    protected void hideProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 }

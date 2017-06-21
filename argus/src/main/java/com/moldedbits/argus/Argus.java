@@ -1,5 +1,6 @@
 package com.moldedbits.argus;
 
+import com.moldedbits.argus.nextscreenproviders.NextScreenProvider;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.storage.ArgusStorage;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Single contact point for client
@@ -16,7 +18,7 @@ public class Argus {
 
     private ArgusSessionManager argusSessionManager;
 
-    @Getter
+    @Getter @Setter
     private NextScreenProvider nextScreenProvider;
 
     @Getter

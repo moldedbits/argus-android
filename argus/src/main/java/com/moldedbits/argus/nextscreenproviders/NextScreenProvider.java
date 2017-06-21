@@ -1,4 +1,4 @@
-package com.moldedbits.argus;
+package com.moldedbits.argus.nextscreenproviders;
 
 import android.content.Context;
 import android.content.Intent;

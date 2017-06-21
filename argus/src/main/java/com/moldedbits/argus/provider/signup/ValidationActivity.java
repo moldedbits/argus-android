@@ -19,7 +19,7 @@ public class ValidationActivity extends AppCompatActivity {
                 .newInstance();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, emailVerificationFragment)
+                .replace(R.id.argus_content, emailVerificationFragment)
                 .commit();
     }
 }

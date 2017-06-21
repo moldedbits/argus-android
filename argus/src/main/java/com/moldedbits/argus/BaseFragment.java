@@ -47,6 +47,8 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                 ViewUtils.fetchAccentColor(getContext()), PorterDuff.Mode.MULTIPLY);
         ContextCompat.getDrawable(getContext(), R.drawable.email_icon).setColorFilter(filter);
         ContextCompat.getDrawable(getContext(), R.drawable.password_icon).setColorFilter(filter);
+        ContextCompat.getDrawable(getContext(), R.drawable.icn_show_pwd).setColorFilter(filter);
+        ContextCompat.getDrawable(getContext(), R.drawable.ic_hide_pwd).setColorFilter(filter);
     }
 
     protected void setView(View view, List<BaseProvider> providerList) {

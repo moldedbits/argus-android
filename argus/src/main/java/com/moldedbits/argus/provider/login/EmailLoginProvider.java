@@ -1,18 +1,23 @@
 package com.moldedbits.argus.provider.login;
 
 import android.support.annotation.Nullable;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
+
+import lombok.Setter;
 
 /**
  * Allow user to login with email and password
@@ -23,6 +28,10 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
     private EditText usernameInput;
     private EditText passwordInput;
+    private ImageView ivShowPassword;
+
+    @Setter
+    private boolean showPasswordEnabled;
 
     public EmailLoginProvider() {
         validationEngine = new ValidationEngine();
@@ -31,9 +40,6 @@ public abstract class EmailLoginProvider extends BaseProvider {
     @Nullable
     @Override
     public View inflateView(ViewGroup parentView) {
-        if (context == null)
-            return null;
-
         getValidationEngine()
                 .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
                                                         context.getString(R.string.invalid_email)));
@@ -44,13 +50,31 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
             usernameInput = (EditText) loginView.findViewById(R.id.username);
             passwordInput = (EditText) loginView.findViewById(R.id.password);
-            loginView.findViewById(R.id.tv_forgot_password).setOnClickListener(
-                    new View.OnClickListener() {
+
+            if(showPasswordEnabled) {
+                ivShowPassword = (ImageView) loginView.findViewById(R.id.iv_show_pwd);
+                if (ivShowPassword != null) {
+                    ivShowPassword.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            showForgotPasswordFragment();
+                            toggleShowPwd();
                         }
                     });
+                }
+            }
+
+            if(Argus.getInstance().getForgotPasswordProvider() == null) {
+                loginView.findViewById(R.id.tv_forgot_password).setVisibility(View.GONE);
+            } else {
+                loginView.findViewById(R.id.tv_forgot_password).setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showForgotPasswordFragment();
+                            }
+                        });
+            }
+
             return loginView;
         } else {
             throw new RuntimeException("Context cannot be null");
@@ -87,7 +111,19 @@ public abstract class EmailLoginProvider extends BaseProvider {
     private void showForgotPasswordFragment() {
         fragment.getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content, ForgotPasswordFragment.newInstance())
+                .replace(R.id.argus_content, ForgotPasswordFragment.newInstance())
                 .commit();
+    }
+
+    protected void toggleShowPwd() {
+        if (passwordInput.getTransformationMethod() != null) {
+            passwordInput.setTransformationMethod(null);
+            passwordInput.setSelection(passwordInput.getText().length());
+            ivShowPassword.setImageResource(R.drawable.ic_hide_pwd);
+        } else {
+            passwordInput.setTransformationMethod(new PasswordTransformationMethod());
+            passwordInput.setSelection(passwordInput.getText().length());
+            ivShowPassword.setImageResource(R.drawable.icn_show_pwd);
+        }
     }
 }
