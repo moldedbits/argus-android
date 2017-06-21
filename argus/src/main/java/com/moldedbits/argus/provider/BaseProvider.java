@@ -1,8 +1,8 @@
 package com.moldedbits.argus.provider;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.ValueIterator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -35,6 +35,7 @@ public abstract class BaseProvider {
 
     @Getter
     protected ValidationEngine validationEngine;
+    private ProgressDialog progressDialog;
 
     /**
      * Provide the login view which will be shown on the login screen for this provider
@@ -105,5 +106,20 @@ public abstract class BaseProvider {
 
     public boolean isInProgress() {
         return false;
+    }
+
+    protected void showProgressDialog(String message) {
+        hideProgressDialog();
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage(message);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
+
+    protected void hideProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 }
