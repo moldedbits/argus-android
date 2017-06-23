@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
-import com.moldedbits.argus.SimpleNextScreenProvider;
+import com.moldedbits.argus.nextscreenproviders.SimpleNextScreenProvider;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.social.FacebookOnBoardingProvider;
 import com.moldedbits.argus.provider.social.GoogleOnBoardingProvider;
@@ -26,7 +26,7 @@ public class SampleApplication extends Application {
         signupProviders.add(new FacebookOnBoardingProvider());
 
         ArgusTheme argusTheme = new ArgusTheme.Builder()
-                .buttonColor(R.color.com_facebook_blue)
+                .buttonDrawable(R.color.com_facebook_blue)
                 .build();
 
         new Argus.Builder()
