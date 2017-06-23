@@ -14,9 +14,9 @@ Argus Android makes it hassle free of managing all onboarding related tasks such
     </dependency>
 
 ## Screenshots
-![Login/Sign In](/images/argus2.png?raw=true "Login/Sign In")
-![Sign Up/Register](/images/argus1.png?raw=true "Sign Up/Register")
-![Forgot Password](/images/argus3.png?raw=true "Forgot Password")
+![Login/Sign In](/images/argus2.png?raw=true "Login/Sign In" =100x200)
+![Sign Up/Register](/images/argus1.png?raw=true "Sign Up/Register" =100x200)
+![Forgot Password](/images/argus3.png?raw=true "Forgot Password" =100x200)
 
 ## Features
 #### 1. Built in Login/Signup Providers
