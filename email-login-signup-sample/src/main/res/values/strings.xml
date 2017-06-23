@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ArgusSample</string>
+    <string name="facebook_id">423872077970261</string>
+    <string name="password_length">Password length should be in between 4 to 8 characters.</string>
+    <string name="enter_valid_email">Please enter valid email address.</string>
+    <string name="signing_up">Signing Up</string>
+</resources>

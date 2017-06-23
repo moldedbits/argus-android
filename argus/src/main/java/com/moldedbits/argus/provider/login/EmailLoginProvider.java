@@ -53,6 +53,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
             if(showPasswordEnabled) {
                 ivShowPassword = (ImageView) loginView.findViewById(R.id.iv_show_pwd);
+                ivShowPassword.setVisibility(View.VISIBLE);
                 if (ivShowPassword != null) {
                     ivShowPassword.setOnClickListener(new View.OnClickListener() {
                         @Override

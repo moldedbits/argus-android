@@ -88,7 +88,8 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/icn_show_pwd" />
+                android:src="@drawable/icn_show_pwd"
+                android:visibility="gone"/>
         </RelativeLayout>
 
     </LinearLayout>
