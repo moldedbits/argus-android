@@ -2,6 +2,17 @@
 
 Argus Android makes it hassle free of managing all onboarding related tasks such as Signup/Login/Forgot Password and Social Logins.
 
+## Gradle
+`compile 'com.moldedbits.argus:argus:0.1.0'`
+
+## Maven
+    <dependency>
+        <groupId>com.moldedbits.argus</groupId>
+        <artifactId>argus</artifactId>
+        <version>0.1.0</version>
+        <type>pom</type>
+    </dependency>
+
 ## Features
 #### 1. Built in Login/Signup Providers
 Argus comes with built in social login providers as well as an `EmailLoginProvider` which can be easily 
@@ -68,6 +79,8 @@ A basic configuration of Argus looks like this
                 .theme(themeBuilder.build())
                 .build();
 ```
+
+Please feel free to contribute or report issues.
 
 License
 =======

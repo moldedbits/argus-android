@@ -95,3 +95,30 @@ dependencies {
     provided 'org.projectlombok:lombok:1.16.16'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'argus'
+
+    publishedGroupId = 'com.moldedbits.argus'
+    libraryName = 'argus'
+    artifact = 'argus'
+
+    libraryDescription = 'Argus is a library to make onboarding simple in Android apps'
+
+    siteUrl = 'https://github.com/moldedbits/argus-android'
+    gitUrl = 'https://github.com/moldedbits/argus-android.git'
+
+    libraryVersion = '0.1.0'
+
+    developerId = 'moldedbits'
+    developerName = 'Moldedbits'
+    developerEmail = 'hello@moldedbits.com'
+
+    licenseName = 'Apache 2.0'
+    licenseUrl = 'https://opensource.org/licenses/Apache-2.0'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
