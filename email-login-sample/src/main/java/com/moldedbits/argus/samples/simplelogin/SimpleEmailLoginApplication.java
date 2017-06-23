@@ -17,7 +17,7 @@ public class SimpleEmailLoginApplication extends Application {
         super.onCreate();
 
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
-        loginProviders.add(new SimpleEmailLoginProvider());
+        loginProviders.add(new EmailLoginProvider());
 
         // argus is customizable, supplying my custom logo to argus
         ArgusTheme argusTheme = new ArgusTheme.Builder()
