@@ -28,7 +28,8 @@ new Argus.Builder().signupLayout(R.layout.custom_signup_layout)
 
 #### 3. Adaptive Look and Feel
 Argus is built keeping Material design in mind it automatically adapts colors defined in your `styles.xml`
- 
+
+
 #### 4. Customizable Look and Feel
 Argus can be customized as per your needs using `ArgusTheme`
 
@@ -67,3 +68,20 @@ A basic configuration of Argus looks like this
                 .theme(themeBuilder.build())
                 .build();
 ```
+
+License
+=======
+
+    Copyright 2013 moldedbits
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
