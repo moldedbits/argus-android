@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
-import com.moldedbits.argus.SimpleNextScreenProvider;
+import com.moldedbits.argus.nextscreenproviders.SimpleNextScreenProvider;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.storage.DefaultArgusStorage;
 
@@ -21,7 +21,7 @@ public class SimpleEmailLoginApplication extends Application {
 
         // argus is customizable, supplying my custom logo to argus
         ArgusTheme argusTheme = new ArgusTheme.Builder()
-                .logo(R.mipmap.ic_launcher_round)
+                .logo(R.mipmap.ic_launcher)
                 .build();
 
         new Argus.Builder()

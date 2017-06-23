@@ -27,7 +27,7 @@ public class ArgusActivity extends AppCompatActivity
         setContentView(R.layout.activity_argus);
 
         int backgroundDrawable = Argus.getInstance().getArgusTheme().getBackgroundDrawable();
-        if(backgroundDrawable != -1) {
+        if(backgroundDrawable > 0) {
             findViewById(R.id.argus_content).setBackgroundResource(backgroundDrawable);
         }
         

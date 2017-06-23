@@ -10,10 +10,10 @@ public class ArgusTheme {
     private int logo;
 
     @Getter @DrawableRes
-    private int backgroundDrawable = -1;
+    private int backgroundDrawable;
 
     @Getter @DrawableRes
-    private int buttonDrawable = -1;
+    private int buttonDrawable;
 
 
     public static class Builder {
