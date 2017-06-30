@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/default_padding"
+    android:padding="@dimen/padding_2x"
     tools:context="com.moldedbits.argus.ArgusActivity"
     android:background="@android:color/transparent">
 
@@ -58,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingStart="@dimen/padding_2x"
             android:text="@string/sign_up"
             android:onClick="onSignupClick"
             android:textSize="@dimen/text_14"/>

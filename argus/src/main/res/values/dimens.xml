@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_margin">16dp</dimen>
-    <dimen name="default_padding">16dp</dimen>
     <dimen name="margin_2x">16dp</dimen>
+    <dimen name="padding_2x">16dp</dimen>
     <dimen name="margin_x">8dp</dimen>
     <dimen name="padding_x2">4dp</dimen>
     <dimen name="padding_x">8dp</dimen>

@@ -27,6 +27,12 @@ public class EmailSocialLoginApplication extends Application {
                 .addPasswordValidation(new LengthValidation(4, 8, getString(R.string.password_length)));
         signupProviders.add(emailSignupProvider);
 
+        // add google signup provider
+        signupProviders.add(new GoogleOnBoardingProvider());
+
+        // add facebook signup provider
+        signupProviders.add(new FacebookOnBoardingProvider());
+
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         EmailLoginProvider loginProvider = new SimpleEmailLoginProvider();
         loginProvider.setShowPasswordEnabled(false);
