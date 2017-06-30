@@ -1,109 +1,73 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_2x"
+    android:paddingBottom="@dimen/padding_x">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_2x"/>
-
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_x"
-        android:layout_marginLeft="@dimen/margin_x"
-        android:layout_marginStart="@dimen/margin_x"
-        android:layout_marginTop="@dimen/margin_2x"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="@string/name">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/email_icon"
-                android:drawablePadding="@dimen/margin_x"
-                android:tag="name"
-                android:drawableStart="@drawable/email_icon"/>
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_x"
-        android:layout_marginLeft="@dimen/margin_x"
-        android:layout_marginStart="@dimen/margin_x"
         android:layout_marginTop="@dimen/margin_x"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:hint="@string/name">
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="@string/email_address">
+            android:drawableLeft="@drawable/email_icon"
+            android:drawablePadding="@dimen/margin_x"
+            android:drawableStart="@drawable/email_icon"
+            android:inputType="textPersonName"
+            android:tag="name"/>
+    </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:fontFamily="sans-serif"
-                android:drawableLeft="@drawable/email_icon"
-                android:drawablePadding="@dimen/margin_x"
-                android:tag="email"
-                android:drawableStart="@drawable/email_icon"/>
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
 
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_x"
-        android:layout_marginLeft="@dimen/margin_x"
-        android:layout_marginStart="@dimen/margin_x"
         android:layout_marginTop="@dimen/margin_x"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:hint="@string/email_address">
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/email_icon"
+            android:drawablePadding="@dimen/margin_x"
+            android:drawableStart="@drawable/email_icon"
+            android:fontFamily="sans-serif"
+            android:inputType="textEmailAddress"
+            android:tag="email"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_x"
+        android:hint="@string/password">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:hint="@string/password">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawableLeft="@drawable/password_icon"
-                android:drawablePadding="@dimen/margin_x"
-                android:drawableStart="@drawable/password_icon"
-                android:fontFamily="sans-serif"
-                android:tag="password"
-                android:inputType="textPassword"/>
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
+            android:drawableLeft="@drawable/password_icon"
+            android:drawablePadding="@dimen/margin_x"
+            android:drawableStart="@drawable/password_icon"
+            android:fontFamily="sans-serif"
+            android:inputType="textPassword"
+            android:tag="password"/>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/action_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_2x"
         android:layout_marginBottom="@dimen/margin_2x"
+        android:layout_marginTop="@dimen/margin_2x"
         android:text="@string/sign_up"/>
-
 </LinearLayout>
