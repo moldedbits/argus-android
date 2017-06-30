@@ -1,13 +1,18 @@
 package com.moldedbits.argus.provider.signup;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
+import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
@@ -51,8 +56,22 @@ public abstract class EmailSignupProvider extends BaseProvider{
         usernameEt = (EditText) signUpView.findViewById(R.id.username);
         emailEt = (EditText) signUpView.findViewById(R.id.email);
         passwordEt = (EditText) signUpView.findViewById(R.id.password);
+
+        applyTheme(signUpView);
         return signUpView;
     }
+
+    private void applyTheme(View view) {
+        ArgusTheme theme = Argus.getInstance().getArgusTheme();
+
+        if(theme.getButtonDrawable() != 0) {
+            Button actionButton = (Button) view.findViewById(R.id.action_button);
+            if(actionButton != null) {
+                actionButton.setBackgroundResource(theme.getButtonDrawable());
+            }
+        }
+    }
+
 
     private boolean validate() {
         if (validationEngine == null) {
