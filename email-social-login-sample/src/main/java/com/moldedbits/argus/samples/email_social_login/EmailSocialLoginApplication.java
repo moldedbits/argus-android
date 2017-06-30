@@ -1,6 +1,7 @@
 package com.moldedbits.argus.samples.email_social_login;
 
 import android.app.Application;
+import android.graphics.drawable.ColorDrawable;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
@@ -46,7 +47,7 @@ public class EmailSocialLoginApplication extends Application {
 
         ArgusTheme.Builder themeBuilder = new ArgusTheme.Builder();
         themeBuilder.logo(R.drawable.argus_logo)
-                    .backgroundDrawable(R.drawable.login_bg)
+                    .backgroundDrawable(R.drawable.bg)
                     .buttonDrawable(R.drawable.button_bg)
                     .welcomeText(getString(R.string.welcome))
                     .welcomeTextSize(18.0f)
