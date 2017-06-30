@@ -49,7 +49,7 @@ public class EmailSocialLoginApplication extends Application {
                     .backgroundDrawable(R.drawable.login_bg)
                     .buttonDrawable(R.drawable.button_bg)
                     .welcomeText(getString(R.string.welcome))
-                    .welcomeTextSize(24.0f)
+                    .welcomeTextSize(18.0f)
                     .showEditTextDrawables(false);
 
         new Argus.Builder()

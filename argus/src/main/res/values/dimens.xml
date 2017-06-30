@@ -10,4 +10,5 @@
     <dimen name="text_14">14sp</dimen>
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_24">24sp</dimen>
+    <dimen name="logo_size">64dp</dimen>
 </resources>
