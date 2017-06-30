@@ -1,1 +1,1 @@
-include ':email-login-signup-sample', ':argus', ':email-login-sample'
+include ':email-login-signup-sample', ':argus', ':email-login-sample', ':email-social-login-sample'

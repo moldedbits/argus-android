@@ -15,10 +15,18 @@ public class ArgusTheme {
     @Getter @DrawableRes
     private int buttonDrawable;
 
+    @Getter
+    private String welcomeText;
+
+    @Getter
+    private float welcomeTextSize;
+
+    @Getter
+    private boolean showEditTextDrawables;
 
     public static class Builder {
 
-        public ArgusTheme argusTheme;
+        ArgusTheme argusTheme;
 
         public Builder() {
             argusTheme = new ArgusTheme();
@@ -36,6 +44,21 @@ public class ArgusTheme {
 
         public Builder backgroundDrawable(@DrawableRes int backgroundDrawable) {
             argusTheme.backgroundDrawable = backgroundDrawable;
+            return this;
+        }
+
+        public Builder welcomeText(String welcomeText) {
+            argusTheme.welcomeText = welcomeText;
+            return this;
+        }
+
+        public Builder welcomeTextSize(float welcomeTextSize) {
+            argusTheme.welcomeTextSize = welcomeTextSize;
+            return this;
+        }
+
+        public Builder showEditTextDrawables(boolean show) {
+            argusTheme.showEditTextDrawables = show;
             return this;
         }
 

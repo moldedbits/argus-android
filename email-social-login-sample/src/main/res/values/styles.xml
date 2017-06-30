@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColorSecondary">@color/colorText</item>
+        <item name="android:textColorHint">@color/colorText</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="buttonStyle">@style/ButtonColor</item>
+    </style>
+
+    <style name="ButtonColor" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="colorButtonNormal">@color/buttonColor</item>
+    </style>
+</resources>
