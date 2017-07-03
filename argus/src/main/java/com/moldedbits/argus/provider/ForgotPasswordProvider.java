@@ -5,9 +5,12 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.moldedbits.argus.Argus;
+import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.validations.RegexValidation;
@@ -29,18 +32,30 @@ public abstract class ForgotPasswordProvider extends BaseProvider {
         if (context == null)
             return null;
 
-        getValidationEngine()
-                .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                                                        context.getString(R.string.invalid_email)));
+        getValidationEngine().addEmailValidation(new RegexValidation(
+                        Patterns.EMAIL_ADDRESS.pattern(), context.getString(R.string.invalid_email)));
 
         if (context != null) {
-            View loginView = LayoutInflater.from(context)
+            View forgotPasswordView = LayoutInflater.from(context)
                     .inflate(R.layout.forgot_password, parentView, false);
 
-            emailInput = (EditText) loginView.findViewById(R.id.email);
-            return loginView;
+            emailInput = (EditText) forgotPasswordView.findViewById(R.id.email);
+            applyTheme(forgotPasswordView);
+
+            return forgotPasswordView;
         } else {
             throw new RuntimeException("Context cannot be null");
+        }
+    }
+
+    private void applyTheme(View view) {
+        ArgusTheme theme = Argus.getInstance().getArgusTheme();
+
+        if(theme.getButtonDrawable() != 0) {
+            Button actionButton = (Button) view.findViewById(R.id.action_button);
+            if(actionButton != null) {
+                actionButton.setBackgroundResource(theme.getButtonDrawable());
+            }
         }
     }
 

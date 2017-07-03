@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="@dimen/default_padding"
+    android:padding="@dimen/padding_2x"
     tools:context="com.moldedbits.argus.ArgusActivity">
 
     <ImageView

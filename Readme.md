@@ -16,6 +16,11 @@ Argus Android makes it hassle free of managing all onboarding related tasks such
 ## Screenshots
 <table>
 <tr>
+<td><img src="/images/ArgusLogin.png" alt="Login/Sign In" style="width: 200px;"/></td>
+<td><img src="/images/ArgusSignup.png" alt="Sign Up/Register" style="width: 200px;"/></td>
+<td><img src="/images/ArgusForgotPassword.png" alt="Forgot Password" style="width: 200px;"/></td>
+</tr>
+<tr>
 <td><img src="/images/argus2.png" alt="Login/Sign In" style="width: 200px;"/></td>
 <td><img src="/images/argus1.png" alt="Sign Up/Register" style="width: 200px;"/></td>
 <td><img src="/images/argus3.png" alt="Forgot Password" style="width: 200px;"/></td>

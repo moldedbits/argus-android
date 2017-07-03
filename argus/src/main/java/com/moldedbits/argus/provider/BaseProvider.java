@@ -54,11 +54,6 @@ public abstract class BaseProvider {
             throw new RuntimeException("BaseProvider view needs a button with id R.id.login");
         }
 
-        ArgusTheme theme = Argus.getInstance().getArgusTheme();
-        if(theme.getButtonDrawable() != 0) {
-            actionView.setBackgroundResource(theme.getButtonDrawable());
-        }
-
         view.findViewById(getActionButtonId()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
