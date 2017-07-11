@@ -1,12 +1,10 @@
 package com.moldedbits.argus.provider.signup;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,12 +12,12 @@ import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.handler.BaseProviderHandler;
 import com.moldedbits.argus.logger.ArgusLogger;
-import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
 
-public abstract class EmailSignupProvider extends BaseProvider{
+public abstract class EmailSignupProvider extends BaseProviderHandler {
 
     private static final String TAG = "EmailSignupProvider";
     private static final String KEY_STATE = "email_signup_provider_state";
@@ -27,7 +25,9 @@ public abstract class EmailSignupProvider extends BaseProvider{
     private EditText usernameEt;
     private EditText emailEt;
     private EditText passwordEt;
+    private TextView welcomeTv;
     private boolean isValidationRequired;
+    private ArgusTheme theme;
 
     public EmailSignupProvider(boolean isValidationRequired) {
         this.isValidationRequired = isValidationRequired;
@@ -38,7 +38,7 @@ public abstract class EmailSignupProvider extends BaseProvider{
     protected void performAction() {
         if (validate()) {
             doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
-                           passwordEt.getText().toString());
+                    passwordEt.getText().toString());
         }
     }
 
@@ -47,8 +47,8 @@ public abstract class EmailSignupProvider extends BaseProvider{
         if (context != null) {
             getValidationEngine()
                     .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                                                            context.getString(
-                                                                    R.string.invalid_email)));
+                            context.getString(
+                                    R.string.invalid_email)));
         }
 
         View signUpView = LayoutInflater.from(context)
@@ -56,22 +56,13 @@ public abstract class EmailSignupProvider extends BaseProvider{
         usernameEt = (EditText) signUpView.findViewById(R.id.username);
         emailEt = (EditText) signUpView.findViewById(R.id.email);
         passwordEt = (EditText) signUpView.findViewById(R.id.password);
+        welcomeTv = (TextView) signUpView.findViewById(R.id.tv_welcome_text);
 
-        applyTheme(signUpView);
+        theme = Argus.getInstance().getArgusTheme();
+
+        applyTheme(signUpView, theme);
         return signUpView;
     }
-
-    private void applyTheme(View view) {
-        ArgusTheme theme = Argus.getInstance().getArgusTheme();
-
-        if(theme.getButtonDrawable() != 0) {
-            Button actionButton = (Button) view.findViewById(R.id.action_button);
-            if(actionButton != null) {
-                actionButton.setBackgroundResource(theme.getButtonDrawable());
-            }
-        }
-    }
-
 
     private boolean validate() {
         if (validationEngine == null) {
@@ -93,7 +84,7 @@ public abstract class EmailSignupProvider extends BaseProvider{
     }
 
 
-    protected void startValidationActivity() {
+    private void startValidationActivity() {
         fragment.startActivity(new Intent(fragment.getActivity(), ValidationActivity.class));
     }
 
