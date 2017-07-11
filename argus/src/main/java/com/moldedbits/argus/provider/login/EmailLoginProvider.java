@@ -46,7 +46,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
     public View inflateView(ViewGroup parentView) {
         getValidationEngine()
                 .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                                                        context.getString(R.string.invalid_email)));
+                        context.getString(R.string.invalid_email)));
 
         if (context != null) {
             View loginView = LayoutInflater.from(context)
@@ -55,7 +55,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
             usernameInput = (EditText) loginView.findViewById(R.id.username);
             passwordInput = (EditText) loginView.findViewById(R.id.password);
 
-            if(showPasswordEnabled) {
+            if (showPasswordEnabled) {
                 ivShowPassword = (ImageView) loginView.findViewById(R.id.iv_show_pwd);
                 ivShowPassword.setVisibility(View.VISIBLE);
                 if (ivShowPassword != null) {
@@ -68,7 +68,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
                 }
             }
 
-            if(Argus.getInstance().getForgotPasswordProvider() == null) {
+            if (Argus.getInstance().getForgotPasswordProvider() == null) {
                 loginView.findViewById(R.id.tv_forgot_password).setVisibility(View.GONE);
             } else {
                 loginView.findViewById(R.id.tv_forgot_password).setOnClickListener(
@@ -90,27 +90,28 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
     private void applyTheme(View view) {
         ArgusTheme theme = Argus.getInstance().getArgusTheme();
-        TextView welcomeTv = (TextView)view.findViewById(R.id.tv_welcome_text);
-        if(welcomeTv != null && !TextUtils.isEmpty(theme.getWelcomeText())) {
+        TextView welcomeTv = (TextView) view.findViewById(R.id.tv_welcome_text);
+        if (welcomeTv != null && !TextUtils.isEmpty(theme.getWelcomeText())) {
             welcomeTv.setText(theme.getWelcomeText());
             welcomeTv.setTextSize(theme.getWelcomeTextSize());
+            welcomeTv.setTextColor(theme.getWelcomeTextColor());
         }
 
-        if(theme.getButtonDrawable() != 0) {
+        if (theme.getButtonDrawable() != 0) {
             Button actionButton = (Button) view.findViewById(R.id.action_button);
-            if(actionButton != null) {
+            if (actionButton != null) {
                 actionButton.setBackgroundResource(theme.getButtonDrawable());
             }
         }
 
-        if(!theme.isShowEditTextDrawables()) {
+        if (!theme.isShowEditTextDrawables()) {
             View emailIv = view.findViewById(R.id.iv_email_et);
-            if(emailIv != null) {
+            if (emailIv != null) {
                 emailIv.setVisibility(View.GONE);
             }
 
             View passwordIv = view.findViewById(R.id.iv_password_et);
-            if(passwordIv != null) {
+            if (passwordIv != null) {
                 passwordIv.setVisibility(View.GONE);
             }
         }

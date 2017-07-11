@@ -1,18 +1,22 @@
 package com.moldedbits.argus;
 
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 
 import lombok.Getter;
 
 public class ArgusTheme {
 
-    @Getter @DrawableRes
+    @Getter
+    @DrawableRes
     private int logo;
 
-    @Getter @DrawableRes
+    @Getter
+    @DrawableRes
     private int backgroundDrawable;
 
-    @Getter @DrawableRes
+    @Getter
+    @DrawableRes
     private int buttonDrawable;
 
     @Getter
@@ -20,6 +24,9 @@ public class ArgusTheme {
 
     @Getter
     private float welcomeTextSize;
+
+    @Getter
+    private int welcomeTextColor;
 
     @Getter
     private boolean showEditTextDrawables;
@@ -54,6 +61,11 @@ public class ArgusTheme {
 
         public Builder welcomeTextSize(float welcomeTextSize) {
             argusTheme.welcomeTextSize = welcomeTextSize;
+            return this;
+        }
+
+        public Builder welcomeTextColor(@ColorInt int welcomeTextColor) {
+            argusTheme.welcomeTextColor = welcomeTextColor;
             return this;
         }
 
