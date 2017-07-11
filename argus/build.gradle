@@ -2,7 +2,7 @@ buildscript {
     repositories {
         jcenter()
     }
-    
+
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
@@ -34,8 +34,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 2
-        versionName "0.1.1"
+        versionCode 3
+        versionName "0.1.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
