@@ -8,8 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.Argus;
-import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.validations.ValidationEngine;
@@ -22,7 +20,7 @@ import lombok.Setter;
  */
 public abstract class BaseProvider {
 
-    public static final int DEFAULT_CONTAINER_ID = -1;
+    private static final int DEFAULT_CONTAINER_ID = -1;
 
     @Nullable
     protected Context context;
@@ -35,6 +33,7 @@ public abstract class BaseProvider {
 
     @Getter
     protected ValidationEngine validationEngine;
+
     private ProgressDialog progressDialog;
 
     /**
@@ -61,7 +60,6 @@ public abstract class BaseProvider {
             }
         });
 
-
         return view;
     }
 
@@ -70,7 +68,7 @@ public abstract class BaseProvider {
      *
      * @return Login button id
      */
-    protected int getActionButtonId() {
+    private int getActionButtonId() {
         return R.id.action_button;
     }
 
@@ -94,7 +92,6 @@ public abstract class BaseProvider {
      */
     protected abstract void performAction();
 
-
     public int getContainerId() {
         return DEFAULT_CONTAINER_ID;
     }
@@ -112,7 +109,7 @@ public abstract class BaseProvider {
         progressDialog.show();
     }
 
-    protected void hideProgressDialog() {
+    private void hideProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }

@@ -7,6 +7,14 @@
     android:paddingTop="@dimen/padding_2x"
     android:paddingBottom="@dimen/padding_x">
 
+    <TextView
+        android:id="@+id/tv_welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_2x"
+        android:text="@string/sign_up"/>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
