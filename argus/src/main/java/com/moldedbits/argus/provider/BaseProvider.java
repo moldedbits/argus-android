@@ -68,7 +68,7 @@ public abstract class BaseProvider {
      *
      * @return Login button id
      */
-    private int getActionButtonId() {
+    protected int getActionButtonId() {
         return R.id.action_button;
     }
 
@@ -109,7 +109,7 @@ public abstract class BaseProvider {
         progressDialog.show();
     }
 
-    private void hideProgressDialog() {
+    protected void hideProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }

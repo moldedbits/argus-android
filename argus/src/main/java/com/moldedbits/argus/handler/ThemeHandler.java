@@ -7,23 +7,23 @@ import android.widget.TextView;
 
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.provider.BaseProvider;
-import com.moldedbits.argus.utils.ThemeHelper;
 
-/*
-    Handler which will :-
-  * Apply Theme to SignIn and SignUp Providers
-  * Provides login functionality for specific end point
+/**
+ * Handler for theme related handling of Argus Login and SignUp Providers
  */
-public abstract class BaseProviderHandler extends BaseProvider implements ThemeHelper {
+public class ThemeHandler {
 
-    @Override
     public void applyTheme(View view, ArgusTheme theme) {
         TextView welcomeTv = (TextView) view.findViewById(R.id.tv_welcome_text);
         if (welcomeTv != null && !TextUtils.isEmpty(theme.getWelcomeText())) {
-            welcomeTv.setText(theme.getWelcomeText());
-            welcomeTv.setTextSize(theme.getWelcomeTextSize());
-            welcomeTv.setTextColor(theme.getWelcomeTextColor());
+            if (theme.getWelcomeTextVisibility() == View.VISIBLE) {
+                welcomeTv.setVisibility(View.VISIBLE);
+                welcomeTv.setText(theme.getWelcomeText());
+                welcomeTv.setTextSize(theme.getWelcomeTextSize());
+                welcomeTv.setTextColor(theme.getWelcomeTextColor());
+            } else {
+                welcomeTv.setVisibility(View.GONE);
+            }
         }
 
         if (theme.getButtonDrawable() != 0) {

@@ -13,8 +13,9 @@ import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.handler.BaseProviderHandler;
+import com.moldedbits.argus.handler.ThemeHandler;
 import com.moldedbits.argus.logger.ArgusLogger;
+import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
 
@@ -23,7 +24,7 @@ import lombok.Setter;
 /**
  * Allow user to login with email and password
  */
-public abstract class EmailLoginProvider extends BaseProviderHandler {
+public abstract class EmailLoginProvider extends BaseProvider {
 
     private static final String TAG = "EmailLoginProvider";
 
@@ -31,12 +32,14 @@ public abstract class EmailLoginProvider extends BaseProviderHandler {
     private EditText passwordInput;
     private ImageView ivShowPassword;
     private ArgusTheme theme;
+    private ThemeHandler themeHandler;
 
     @Setter
     private boolean showPasswordEnabled;
 
     public EmailLoginProvider() {
         validationEngine = new ValidationEngine();
+        themeHandler = new ThemeHandler();
     }
 
     @Nullable
@@ -80,7 +83,7 @@ public abstract class EmailLoginProvider extends BaseProviderHandler {
 
             theme = Argus.getInstance().getArgusTheme();
 
-            applyTheme(loginView, theme);
+            themeHandler.applyTheme(loginView, theme);
 
             return loginView;
         } else {

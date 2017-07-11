@@ -12,12 +12,13 @@ import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.handler.BaseProviderHandler;
+import com.moldedbits.argus.handler.ThemeHandler;
 import com.moldedbits.argus.logger.ArgusLogger;
+import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
 import com.moldedbits.argus.validations.ValidationEngine;
 
-public abstract class EmailSignupProvider extends BaseProviderHandler {
+public abstract class EmailSignupProvider extends BaseProvider {
 
     private static final String TAG = "EmailSignupProvider";
     private static final String KEY_STATE = "email_signup_provider_state";
@@ -28,10 +29,12 @@ public abstract class EmailSignupProvider extends BaseProviderHandler {
     private TextView welcomeTv;
     private boolean isValidationRequired;
     private ArgusTheme theme;
+    private ThemeHandler themeHandler;
 
     public EmailSignupProvider(boolean isValidationRequired) {
         this.isValidationRequired = isValidationRequired;
         validationEngine = new ValidationEngine();
+        themeHandler = new ThemeHandler();
     }
 
     @Override
@@ -60,7 +63,7 @@ public abstract class EmailSignupProvider extends BaseProviderHandler {
 
         theme = Argus.getInstance().getArgusTheme();
 
-        applyTheme(signUpView, theme);
+        themeHandler.applyTheme(signUpView, theme);
         return signUpView;
     }
 
