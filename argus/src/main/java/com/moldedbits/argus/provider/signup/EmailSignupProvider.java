@@ -12,7 +12,7 @@ import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.handler.ThemeHandler;
+import com.moldedbits.argus.handler.ThemeHelper;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
@@ -29,12 +29,12 @@ public abstract class EmailSignupProvider extends BaseProvider {
     private TextView welcomeTv;
     private boolean isValidationRequired;
     private ArgusTheme theme;
-    private ThemeHandler themeHandler;
+    private ThemeHelper themeHelper;
 
     public EmailSignupProvider(boolean isValidationRequired) {
         this.isValidationRequired = isValidationRequired;
         validationEngine = new ValidationEngine();
-        themeHandler = new ThemeHandler();
+        themeHelper = new ThemeHelper();
     }
 
     @Override
@@ -63,7 +63,7 @@ public abstract class EmailSignupProvider extends BaseProvider {
 
         theme = Argus.getInstance().getArgusTheme();
 
-        themeHandler.applyTheme(signUpView, theme);
+        themeHelper.applyTheme(signUpView, theme);
         return signUpView;
     }
 

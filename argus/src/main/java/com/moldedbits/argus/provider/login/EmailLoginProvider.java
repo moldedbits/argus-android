@@ -13,7 +13,7 @@ import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.handler.ThemeHandler;
+import com.moldedbits.argus.handler.ThemeHelper;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
@@ -32,14 +32,14 @@ public abstract class EmailLoginProvider extends BaseProvider {
     private EditText passwordInput;
     private ImageView ivShowPassword;
     private ArgusTheme theme;
-    private ThemeHandler themeHandler;
+    private ThemeHelper themeHelper;
 
     @Setter
     private boolean showPasswordEnabled;
 
     public EmailLoginProvider() {
         validationEngine = new ValidationEngine();
-        themeHandler = new ThemeHandler();
+        themeHelper = new ThemeHelper();
     }
 
     @Nullable
@@ -83,7 +83,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
 
             theme = Argus.getInstance().getArgusTheme();
 
-            themeHandler.applyTheme(loginView, theme);
+            themeHelper.applyTheme(loginView, theme);
 
             return loginView;
         } else {

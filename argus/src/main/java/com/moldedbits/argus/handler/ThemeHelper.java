@@ -11,7 +11,7 @@ import com.moldedbits.argus.R;
 /**
  * Handler for theme related handling of Argus Login and SignUp Providers
  */
-public class ThemeHandler {
+public class ThemeHelper {
 
     public void applyTheme(View view, ArgusTheme theme) {
         TextView welcomeTv = (TextView) view.findViewById(R.id.tv_welcome_text);
