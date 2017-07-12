@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
-import com.moldedbits.argus.handler.ThemeHelper;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.validations.RegexValidation;
@@ -30,14 +29,12 @@ public abstract class EmailLoginProvider extends BaseProvider {
     private EditText usernameInput;
     private EditText passwordInput;
     private ImageView ivShowPassword;
-    private ThemeHelper themeHelper;
 
     @Setter
     private boolean showPasswordEnabled;
 
     public EmailLoginProvider() {
         validationEngine = new ValidationEngine();
-        themeHelper = new ThemeHelper();
     }
 
     @Nullable
