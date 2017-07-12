@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.validations.ValidationEngine;
@@ -35,6 +36,8 @@ public abstract class BaseProvider {
     protected ValidationEngine validationEngine;
 
     private ProgressDialog progressDialog;
+
+    protected ArgusTheme theme;
 
     /**
      * Provide the login view which will be shown on the login screen for this provider

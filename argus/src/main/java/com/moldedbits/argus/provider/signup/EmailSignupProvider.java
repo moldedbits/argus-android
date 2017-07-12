@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
-import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.handler.ThemeHelper;
 import com.moldedbits.argus.logger.ArgusLogger;
@@ -28,7 +27,6 @@ public abstract class EmailSignupProvider extends BaseProvider {
     private EditText passwordEt;
     private TextView welcomeTv;
     private boolean isValidationRequired;
-    private ArgusTheme theme;
     private ThemeHelper themeHelper;
 
     public EmailSignupProvider(boolean isValidationRequired) {

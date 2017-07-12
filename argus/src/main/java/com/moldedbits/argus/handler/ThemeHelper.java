@@ -9,7 +9,7 @@ import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
 
 /**
- * Handler for theme related handling of Argus Login and SignUp Providers
+ * Helper for theme related handling of Argus Login and SignUp Providers
  */
 public class ThemeHelper {
 

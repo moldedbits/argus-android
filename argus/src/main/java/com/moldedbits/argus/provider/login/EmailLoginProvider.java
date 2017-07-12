@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.moldedbits.argus.Argus;
-import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.handler.ThemeHelper;
@@ -31,7 +30,6 @@ public abstract class EmailLoginProvider extends BaseProvider {
     private EditText usernameInput;
     private EditText passwordInput;
     private ImageView ivShowPassword;
-    private ArgusTheme theme;
     private ThemeHelper themeHelper;
 
     @Setter
