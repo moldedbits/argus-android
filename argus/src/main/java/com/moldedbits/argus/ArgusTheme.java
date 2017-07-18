@@ -1,18 +1,24 @@
 package com.moldedbits.argus;
 
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.view.View;
 
 import lombok.Getter;
 
 public class ArgusTheme {
 
-    @Getter @DrawableRes
+    @Getter
+    @DrawableRes
     private int logo;
 
-    @Getter @DrawableRes
+    @Getter
+    @DrawableRes
     private int backgroundDrawable;
 
-    @Getter @DrawableRes
+    @Getter
+    @DrawableRes
     private int buttonDrawable;
 
     @Getter
@@ -20,6 +26,13 @@ public class ArgusTheme {
 
     @Getter
     private float welcomeTextSize;
+
+    @Getter
+    private int welcomeTextVisibility;
+
+    @Getter
+    @ColorInt
+    private int welcomeTextColor;
 
     @Getter
     private boolean showEditTextDrawables;
@@ -30,6 +43,9 @@ public class ArgusTheme {
 
         public Builder() {
             argusTheme = new ArgusTheme();
+            argusTheme.welcomeTextSize = 14;
+            argusTheme.welcomeTextColor = Color.BLACK;
+            argusTheme.welcomeTextVisibility = View.VISIBLE;
         }
 
         public Builder buttonDrawable(@DrawableRes int buttonDrawable) {
@@ -57,8 +73,23 @@ public class ArgusTheme {
             return this;
         }
 
+        public Builder welcomeTextColor(int welcomeTextColor) {
+            argusTheme.welcomeTextColor = welcomeTextColor;
+            return this;
+        }
+
         public Builder showEditTextDrawables(boolean show) {
             argusTheme.showEditTextDrawables = show;
+            return this;
+        }
+
+        public Builder showWelcomeText() {
+            argusTheme.welcomeTextVisibility = View.VISIBLE;
+            return this;
+        }
+
+        public Builder hideWelcomeText() {
+            argusTheme.welcomeTextVisibility = View.GONE;
             return this;
         }
 

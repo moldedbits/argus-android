@@ -1,19 +1,15 @@
 package com.moldedbits.argus.provider.login;
 
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.moldedbits.argus.Argus;
-import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
@@ -46,7 +42,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
     public View inflateView(ViewGroup parentView) {
         getValidationEngine()
                 .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                                                        context.getString(R.string.invalid_email)));
+                        context.getString(R.string.invalid_email)));
 
         if (context != null) {
             View loginView = LayoutInflater.from(context)
@@ -55,7 +51,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
             usernameInput = (EditText) loginView.findViewById(R.id.username);
             passwordInput = (EditText) loginView.findViewById(R.id.password);
 
-            if(showPasswordEnabled) {
+            if (showPasswordEnabled) {
                 ivShowPassword = (ImageView) loginView.findViewById(R.id.iv_show_pwd);
                 ivShowPassword.setVisibility(View.VISIBLE);
                 if (ivShowPassword != null) {
@@ -68,7 +64,7 @@ public abstract class EmailLoginProvider extends BaseProvider {
                 }
             }
 
-            if(Argus.getInstance().getForgotPasswordProvider() == null) {
+            if (Argus.getInstance().getForgotPasswordProvider() == null) {
                 loginView.findViewById(R.id.tv_forgot_password).setVisibility(View.GONE);
             } else {
                 loginView.findViewById(R.id.tv_forgot_password).setOnClickListener(
@@ -80,39 +76,13 @@ public abstract class EmailLoginProvider extends BaseProvider {
                         });
             }
 
-            applyTheme(loginView);
+            theme = Argus.getInstance().getArgusTheme();
+
+            themeHelper.applyTheme(loginView, theme);
 
             return loginView;
         } else {
             throw new RuntimeException("Context cannot be null");
-        }
-    }
-
-    private void applyTheme(View view) {
-        ArgusTheme theme = Argus.getInstance().getArgusTheme();
-        TextView welcomeTv = (TextView)view.findViewById(R.id.tv_welcome_text);
-        if(welcomeTv != null && !TextUtils.isEmpty(theme.getWelcomeText())) {
-            welcomeTv.setText(theme.getWelcomeText());
-            welcomeTv.setTextSize(theme.getWelcomeTextSize());
-        }
-
-        if(theme.getButtonDrawable() != 0) {
-            Button actionButton = (Button) view.findViewById(R.id.action_button);
-            if(actionButton != null) {
-                actionButton.setBackgroundResource(theme.getButtonDrawable());
-            }
-        }
-
-        if(!theme.isShowEditTextDrawables()) {
-            View emailIv = view.findViewById(R.id.iv_email_et);
-            if(emailIv != null) {
-                emailIv.setVisibility(View.GONE);
-            }
-
-            View passwordIv = view.findViewById(R.id.iv_password_et);
-            if(passwordIv != null) {
-                passwordIv.setVisibility(View.GONE);
-            }
         }
     }
 

@@ -1,11 +1,20 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingTop="@dimen/padding_2x"
-    android:paddingBottom="@dimen/padding_x">
+    android:paddingBottom="@dimen/padding_x"
+    android:paddingTop="@dimen/padding_2x">
+
+    <TextView
+        android:id="@+id/tv_welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_2x"
+        android:visibility="visible"
+        tools:text="@string/sign_up" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -21,7 +30,7 @@
             android:drawablePadding="@dimen/margin_x"
             android:drawableStart="@drawable/email_icon"
             android:inputType="textPersonName"
-            android:tag="name"/>
+            android:tag="name" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -40,7 +49,7 @@
             android:drawableStart="@drawable/email_icon"
             android:fontFamily="sans-serif"
             android:inputType="textEmailAddress"
-            android:tag="email"/>
+            android:tag="email" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -60,7 +69,7 @@
             android:drawableStart="@drawable/password_icon"
             android:fontFamily="sans-serif"
             android:inputType="textPassword"
-            android:tag="password"/>
+            android:tag="password" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -69,5 +78,5 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_2x"
         android:layout_marginTop="@dimen/margin_2x"
-        android:text="@string/sign_up"/>
+        android:text="@string/sign_up" />
 </LinearLayout>

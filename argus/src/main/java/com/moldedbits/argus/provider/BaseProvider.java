@@ -8,9 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.R;
+import com.moldedbits.argus.handler.ThemeHelper;
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.validations.ValidationEngine;
 
@@ -22,7 +22,7 @@ import lombok.Setter;
  */
 public abstract class BaseProvider {
 
-    public static final int DEFAULT_CONTAINER_ID = -1;
+    private static final int DEFAULT_CONTAINER_ID = -1;
 
     @Nullable
     protected Context context;
@@ -35,6 +35,8 @@ public abstract class BaseProvider {
 
     @Getter
     protected ValidationEngine validationEngine;
+    protected ArgusTheme theme;
+    protected ThemeHelper themeHelper;
     private ProgressDialog progressDialog;
 
     /**
@@ -48,6 +50,8 @@ public abstract class BaseProvider {
         this.context = fragment.getContext();
         this.fragment = fragment;
 
+        themeHelper = new ThemeHelper();
+
         View view = inflateView(parentView);
         View actionView = view.findViewById(getActionButtonId());
         if (actionView == null) {
@@ -60,7 +64,6 @@ public abstract class BaseProvider {
                 performAction();
             }
         });
-
 
         return view;
     }
@@ -93,7 +96,6 @@ public abstract class BaseProvider {
      * out UI
      */
     protected abstract void performAction();
-
 
     public int getContainerId() {
         return DEFAULT_CONTAINER_ID;

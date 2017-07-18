@@ -16,6 +16,7 @@ class ArgusSessionManager {
 
     ArgusSessionManager(ArgusStorage argusStorage) {
         this.argusStorage = argusStorage;
+        argusStorage.putString(KEY_ARGUS_STATE, ArgusState.SIGNED_OUT.toString());
     }
 
     /**
@@ -24,7 +25,7 @@ class ArgusSessionManager {
      * @return True if a user is logged in, false otherwise
      */
     boolean isLoggedIn() {
-        return false;
+        return ArgusState.valueOf(argusStorage.getString(KEY_ARGUS_STATE, null)).equals(ArgusState.SIGNED_IN);
     }
 
     /**
@@ -35,7 +36,7 @@ class ArgusSessionManager {
 
     ArgusState getCurrentState() {
         return ArgusState.valueOf(argusStorage.getString(KEY_ARGUS_STATE,
-                                                         ArgusState.SIGNED_OUT.toString()));
+                ArgusState.SIGNED_OUT.toString()));
     }
 
     void setCurrentState(ArgusState argusState) {
