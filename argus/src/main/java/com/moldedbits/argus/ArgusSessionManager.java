@@ -16,7 +16,6 @@ class ArgusSessionManager {
 
     ArgusSessionManager(ArgusStorage argusStorage) {
         this.argusStorage = argusStorage;
-        argusStorage.putString(KEY_ARGUS_STATE, ArgusState.SIGNED_OUT.toString());
     }
 
     /**
