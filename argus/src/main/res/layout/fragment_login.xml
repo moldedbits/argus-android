@@ -1,70 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/container_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:id="@id/container_login">
+    android:background="@android:color/transparent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_2x"
-        tools:context="com.moldedbits.argus.ArgusActivity">
-
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="@dimen/logo_size"
-            android:layout_height="@dimen/logo_size"
-            android:layout_gravity="center"/>
-
-        <FrameLayout
-            android:id="@id/container_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_social_header"
+            android:id="@+id/tv_skip_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_x"
+            android:onClick="OnSkipLogin"
+            android:paddingEnd="@dimen/padding_x"
+            android:paddingLeft="@dimen/padding_x"
+            android:paddingRight="@dimen/padding_x"
+            android:paddingStart="@dimen/padding_x"
+            android:text="@string/skip_login"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ll_parent_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/sign_in_with"
-            android:textSize="12sp"/>
+            android:orientation="vertical"
+            android:padding="@dimen/padding_2x"
+            tools:context="com.moldedbits.argus.ArgusActivity">
 
-        <LinearLayout
-            android:id="@+id/container_social"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"/>
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="@dimen/logo_size"
+                android:layout_height="@dimen/logo_size"
+                android:layout_gravity="center" />
 
-        <LinearLayout
-            android:id="@+id/tv_dont_have_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/margin_x"
-            android:orientation="horizontal">
+            <FrameLayout
+                android:id="@id/container_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/tv_social_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sign_in_with"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/container_social"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/don_t_have_any_account"
-                android:textSize="@dimen/text_12"/>
+                android:orientation="horizontal" />
 
-            <TextView
-                android:id="@+id/tv_signup"
+            <LinearLayout
+                android:id="@+id/tv_dont_have_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onClick="onSignupClick"
-                android:paddingLeft="@dimen/padding_x"
-                android:paddingStart="@dimen/padding_x"
-                android:text="@string/sign_up"
-                android:textSize="@dimen/text_14"/>
+                android:layout_marginBottom="@dimen/margin_x"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/don_t_have_any_account"
+                    android:textSize="@dimen/text_12" />
+
+                <TextView
+                    android:id="@+id/tv_signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="onSignupClick"
+                    android:paddingLeft="@dimen/padding_x"
+                    android:paddingStart="@dimen/padding_x"
+                    android:text="@string/sign_up"
+                    android:textSize="@dimen/text_14" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

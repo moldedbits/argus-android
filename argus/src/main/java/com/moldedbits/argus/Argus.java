@@ -18,7 +18,8 @@ public class Argus {
 
     private ArgusSessionManager argusSessionManager;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private NextScreenProvider nextScreenProvider;
 
     @Getter
@@ -41,6 +42,9 @@ public class Argus {
 
     @Getter
     private int forgotPasswordLayout;
+
+    @Getter
+    boolean skipLogin;
 
     private Argus() {
     }
@@ -152,6 +156,11 @@ public class Argus {
 
         public Builder theme(ArgusTheme argusTheme) {
             argus.argusTheme = argusTheme;
+            return this;
+        }
+
+        public Builder skipLogin(boolean isSkip) {
+            argus.skipLogin = isSkip;
             return this;
         }
 

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]

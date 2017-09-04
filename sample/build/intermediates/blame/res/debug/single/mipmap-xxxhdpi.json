@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/shishank/Project/argus-android/sample/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/Users/shishank/Project/argus-android/sample/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    }
+]

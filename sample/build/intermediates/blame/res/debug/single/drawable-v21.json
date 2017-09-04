@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/design_bottom_navigation_item_background.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/drawable-v21/design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/drawable-v21/avd_hide_password.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/avd_show_password.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/drawable-v21/avd_show_password.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/design_password_eye.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/drawable-v21/design_password_eye.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    }
+]

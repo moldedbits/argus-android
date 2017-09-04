@@ -24,7 +24,7 @@ public class LoginFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        if(Argus.getInstance().getSignupProviders() == null && rootView != null) {
+        if (Argus.getInstance().getSignupProviders() == null && rootView != null) {
             View view2 = rootView.findViewById(R.id.tv_dont_have_account);
             if (view2 != null) {
                 view2.setVisibility(View.GONE);
@@ -40,7 +40,6 @@ public class LoginFragment extends BaseFragment {
         }
         return R.layout.fragment_login;
     }
-
 
     @Override
     protected List<BaseProvider> getProviders() {

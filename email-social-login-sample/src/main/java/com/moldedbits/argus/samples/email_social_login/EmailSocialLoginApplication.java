@@ -1,7 +1,6 @@
 package com.moldedbits.argus.samples.email_social_login;
 
 import android.app.Application;
-import android.graphics.drawable.ColorDrawable;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
@@ -56,6 +55,7 @@ public class EmailSocialLoginApplication extends Application {
         new Argus.Builder()
                 .argusStorage(new DefaultArgusStorage(getApplicationContext()))
                 .nextScreenProvider(new SimpleNextScreenProvider(HomeActivity.class))
+                .skipLogin(true)
                 .signupProviders(signupProviders)
                 .loginProviders(loginProviders)
                 .theme(themeBuilder.build())

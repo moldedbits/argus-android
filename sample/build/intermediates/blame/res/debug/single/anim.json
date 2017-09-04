@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/design_bottom_sheet_slide_out.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/anim/design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/design_fab_in.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/anim/design_fab_in.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/design_bottom_sheet_slide_in.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/anim/design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/design_snackbar_out.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/anim/design_snackbar_out.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/design_fab_out.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/anim/design_fab_out.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/design_snackbar_in.xml",
+        "source": "/Users/shishank/.android/build-cache/817d4c0b13965e1096079dfc6d3c2c0c80f32171/output/res/anim/design_snackbar_in.xml"
+    },
+    {
+        "merged": "/Users/shishank/Project/argus-android/sample/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/shishank/.android/build-cache/3c155a6a5ab823db4066a764cd4ab9afa7542982/output/res/anim/abc_popup_exit.xml"
+    }
+]
