@@ -27,4 +27,5 @@ public class FacebookConfig {
         faceBookPermissions = new ArrayList<>();
         faceBookPermissions.add(PUBLIC_PROFILE);
     }
+
 }

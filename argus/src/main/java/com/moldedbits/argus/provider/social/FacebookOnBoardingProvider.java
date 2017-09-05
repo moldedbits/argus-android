@@ -12,20 +12,25 @@ import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.social.helper.FacebookConfig;
 import com.moldedbits.argus.provider.social.helper.FacebookHelper;
 
+import java.util.List;
+
 
 public class FacebookOnBoardingProvider extends BaseProvider
         implements FacebookHelper.FBLoginResultListener {
 
     private FacebookHelper facebookHelper;
 
+    private FacebookConfig facebookConfig;
+
     public FacebookOnBoardingProvider() {
         facebookHelper = new FacebookHelper(this);
         facebookHelper.initialize();
+        facebookConfig = new FacebookConfig();
     }
 
     @Override
     protected void performAction() {
-        facebookHelper.initiateLogin(fragment, new FacebookConfig().getFaceBookPermissions());
+        facebookHelper.initiateLogin(fragment, facebookConfig.getFaceBookPermissions());
     }
 
     @Override
@@ -58,4 +63,9 @@ public class FacebookOnBoardingProvider extends BaseProvider
             resultListener.onFailure(message);
         }
     }
+
+    public void setFacebookPermission(List<String> permissionList) {
+        facebookConfig.setFaceBookPermissions(permissionList);
+    }
+
 }

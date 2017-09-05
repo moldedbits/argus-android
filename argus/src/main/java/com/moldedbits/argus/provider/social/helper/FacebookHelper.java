@@ -55,7 +55,6 @@ public class FacebookHelper {
                                                   }
                                               });
                         Bundle parameters = new Bundle();
-                        parameters.putString("fields", "public_profile");
                         graphRequest.setParameters(parameters);
                         graphRequest.executeAsync();
                     }

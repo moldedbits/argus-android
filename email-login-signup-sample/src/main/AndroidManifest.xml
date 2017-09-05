@@ -26,6 +26,16 @@
         </activity>
         <activity android:name=".HomeActivity">
         </activity>
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_id"/>
+
     </application>
 
 </manifest>

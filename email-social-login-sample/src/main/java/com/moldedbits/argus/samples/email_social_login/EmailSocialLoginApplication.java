@@ -46,11 +46,11 @@ public class EmailSocialLoginApplication extends Application {
 
         ArgusTheme.Builder themeBuilder = new ArgusTheme.Builder();
         themeBuilder.logo(R.drawable.argus_logo)
-                    .backgroundDrawable(R.drawable.bg)
-                    .buttonDrawable(R.drawable.button_bg)
-                    .welcomeText(getString(R.string.welcome))
-                    .welcomeTextSize(18.0f)
-                    .showEditTextDrawables(false);
+                .backgroundDrawable(R.drawable.bg)
+                .buttonDrawable(R.drawable.button_bg)
+                .welcomeText(getString(R.string.welcome))
+                .welcomeTextSize(18.0f)
+                .showEditTextDrawables(false);
 
         new Argus.Builder()
                 .argusStorage(new DefaultArgusStorage(getApplicationContext()))
