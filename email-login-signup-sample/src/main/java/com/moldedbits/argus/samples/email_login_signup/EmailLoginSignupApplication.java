@@ -37,7 +37,7 @@ public class EmailLoginSignupApplication extends Application {
                 .argusStorage(new DefaultArgusStorage(getApplicationContext()))
                 .nextScreenProvider(new SimpleNextScreenProvider(HomeActivity.class))
                 .enableSkipLogin(true)
-                .setSkipLoginText(getString(R.string.skip_login))
+                .skipLoginText(getString(R.string.skip_login))
                 .signupProviders(signupProviders)
                 .loginProviders(loginProviders)
                 .theme(themeBuilder.build())
