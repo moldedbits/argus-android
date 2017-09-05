@@ -6,7 +6,6 @@ import com.moldedbits.argus.samples.email_social_login.models.ApiError;
 import lombok.Getter;
 import lombok.Setter;
 
-
 public class BaseResponse<T> {
 
     @Getter

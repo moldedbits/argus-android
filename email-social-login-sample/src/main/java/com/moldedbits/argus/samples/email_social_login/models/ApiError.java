@@ -1,6 +1,5 @@
 package com.moldedbits.argus.samples.email_social_login.models;
 
-
 import com.moldedbits.argus.samples.email_social_login.models.response.BaseResponse;
 
 import lombok.Getter;

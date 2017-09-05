@@ -1,6 +1,5 @@
 package com.moldedbits.argus.samples.email_social_login.api;
 
-
 import android.app.Activity;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -14,11 +13,6 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-/**
- * Created by abhishek
- * on 08/04/16.
- */
 
 public abstract class ResponseCallback<T> implements Callback<BaseResponse<T>> {
 
