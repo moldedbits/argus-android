@@ -3,7 +3,7 @@
 Argus Android makes it hassle free of managing all onboarding related tasks such as Signup/Login/Forgot Password and Social Logins.
 
 ## Gradle
-`compile 'com.moldedbits.argus:argus:0.1.0'`
+`compile 'com.moldedbits.argus:argus:0.2.0'`
 
 ## Maven
     <dependency>
