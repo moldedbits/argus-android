@@ -33,11 +33,11 @@ public class LoginFragment extends BaseFragment {
             }
         }
         if (rootView != null) {
-            if (Argus.getInstance().isSkipLogin()) {
+            if (Argus.getInstance().isSkipLoginEnable()) {
                 TextView textView = (TextView) rootView.findViewById(R.id.tv_skip_login);
                 if (textView != null) {
                     String skipText = Argus.getInstance().getSkipLoginText();
-                    if (Argus.getInstance().isSkipLogin()) {
+                    if (Argus.getInstance().isSkipLoginEnable()) {
                         if (!TextUtils.isEmpty(skipText)) {
                             textView.setText(skipText);
                         }

@@ -19,5 +19,5 @@
     <string name="don_t_have_any_account">Don\'t have an account?</string>
     <string name="validation_link">Please click on the link sent over the mail to you to validate your Account.</string>
     <string name="reset_password_info">Please enter your registered Email Id for password reset instructions</string>
-    <string name="skip_login">Skip</string>
+    <string name="skip">Skip</string>
 </resources>

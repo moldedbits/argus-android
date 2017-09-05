@@ -44,7 +44,7 @@ public class Argus {
     private int forgotPasswordLayout;
 
     @Getter
-    boolean skipLogin;
+    boolean skipLoginEnable;
 
     @Getter
     String skipLoginText;
@@ -163,11 +163,11 @@ public class Argus {
         }
 
         public Builder enableSkipLogin(boolean isSkip) {
-            argus.skipLogin = isSkip;
+            argus.skipLoginEnable = isSkip;
             return this;
         }
 
-        public Builder setSkipLoginText(String text) {
+        public Builder skipLoginText(String text) {
             argus.skipLoginText = text;
             return this;
         }

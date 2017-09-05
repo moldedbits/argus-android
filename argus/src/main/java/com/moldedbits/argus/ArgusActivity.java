@@ -65,7 +65,6 @@ public class ArgusActivity extends AppCompatActivity
         showSignupFragment();
     }
 
-
     private void showSignupFragment() {
         BaseFragment baseFragment = SignupFragment.newInstance();
         getSupportFragmentManager()
