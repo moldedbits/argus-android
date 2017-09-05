@@ -73,7 +73,6 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                 }
             }
         }
-
     }
 
     @Override

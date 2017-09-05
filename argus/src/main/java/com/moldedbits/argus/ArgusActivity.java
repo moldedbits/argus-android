@@ -27,14 +27,13 @@ public class ArgusActivity extends AppCompatActivity
         setContentView(R.layout.activity_argus);
 
         int backgroundDrawable = Argus.getInstance().getArgusTheme().getBackgroundDrawable();
-        if(backgroundDrawable > 0) {
+        if (backgroundDrawable > 0) {
             findViewById(R.id.argus_content).setBackgroundResource(backgroundDrawable);
         }
-        
+
         showLoginFragment();
     }
 
-    // TODO:: Add support for login and signup fragments
     private void showLoginFragment() {
         BaseFragment baseFragment = LoginFragment.newInstance();
         getSupportFragmentManager()
