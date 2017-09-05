@@ -6,4 +6,6 @@
     <string name="signing_up">Signing Up</string>
     <string name="welcome">Welcome</string>
     <string name="skip_login">Skip Login</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="internet_slow_or_disconnected">Internet is either very slow or disconnected</string>
 </resources>
