@@ -46,6 +46,9 @@ public class Argus {
     @Getter
     boolean skipLogin;
 
+    @Getter
+    String skipLoginText;
+
     private Argus() {
     }
 
@@ -159,8 +162,13 @@ public class Argus {
             return this;
         }
 
-        public Builder skipLogin(boolean isSkip) {
+        public Builder enableSkipLogin(boolean isSkip) {
             argus.skipLogin = isSkip;
+            return this;
+        }
+
+        public Builder setSkipLoginText(String text) {
+            argus.skipLoginText = text;
             return this;
         }
 
