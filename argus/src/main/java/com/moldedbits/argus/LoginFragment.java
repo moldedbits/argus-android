@@ -31,6 +31,8 @@ public class LoginFragment extends BaseFragment {
             if (view2 != null) {
                 view2.setVisibility(View.GONE);
             }
+        }
+        if (rootView != null) {
             if (Argus.getInstance().isSkipLogin()) {
                 TextView textView = (TextView) rootView.findViewById(R.id.tv_skip_login);
                 if (textView != null) {
@@ -45,7 +47,6 @@ public class LoginFragment extends BaseFragment {
                 }
             }
         }
-
         return rootView;
     }
 
