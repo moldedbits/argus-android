@@ -42,7 +42,6 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestId()
-                .requestIdToken("519829002492-9ae71uje3i4lko42rn4ea1b7tcbh04rd.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
         googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
