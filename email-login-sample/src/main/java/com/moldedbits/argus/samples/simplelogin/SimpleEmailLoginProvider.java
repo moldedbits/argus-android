@@ -3,7 +3,6 @@ package com.moldedbits.argus.samples.simplelogin;
 import android.widget.Toast;
 
 import com.moldedbits.argus.ArgusState;
-import com.moldedbits.argus.provider.login.EmailLoginProvider;
 
 /**
  * Created by abhishek
@@ -12,7 +11,7 @@ import com.moldedbits.argus.provider.login.EmailLoginProvider;
  * This is a sample implementation of default login provider available in Argus
  */
 
-public class EmailLoginProvider extends com.moldedbits.argus.provider.login.EmailLoginProvider {
+public class SimpleEmailLoginProvider extends com.moldedbits.argus.provider.login.EmailLoginProvider {
 
     /**
      * this function is called after user input was validated
