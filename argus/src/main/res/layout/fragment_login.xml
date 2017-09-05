@@ -82,7 +82,6 @@
             android:paddingStart="@dimen/padding_x"
             android:text="@string/skip"
             android:textSize="@dimen/text_16"
-            android:textStyle="bold"
             android:visibility="visible" />
     </LinearLayout>
 </ScrollView>
