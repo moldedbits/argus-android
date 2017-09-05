@@ -1,9 +1,11 @@
 package com.moldedbits.argus;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.moldedbits.argus.provider.BaseProvider;
 
@@ -29,9 +31,37 @@ public class LoginFragment extends BaseFragment {
             if (view2 != null) {
                 view2.setVisibility(View.GONE);
             }
+            if (Argus.getInstance().isSkipLogin()) {
+                TextView textView = (TextView) rootView.findViewById(R.id.tv_skip_login);
+                if (textView != null) {
+                    String skipText = Argus.getInstance().getSkipLoginText();
+                    if (Argus.getInstance().isSkipLogin()) {
+                        if (!TextUtils.isEmpty(skipText)) {
+                            textView.setText(skipText);
+                        }
+                    }
+                    textView.setVisibility(View.VISIBLE);
+                    setSkipClick(textView);
+                }
+            }
         }
 
         return rootView;
+    }
+
+    private void setSkipClick(TextView textView) {
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSkipLogin();
+            }
+        });
+    }
+
+    public void onSkipLogin() {
+        //TODO if needed other activity for this we can also do that later
+        startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(getActivity()));
+        getActivity().finish();
     }
 
     public int getLayoutId() {

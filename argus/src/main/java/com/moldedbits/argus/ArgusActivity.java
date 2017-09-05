@@ -65,11 +65,6 @@ public class ArgusActivity extends AppCompatActivity
         showSignupFragment();
     }
 
-    public void OnSkipLogin(View view) {
-        //TODO if needed other activity for this we can also do that later
-        startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
-        finish();
-    }
 
     private void showSignupFragment() {
         BaseFragment baseFragment = SignupFragment.newInstance();

@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.moldedbits.argus.listener.ResultListener;
 import com.moldedbits.argus.provider.BaseProvider;
@@ -72,12 +71,6 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
                 if (view.findViewById(R.id.tv_social_header) != null) {
                     view.findViewById(R.id.tv_social_header).setVisibility(View.GONE);
                 }
-            }
-        }
-        if (Argus.getInstance().isSkipLogin()) {
-            TextView textView = (TextView) view.findViewById(R.id.tv_skip_login);
-            if (textView != null) {
-                textView.setVisibility(View.VISIBLE);
             }
         }
     }

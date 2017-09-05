@@ -18,7 +18,6 @@
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
             android:layout_margin="@dimen/margin_x"
-            android:onClick="OnSkipLogin"
             android:paddingEnd="@dimen/padding_x"
             android:paddingLeft="@dimen/padding_x"
             android:paddingRight="@dimen/padding_x"
