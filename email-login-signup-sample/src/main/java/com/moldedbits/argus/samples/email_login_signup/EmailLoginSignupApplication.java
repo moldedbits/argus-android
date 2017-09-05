@@ -7,13 +7,10 @@ import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.nextscreenproviders.SimpleNextScreenProvider;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.login.EmailLoginProvider;
-import com.moldedbits.argus.provider.social.FacebookOnBoardingProvider;
-import com.moldedbits.argus.provider.social.helper.FacebookConfig;
 import com.moldedbits.argus.storage.DefaultArgusStorage;
 import com.moldedbits.argus.validations.LengthValidation;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class EmailLoginSignupApplication extends Application {
 
@@ -32,13 +29,6 @@ public class EmailLoginSignupApplication extends Application {
         loginProvider.setShowPasswordEnabled(false);
         loginProviders.add(loginProvider);
         signupProviders.add(emailSignupProvider);
-
-        FacebookOnBoardingProvider facebookProvider = new FacebookOnBoardingProvider();
-        List<String> permissionList = new ArrayList<>();
-        permissionList.add(FacebookConfig.EMAIL);
-        permissionList.add(FacebookConfig.PUBLIC_PROFILE);
-        facebookProvider.setFacebookPermission(permissionList);
-        signupProviders.add(facebookProvider);
 
         ArgusTheme.Builder themeBuilder = new ArgusTheme.Builder();
         themeBuilder.logo(R.mipmap.ic_launcher);
