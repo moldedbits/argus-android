@@ -4,4 +4,5 @@
     <string name="password_length">Password length should be in between 4 to 8 characters.</string>
     <string name="enter_valid_email">Please enter valid email address.</string>
     <string name="signing_up">Signing Up</string>
+    <string name="server_client_id">378605337250-aldqbcboso2ii13icclus74h256jmsef.apps.googleusercontent.com</string>
 </resources>

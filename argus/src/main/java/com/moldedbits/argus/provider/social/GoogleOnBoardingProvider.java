@@ -14,6 +14,7 @@ import com.moldedbits.argus.provider.social.helper.GoogleHelper;
 
 public class GoogleOnBoardingProvider extends BaseProvider
         implements GoogleHelper.GoogleLoginResultListener {
+
     private GoogleHelper googleHelper;
 
     @Override

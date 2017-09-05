@@ -30,15 +30,14 @@ public class EmailSocialLoginApplication extends Application {
                 .addPasswordValidation(new LengthValidation(4, 8, getString(R.string.password_length)));
         signupProviders.add(emailSignupProvider);
 
-        // add google signup provider
-        signupProviders.add(new GoogleOnBoardingProvider());
 
-        // add facebook signup provider
-        signupProviders.add(new FacebookSignupProvider());
+        GoogleOnBoardingProvider googleProvider = new GoogleSignupProvider();
+
         FacebookOnBoardingProvider facebookProvider = new FacebookSignupProvider();
         List<String> permissionList = new ArrayList<>();
         permissionList.add(FacebookConfig.PUBLIC_PROFILE);
         facebookProvider.setFacebookPermission(permissionList);
+
 
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         EmailLoginProvider loginProvider = new SimpleEmailLoginProvider();
@@ -46,10 +45,16 @@ public class EmailSocialLoginApplication extends Application {
         loginProviders.add(loginProvider);
 
         // add google login provider
-        loginProviders.add(new GoogleOnBoardingProvider());
+        loginProviders.add(googleProvider);
 
         // add facebook login provider
         loginProviders.add(facebookProvider);
+
+        // add facebook signup provider
+        signupProviders.add(facebookProvider);
+
+        // add google signup provider
+        signupProviders.add(googleProvider);
 
         ArgusTheme.Builder themeBuilder = new ArgusTheme.Builder();
         themeBuilder.logo(R.drawable.argus_logo)
