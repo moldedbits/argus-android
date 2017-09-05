@@ -21,6 +21,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
 
     public interface GoogleLoginResultListener {
         void onSuccess(GoogleSignInAccount account);
+
         void onFailure(String message);
     }
 
@@ -40,6 +41,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     public void initializeGoogleApiClient() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestId()
                 .requestEmail()
                 .build();
         googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
@@ -119,6 +121,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
                 listener.onSuccess(acct);
+                Log.d("GOOGLE", acct.getIdToken());
             } else {
                 listener.onFailure("login failed");
             }

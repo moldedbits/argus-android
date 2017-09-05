@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "519829002492",
+    "project_id": "argus-social-demo"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519829002492:android:0758bcfb72d6d346",
+        "android_client_info": {
+          "package_name": "com.moldedbits.argus.samples.email_social_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519829002492-9ae71uje3i4lko42rn4ea1b7tcbh04rd.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "519829002492-lloas3k7r1re7g8o98l2fdvnajgd7at0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moldedbits.argus.samples.email_social_login",
+            "certificate_hash": "e308f1e632e73b5649a61a43527d8a74de003992"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Yc68UpSgDDfl4N3tf7hLkAnC62Zvro0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
