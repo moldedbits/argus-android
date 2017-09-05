@@ -14,7 +14,6 @@ import com.moldedbits.argus.provider.social.helper.FacebookHelper;
 
 import java.util.List;
 
-
 public class FacebookOnBoardingProvider extends BaseProvider
         implements FacebookHelper.FBLoginResultListener {
 
@@ -67,5 +66,4 @@ public class FacebookOnBoardingProvider extends BaseProvider
     public void setFacebookPermission(List<String> permissionList) {
         facebookConfig.setFaceBookPermissions(permissionList);
     }
-
 }
