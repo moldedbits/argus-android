@@ -10,10 +10,12 @@ import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.login.EmailLoginProvider;
 import com.moldedbits.argus.provider.social.FacebookOnBoardingProvider;
 import com.moldedbits.argus.provider.social.GoogleOnBoardingProvider;
+import com.moldedbits.argus.provider.social.helper.FacebookConfig;
 import com.moldedbits.argus.storage.DefaultArgusStorage;
 import com.moldedbits.argus.validations.LengthValidation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmailSocialLoginApplication extends Application {
 
@@ -32,7 +34,11 @@ public class EmailSocialLoginApplication extends Application {
         signupProviders.add(new GoogleOnBoardingProvider());
 
         // add facebook signup provider
-        signupProviders.add(new FacebookOnBoardingProvider());
+        signupProviders.add(new FacebookSignupProvider());
+        FacebookOnBoardingProvider facebookProvider = new FacebookSignupProvider();
+        List<String> permissionList = new ArrayList<>();
+        permissionList.add(FacebookConfig.PUBLIC_PROFILE);
+        facebookProvider.setFacebookPermission(permissionList);
 
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         EmailLoginProvider loginProvider = new SimpleEmailLoginProvider();
@@ -43,7 +49,7 @@ public class EmailSocialLoginApplication extends Application {
         loginProviders.add(new GoogleOnBoardingProvider());
 
         // add facebook login provider
-        loginProviders.add(new FacebookOnBoardingProvider());
+        loginProviders.add(facebookProvider);
 
         ArgusTheme.Builder themeBuilder = new ArgusTheme.Builder();
         themeBuilder.logo(R.drawable.argus_logo)

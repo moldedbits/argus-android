@@ -119,6 +119,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
                 listener.onSuccess(acct);
+                Log.d("GOOGLE",acct.getIdToken());
             } else {
                 listener.onFailure("login failed");
             }
