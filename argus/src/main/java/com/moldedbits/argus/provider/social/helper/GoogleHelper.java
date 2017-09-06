@@ -13,7 +13,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.moldedbits.argus.R;
+import com.moldedbits.argus.Argus;
 
 //TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
@@ -43,7 +43,7 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestProfile()
                 .requestEmail()
-                .requestIdToken(fragment.getString(R.string.server_client_id))
+                .requestIdToken(Argus.getInstance().getGoogleServerClientId())
                 .build();
         googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
                 .addConnectionCallbacks(this)

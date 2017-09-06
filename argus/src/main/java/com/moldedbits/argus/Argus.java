@@ -49,6 +49,9 @@ public class Argus {
     @Getter
     String skipLoginText;
 
+    @Getter
+    String googleServerClientId;
+
     private Argus() {
     }
 
@@ -169,6 +172,11 @@ public class Argus {
 
         public Builder skipLoginText(String text) {
             argus.skipLoginText = text;
+            return this;
+        }
+
+        public Builder googleServerClientId(String id) {
+            argus.googleServerClientId = id;
             return this;
         }
 

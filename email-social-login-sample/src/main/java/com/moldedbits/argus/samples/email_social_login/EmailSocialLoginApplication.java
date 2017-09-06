@@ -80,6 +80,7 @@ public class EmailSocialLoginApplication extends Application {
                 .loginProviders(loginProviders)
                 .theme(themeBuilder.build())
                 .forgotPasswordProvider(new SimpleForgotPasswordProvider())
+                .googleServerClientId(getString(R.string.server_client_id))
                 .build();
     }
 }

@@ -20,5 +20,4 @@
     <string name="validation_link">Please click on the link sent over the mail to you to validate your Account.</string>
     <string name="reset_password_info">Please enter your registered Email Id for password reset instructions</string>
     <string name="skip">Skip</string>
-    <string name="server_client_id">519829002492-9ae71uje3i4lko42rn4ea1b7tcbh04rd.apps.googleusercontent.com</string>
 </resources>

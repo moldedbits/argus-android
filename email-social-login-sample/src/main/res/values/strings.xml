@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ArgusEmailSocialLoginSample</string>
     <string name="facebook_app_id">538268433171885</string>
     <string name="fb_login_protocol_scheme">fb538268433171885</string>
@@ -9,4 +9,5 @@
     <string name="skip_login">Skip Login</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="internet_slow_or_disconnected">Internet is either very slow or disconnected</string>
+    <string name="server_client_id" tools:ignore="TypographyDashes">519829002492-9ae71uje3i4lko42rn4ea1b7tcbh04rd.apps.googleusercontent.com</string>
 </resources>
