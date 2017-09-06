@@ -17,13 +17,11 @@ android {
     }
     buildTypes {
         debug {
-            applicationIdSuffix '.debug'
             minifyEnabled false
             buildConfigField 'String', 'API_URL', "\"" + API_URL_DEV + "\""
         }
 
         release {
-            applicationIdSuffix '.release'
             buildConfigField 'String', 'API_URL', "\"" + API_URL_DEV + "\""
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

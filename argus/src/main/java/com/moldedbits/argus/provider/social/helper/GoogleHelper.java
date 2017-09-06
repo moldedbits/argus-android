@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -14,6 +13,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.moldedbits.argus.R;
 
 //TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
@@ -41,8 +41,9 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     public void initializeGoogleApiClient() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestId()
+                .requestProfile()
                 .requestEmail()
+                .requestIdToken(fragment.getString(R.string.server_client_id))
                 .build();
         googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
                 .addConnectionCallbacks(this)
@@ -64,10 +65,8 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     public void onConnectionSuspended(int i) {
     }
 
-    //TODO create a confif file for printing logs from classes depending on Log level.
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.d("CONNECT_FAILED", "onConnectionFailed:" + connectionResult);
 
         if (!isResolving && shouldResolve) {
             if (connectionResult.hasResolution()) {
@@ -75,7 +74,6 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
                     connectionResult.startResolutionForResult(fragment.getActivity(), RC_SIGN_IN);
                     isResolving = true;
                 } catch (IntentSender.SendIntentException e) {
-                    Log.e("TAG", "Could not resolve ConnectionResult.", e);
                     isResolving = false;
                     googleApiClient.connect();
                 }
@@ -86,7 +84,6 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     }
 
     private void showErrorDialog(ConnectionResult connectionResult) {
-        Log.d("ERROR", "" + connectionResult);
     }
 
     private void connectClient() {
@@ -121,7 +118,6 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
                 listener.onSuccess(acct);
-                Log.d("GOOGLE", acct.getIdToken());
             } else {
                 listener.onFailure("login failed");
             }
