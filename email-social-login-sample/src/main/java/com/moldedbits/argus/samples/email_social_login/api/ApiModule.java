@@ -23,7 +23,6 @@ import rx.schedulers.Schedulers;
 
 public class ApiModule {
 
-
     ApiService providesApiService() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.hostnameVerifier(new HostnameVerifier() {
