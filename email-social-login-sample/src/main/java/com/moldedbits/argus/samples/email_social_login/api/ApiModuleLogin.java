@@ -67,7 +67,7 @@ public class ApiModuleLogin {
                 .createWithScheduler(Schedulers.io());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://usermanagement.ap-south-1.elasticbeanstalk.com")
+                .baseUrl("http://usermanagement.ap-south-1.elasticbeanstalk.com/")
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(rxAdapter)

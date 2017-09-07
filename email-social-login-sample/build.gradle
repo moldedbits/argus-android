@@ -4,8 +4,11 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
 
-    final API_URL_DEV = "";
-    final API_URL_PROD = "";
+    final API_URL_DEV = "http://usermanagement.ap-south-1.elasticbeanstalk.com:80/UserManagement.Web_deploy/api/";
+    final API_URL_RELEASE = "http://usermanagement.ap-south-1.elasticbeanstalk.com:80/UserManagement.Web_deploy/api/";
+
+    final API_LOGIN_URL_DEV = "http://usermanagement.ap-south-1.elasticbeanstalk.com/";
+    final API_LOGIN_URL_RELEASE = "http://usermanagement.ap-south-1.elasticbeanstalk.com/";
 
     defaultConfig {
         applicationId "com.moldedbits.argus.samples.email_social_login"
@@ -19,10 +22,12 @@ android {
         debug {
             minifyEnabled false
             buildConfigField 'String', 'API_URL', "\"" + API_URL_DEV + "\""
+            buildConfigField 'String', 'API_LOGIN_URL', "\"" + API_URL_DEV + "\""
         }
 
         release {
-            buildConfigField 'String', 'API_URL', "\"" + API_URL_DEV + "\""
+            buildConfigField 'String', 'API_URL', "\"" + API_URL_RELEASE + "\""
+            buildConfigField 'String', 'API_LOGIN_URL', "\"" + API_URL_RELEASE + "\""
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
