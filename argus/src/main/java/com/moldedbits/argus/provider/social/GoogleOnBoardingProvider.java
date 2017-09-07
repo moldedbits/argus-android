@@ -6,21 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.moldedbits.argus.R;
 import com.moldedbits.argus.ArgusState;
+import com.moldedbits.argus.R;
 import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.social.helper.GoogleHelper;
+
+import lombok.Getter;
 
 
 public class GoogleOnBoardingProvider extends BaseProvider
         implements GoogleHelper.GoogleLoginResultListener {
 
     private GoogleHelper googleHelper;
+    @Getter
+    private String serverClientId;
 
     @Override
     protected void performAction() {
         googleHelper = new GoogleHelper(fragment, this);
-        googleHelper.initializeGoogleApiClient();
+        googleHelper.initializeGoogleApiClient(getServerClientId());
         googleHelper.onSignInClicked();
     }
 
@@ -55,5 +59,9 @@ public class GoogleOnBoardingProvider extends BaseProvider
         if (resultListener != null) {
             resultListener.onFailure(message);
         }
+    }
+
+    public void setServerClientId(String serverClientId) {
+        this.serverClientId = serverClientId;
     }
 }

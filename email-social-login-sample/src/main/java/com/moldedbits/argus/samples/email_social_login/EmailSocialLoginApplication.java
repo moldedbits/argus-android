@@ -40,10 +40,14 @@ public class EmailSocialLoginApplication extends Application {
         GoogleOnBoardingProvider googleProvider = new GoogleSignupProvider();
 
         FacebookOnBoardingProvider facebookProvider = new FacebookSignupProvider();
+
+        //setting permissions required by facebook to get specific data
         List<String> permissionList = new ArrayList<>();
         permissionList.add(FacebookConfig.PUBLIC_PROFILE);
         facebookProvider.setFacebookPermission(permissionList);
 
+        //setting serverClientId to verify token on custom backend
+        googleProvider.setServerClientId(getString(R.string.server_client_id));
 
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         EmailLoginProvider loginProvider = new SimpleEmailLoginProvider();
@@ -80,7 +84,6 @@ public class EmailSocialLoginApplication extends Application {
                 .loginProviders(loginProviders)
                 .theme(themeBuilder.build())
                 .forgotPasswordProvider(new SimpleForgotPasswordProvider())
-                .googleServerClientId(getString(R.string.server_client_id))
                 .build();
     }
 }
