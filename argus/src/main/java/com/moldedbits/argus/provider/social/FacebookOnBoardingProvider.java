@@ -33,12 +33,12 @@ public class FacebookOnBoardingProvider extends BaseProvider
 
     @Override
     protected void performAction() {
-        if (facebookConfig.getFaceBookPermissions() == null
-                || facebookConfig.getFaceBookPermissions().size() == 0) {
+        List<String> permissionList = facebookConfig.getFaceBookPermissions();
+        if (permissionList == null || permissionList.size() == 0) {
             facebookConfig.getFaceBookPermissions().add(FacebookConfig.PUBLIC_PROFILE);
             facebookHelper.initiateLogin(fragment, facebookConfig.getFaceBookPermissions());
         } else {
-            facebookHelper.initiateLogin(fragment, facebookConfig.getFaceBookPermissions());
+            facebookHelper.initiateLogin(fragment, permissionList);
         }
     }
 
