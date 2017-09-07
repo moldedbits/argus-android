@@ -19,9 +19,9 @@ public class FacebookOnBoardingProvider extends BaseProvider
 
     private FacebookHelper facebookHelper;
 
-    /*
-    This is used to set permissions for facebook token and if no permissions are set then default
-    "public_profile" will be used to generate the token
+    /**
+     * This is used to set permissions for facebook token and if no permissions are set then default
+     * "public_profile" will be used to generate the token.
      */
     private FacebookConfig facebookConfig;
 
