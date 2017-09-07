@@ -14,7 +14,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-//TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -37,9 +36,13 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         this.listener = listener;
     }
 
-    /*
-     Initializing google api client when client id provided for token verification on a custom backend
-    */
+    /**
+     * Initializing google api client when client id provided for token verification on a custom backend
+     *
+     * @param serverClientId It is a Web Client Id autocreated on
+     * @see <a href="https://console.developers.google.com/">Google developer console</a> on
+     * creating project configuration.
+     */
     public void initializeGoogleApiClient(String serverClientId) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -54,10 +57,9 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
                 .build();
     }
 
-    /*
-    Initializing google api client if no client id provided
-    It will throw null pointer exception if while requesting token from GoogleSignInAccount since
-    you are requesting id token.It will be used for local app signing.
+    /**
+     * Initializing google api client if no client id provided
+     * It will throw null pointer exception while requesting Id token from GoogleSignInAccount
      */
     public void initializeGoogleApiClient() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(

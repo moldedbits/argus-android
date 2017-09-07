@@ -29,6 +29,7 @@ public class EmailSocialLoginApplication extends Application {
             FacebookSdk.setIsDebugEnabled(true);
             FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
         }
+
         // initialize Argus
         ArrayList<BaseProvider> signupProviders = new ArrayList<>();
         SimpleEmailSignupProvider emailSignupProvider = new SimpleEmailSignupProvider(false);
