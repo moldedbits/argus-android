@@ -172,7 +172,6 @@ public class Argus {
             return this;
         }
 
-
         public Argus build() {
             if (argus.argusStorage == null) {
                 throw new IllegalStateException("No ArgusStorage was provided.");
