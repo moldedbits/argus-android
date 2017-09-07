@@ -4,7 +4,6 @@ package com.moldedbits.argus.provider.social.helper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -22,8 +21,11 @@ import java.util.List;
 
 public class FacebookHelper {
 
+    private List<String> facebookPermissions;
+
     public interface FBLoginResultListener {
         void onSuccess(AccessToken token);
+
         void onFailure(String message);
     }
 
@@ -44,16 +46,16 @@ public class FacebookHelper {
 
                         GraphRequest graphRequest = GraphRequest
                                 .newMeRequest(loginResult.getAccessToken(),
-                                              new GraphRequest.GraphJSONObjectCallback() {
-                                                  @Override
-                                                  public void onCompleted(JSONObject object,
-                                                                          GraphResponse response) {
-                                                      token = AccessToken.getCurrentAccessToken();
-                                                      if (resultListener != null) {
-                                                          resultListener.onSuccess(token);
-                                                      }
-                                                  }
-                                              });
+                                        new GraphRequest.GraphJSONObjectCallback() {
+                                            @Override
+                                            public void onCompleted(JSONObject object,
+                                                                    GraphResponse response) {
+                                                token = AccessToken.getCurrentAccessToken();
+                                                if (resultListener != null) {
+                                                    resultListener.onSuccess(token);
+                                                }
+                                            }
+                                        });
                         Bundle parameters = new Bundle();
                         graphRequest.setParameters(parameters);
                         graphRequest.executeAsync();
@@ -66,7 +68,6 @@ public class FacebookHelper {
                     @Override
                     public void onError(FacebookException error) {
                         resultListener.onFailure(error.getMessage());
-                        Log.d("FACEBOOK", error.getMessage());
                     }
                 });
     }
@@ -78,7 +79,7 @@ public class FacebookHelper {
             // already logged out
         }
         new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/",
-                         null, HttpMethod.DELETE, new GraphRequest
+                null, HttpMethod.DELETE, new GraphRequest
                 .Callback() {
             @Override
             public void onCompleted(GraphResponse graphResponse) {
@@ -92,6 +93,7 @@ public class FacebookHelper {
     }
 
     public void initiateLogin(Fragment fragment, List<String> faceBookPermissions) {
+        this.facebookPermissions = faceBookPermissions;
         LoginManager.getInstance()
                 .logInWithReadPermissions(fragment, faceBookPermissions);
     }

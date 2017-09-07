@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -15,7 +14,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-//TODO remove fragment dependency from google helper
 public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -38,10 +36,35 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         this.listener = listener;
     }
 
+    /**
+     * Initializing google api client when client id provided for token verification on a custom backend
+     *
+     * @param serverClientId It is a Web Client Id autocreated on
+     * @see <a href="https://console.developers.google.com/">Google developer console</a> on
+     * creating project configuration.
+     */
+    public void initializeGoogleApiClient(String serverClientId) {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
+                GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestProfile()
+                .requestEmail()
+                .requestIdToken(serverClientId)
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+    }
+
+    /**
+     * Initializing google api client if no client id provided
+     * It will throw null pointer exception while requesting Id token from GoogleSignInAccount
+     */
     public void initializeGoogleApiClient() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestId()
+                .requestProfile()
                 .requestEmail()
                 .build();
         googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
@@ -64,10 +87,8 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     public void onConnectionSuspended(int i) {
     }
 
-    //TODO create a confif file for printing logs from classes depending on Log level.
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.d("CONNECT_FAILED", "onConnectionFailed:" + connectionResult);
 
         if (!isResolving && shouldResolve) {
             if (connectionResult.hasResolution()) {
@@ -75,7 +96,6 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
                     connectionResult.startResolutionForResult(fragment.getActivity(), RC_SIGN_IN);
                     isResolving = true;
                 } catch (IntentSender.SendIntentException e) {
-                    Log.e("TAG", "Could not resolve ConnectionResult.", e);
                     isResolving = false;
                     googleApiClient.connect();
                 }
@@ -86,7 +106,6 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
     }
 
     private void showErrorDialog(ConnectionResult connectionResult) {
-        Log.d("ERROR", "" + connectionResult);
     }
 
     private void connectClient() {
@@ -121,7 +140,6 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
             GoogleSignInAccount acct = result.getSignInAccount();
             if (acct != null) {
                 listener.onSuccess(acct);
-                Log.d("GOOGLE", acct.getIdToken());
             } else {
                 listener.onFailure("login failed");
             }

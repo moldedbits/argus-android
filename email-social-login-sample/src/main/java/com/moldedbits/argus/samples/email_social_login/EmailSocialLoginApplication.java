@@ -3,6 +3,8 @@ package com.moldedbits.argus.samples.email_social_login;
 import android.app.Application;
 import android.graphics.Color;
 
+import com.facebook.FacebookSdk;
+import com.facebook.LoggingBehavior;
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusTheme;
 import com.moldedbits.argus.nextscreenproviders.SimpleNextScreenProvider;
@@ -23,6 +25,11 @@ public class EmailSocialLoginApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        if (BuildConfig.DEBUG) {
+            FacebookSdk.setIsDebugEnabled(true);
+            FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
+        }
+
         // initialize Argus
         ArrayList<BaseProvider> signupProviders = new ArrayList<>();
         SimpleEmailSignupProvider emailSignupProvider = new SimpleEmailSignupProvider(false);
@@ -34,10 +41,15 @@ public class EmailSocialLoginApplication extends Application {
         GoogleOnBoardingProvider googleProvider = new GoogleSignupProvider();
 
         FacebookOnBoardingProvider facebookProvider = new FacebookSignupProvider();
+
+        //setting permissions required by facebook to get specific data
         List<String> permissionList = new ArrayList<>();
         permissionList.add(FacebookConfig.PUBLIC_PROFILE);
+        permissionList.add(FacebookConfig.EMAIL);
         facebookProvider.setFacebookPermission(permissionList);
 
+        //setting serverClientId
+        googleProvider.setServerClientId(getString(R.string.server_client_id));
 
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();
         EmailLoginProvider loginProvider = new SimpleEmailLoginProvider();

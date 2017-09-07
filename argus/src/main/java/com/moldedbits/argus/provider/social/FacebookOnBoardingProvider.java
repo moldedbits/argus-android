@@ -19,6 +19,10 @@ public class FacebookOnBoardingProvider extends BaseProvider
 
     private FacebookHelper facebookHelper;
 
+    /**
+     * This is used to set permissions for facebook token and if no permissions are set then default
+     * "public_profile" will be used to generate the token.
+     */
     private FacebookConfig facebookConfig;
 
     public FacebookOnBoardingProvider() {
@@ -29,7 +33,13 @@ public class FacebookOnBoardingProvider extends BaseProvider
 
     @Override
     protected void performAction() {
-        facebookHelper.initiateLogin(fragment, facebookConfig.getFaceBookPermissions());
+        List<String> permissionList = facebookConfig.getFaceBookPermissions();
+        if (permissionList == null || permissionList.size() == 0) {
+            facebookConfig.getFaceBookPermissions().add(FacebookConfig.PUBLIC_PROFILE);
+            facebookHelper.initiateLogin(fragment, facebookConfig.getFaceBookPermissions());
+        } else {
+            facebookHelper.initiateLogin(fragment, permissionList);
+        }
     }
 
     @Override
