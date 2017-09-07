@@ -12,7 +12,6 @@ import com.moldedbits.argus.provider.BaseProvider;
 import com.moldedbits.argus.provider.login.EmailLoginProvider;
 import com.moldedbits.argus.provider.social.FacebookOnBoardingProvider;
 import com.moldedbits.argus.provider.social.GoogleOnBoardingProvider;
-import com.moldedbits.argus.provider.social.helper.FacebookConfig;
 import com.moldedbits.argus.storage.DefaultArgusStorage;
 import com.moldedbits.argus.validations.LengthValidation;
 
@@ -43,10 +42,10 @@ public class EmailSocialLoginApplication extends Application {
 
         //setting permissions required by facebook to get specific data
         List<String> permissionList = new ArrayList<>();
-        permissionList.add(FacebookConfig.PUBLIC_PROFILE);
+        // permissionList.add(FacebookConfig.PUBLIC_PROFILE);
         facebookProvider.setFacebookPermission(permissionList);
 
-        //setting serverClientId to verify token on custom backend
+        //setting serverClientId
         googleProvider.setServerClientId(getString(R.string.server_client_id));
 
         ArrayList<BaseProvider> loginProviders = new ArrayList<>();

@@ -37,12 +37,33 @@ public class GoogleHelper implements GoogleApiClient.ConnectionCallbacks,
         this.listener = listener;
     }
 
+    /*
+     Initializing google api client when client id provided for token verification on a custom backend
+    */
     public void initializeGoogleApiClient(String serverClientId) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestProfile()
                 .requestEmail()
                 .requestIdToken(serverClientId)
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+    }
+
+    /*
+    Initializing google api client if no client id provided
+    It will throw null pointer exception if while requesting token from GoogleSignInAccount since
+    you are requesting id token.It will be used for local app signing.
+     */
+    public void initializeGoogleApiClient() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
+                GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestProfile()
+                .requestEmail()
                 .build();
         googleApiClient = new GoogleApiClient.Builder(fragment.getContext())
                 .addConnectionCallbacks(this)
