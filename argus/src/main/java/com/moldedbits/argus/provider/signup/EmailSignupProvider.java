@@ -21,10 +21,11 @@ public abstract class EmailSignupProvider extends BaseProvider {
     private static final String TAG = "EmailSignupProvider";
     private static final String KEY_STATE = "email_signup_provider_state";
 
-    private EditText usernameEt;
+    private EditText firstNameEt;
     private EditText emailEt;
     private EditText passwordEt;
     private TextView welcomeTv;
+    private EditText lastNameEt;
     private boolean isValidationRequired;
 
     public EmailSignupProvider(boolean isValidationRequired) {
@@ -32,10 +33,14 @@ public abstract class EmailSignupProvider extends BaseProvider {
         validationEngine = new ValidationEngine();
     }
 
+    protected EmailSignupProvider() {
+    }
+
     @Override
     protected void performAction() {
         if (validate()) {
-            doServerSignup(usernameEt.getText().toString(), emailEt.getText().toString(),
+            doServerSignup(firstNameEt.getText().toString(), lastNameEt.getText().toString()
+                    , emailEt.getText().toString(),
                     passwordEt.getText().toString());
         }
     }
@@ -51,7 +56,8 @@ public abstract class EmailSignupProvider extends BaseProvider {
 
         View signUpView = LayoutInflater.from(context)
                 .inflate(R.layout.signup_email, parentView, false);
-        usernameEt = (EditText) signUpView.findViewById(R.id.username);
+        firstNameEt = (EditText) signUpView.findViewById(R.id.fname);
+        lastNameEt = (EditText) signUpView.findViewById(R.id.lname);
         emailEt = (EditText) signUpView.findViewById(R.id.email);
         passwordEt = (EditText) signUpView.findViewById(R.id.password);
         welcomeTv = (TextView) signUpView.findViewById(R.id.tv_welcome_text);
@@ -69,11 +75,12 @@ public abstract class EmailSignupProvider extends BaseProvider {
         }
 
         // we want to run all validations
-        boolean result1 = ValidationEngine.validateEditText(usernameEt, validationEngine);
-        boolean result2 = ValidationEngine.validateEditText(passwordEt, validationEngine);
-        boolean result3 = ValidationEngine.validateEditText(emailEt, validationEngine);
+        boolean result1 = ValidationEngine.validateEditText(firstNameEt, validationEngine);
+        boolean result2 = ValidationEngine.validateEditText(lastNameEt, validationEngine);
+        boolean result3 = ValidationEngine.validateEditText(passwordEt, validationEngine);
+        boolean result4 = ValidationEngine.validateEditText(emailEt, validationEngine);
 
-        return result1 && result2 && result3;
+        return result1 && result2 && result3 && result4;
     }
 
     @Override
@@ -96,5 +103,5 @@ public abstract class EmailSignupProvider extends BaseProvider {
         }
     }
 
-    public abstract void doServerSignup(String username, String email, String password);
+    public abstract void doServerSignup(String fName, String lName, String email, String password);
 }
