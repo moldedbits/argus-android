@@ -32,10 +32,7 @@ public abstract class EmailSignupProvider extends BaseProvider {
         this.isValidationRequired = isValidationRequired;
         validationEngine = new ValidationEngine();
     }
-
-    protected EmailSignupProvider() {
-    }
-
+    
     @Override
     protected void performAction() {
         if (validate()) {
