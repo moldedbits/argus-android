@@ -10,6 +10,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'checkstyle'
 
 preBuild.dependsOn 'checkstyle'
@@ -28,12 +29,12 @@ task checkstyle(type: Checkstyle) {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 5
         versionName "0.2.0"
 
@@ -96,14 +97,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.google.android.gms:play-services-auth:11.0.4'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.22.0'
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.android.gms:play-services-auth:11.2.2'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.26.0'
+    compile 'com.google.code.gson:gson:2.8.1'
     testCompile 'junit:junit:4.12'
-    provided 'org.projectlombok:lombok:1.16.16'
+    provided 'org.projectlombok:lombok:1.16.18'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 }
 
