@@ -3,7 +3,8 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
     <string name="empty_password">Invalid</string>
     <string name="empty_username">Invalid</string>
     <string name="invalid_email">Invalid Email</string>
