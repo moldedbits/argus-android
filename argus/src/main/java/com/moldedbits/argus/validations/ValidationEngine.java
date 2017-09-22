@@ -17,8 +17,9 @@ import java.util.Map;
  */
 
 public class ValidationEngine {
-    private static final String EMAIL_KEY = "email";
-    private static final String PASSWORD_KEY = "password";
+    public static final String EMAIL_KEY = "email";
+    public static final String PASSWORD_KEY = "password";
+    public static final String NAME_KEY = "name";
     private static final String TAG = "ValidationEngine";
     private final Map<String, List<Validation>> validators;
 
@@ -40,9 +41,9 @@ public class ValidationEngine {
 
     private ValidationEngine addValidations(final String key, List<Validation> validations) {
         if(!validators.containsKey(key)) {
-            validators.put(EMAIL_KEY, validations);
+            validators.put(key, validations);
         } else {
-            validators.get(EMAIL_KEY).addAll(validations);
+            validators.get(key).addAll(validations);
         }
 
         return this;
@@ -64,6 +65,14 @@ public class ValidationEngine {
         return addValidations(PASSWORD_KEY, passwordValidations);
     }
 
+    public ValidationEngine addNameValidation(Validation validation) {
+        return addValidation(NAME_KEY, validation);
+    }
+
+    public ValidationEngine addNameValidations(List<Validation> passwordValidations) {
+        return addValidations(NAME_KEY, passwordValidations);
+    }
+
     @Nullable
     public List<Validation> getValidationsByKey(String key) {
         if(validators.containsKey(key)) {
@@ -77,7 +86,7 @@ public class ValidationEngine {
         String errors = "";
         for(Validation rule: rules) {
             if(!rule.validate(text)) {
-                errors += "\n" + rule.getErrorMessage();
+                errors += errors.isEmpty() ? rule.getErrorMessage() : "\n" + rule.getErrorMessage();
             }
         }
 
@@ -102,5 +111,9 @@ public class ValidationEngine {
         }
 
         return allWell;
+    }
+
+    public boolean isValidatorAdded(String validationKey) {
+        return validators.containsKey(validationKey);
     }
 }

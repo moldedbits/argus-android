@@ -2,7 +2,6 @@ package com.moldedbits.argus.provider.login;
 
 import android.support.annotation.Nullable;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.moldedbits.argus.Argus;
+import com.moldedbits.argus.Constants;
 import com.moldedbits.argus.ForgotPasswordFragment;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
@@ -40,19 +40,27 @@ public abstract class EmailLoginProvider extends BaseProvider {
     @Nullable
     @Override
     public View inflateView(ViewGroup parentView) {
-        getValidationEngine()
-                .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                        context.getString(R.string.invalid_email)));
+        if (!validationEngine.isValidatorAdded(Constants.REGEX_EMAIL)) {
+            validationEngine
+                    .addEmailValidation(new RegexValidation(Constants.REGEX_EMAIL,
+                            parentView.getContext().getString(R.string.invalid_email)));
+        }
+
+        if (!validationEngine.isValidatorAdded(Constants.REGEX_REQUIRED)) {
+            validationEngine
+                    .addPasswordValidation(new RegexValidation(Constants.REGEX_REQUIRED,
+                            parentView.getContext().getString(R.string.required)));
+        }
 
         if (context != null) {
             View loginView = LayoutInflater.from(context)
                     .inflate(R.layout.login_email, parentView, false);
 
-            usernameInput = (EditText) loginView.findViewById(R.id.username);
-            passwordInput = (EditText) loginView.findViewById(R.id.password);
+            usernameInput = loginView.findViewById(R.id.username);
+            passwordInput = loginView.findViewById(R.id.password);
 
             if (showPasswordEnabled) {
-                ivShowPassword = (ImageView) loginView.findViewById(R.id.iv_show_pwd);
+                ivShowPassword = loginView.findViewById(R.id.iv_show_pwd);
                 ivShowPassword.setVisibility(View.VISIBLE);
                 if (ivShowPassword != null) {
                     ivShowPassword.setOnClickListener(new View.OnClickListener() {

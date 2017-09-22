@@ -1,5 +1,6 @@
 package com.moldedbits.argus.provider.signup;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.moldedbits.argus.Argus;
 import com.moldedbits.argus.ArgusState;
+import com.moldedbits.argus.Constants;
 import com.moldedbits.argus.R;
 import com.moldedbits.argus.logger.ArgusLogger;
 import com.moldedbits.argus.provider.BaseProvider;
@@ -44,20 +46,35 @@ public abstract class EmailSignupProvider extends BaseProvider {
 
     @Override
     protected View inflateView(ViewGroup parentView) {
-        if (context != null) {
-            getValidationEngine()
-                    .addEmailValidation(new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
-                            context.getString(
-                                    R.string.invalid_email)));
+        Context context = parentView.getContext();
+        if (!validationEngine.isValidatorAdded(ValidationEngine.EMAIL_KEY)) {
+            validationEngine
+                    .addEmailValidation(
+                            new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+                                    context.getString(R.string.invalid_email)));
+        }
+
+        if (!validationEngine.isValidatorAdded(ValidationEngine.PASSWORD_KEY)) {
+            validationEngine
+                    .addPasswordValidation(
+                            new RegexValidation(Constants.REGEX_REQUIRED,
+                                    context.getString(R.string.required)));
+        }
+
+        if (!validationEngine.isValidatorAdded(ValidationEngine.NAME_KEY)) {
+            validationEngine
+                    .addNameValidation(
+                            new RegexValidation(Constants.REGEX_REQUIRED,
+                                    context.getString(R.string.required)));
         }
 
         View signUpView = LayoutInflater.from(context)
                 .inflate(R.layout.signup_email, parentView, false);
-        firstNameEt = (EditText) signUpView.findViewById(R.id.fname);
-        lastNameEt = (EditText) signUpView.findViewById(R.id.lname);
-        emailEt = (EditText) signUpView.findViewById(R.id.email);
-        passwordEt = (EditText) signUpView.findViewById(R.id.password);
-        welcomeTv = (TextView) signUpView.findViewById(R.id.tv_welcome_text);
+        firstNameEt = signUpView.findViewById(R.id.fname);
+        lastNameEt = signUpView.findViewById(R.id.lname);
+        emailEt = signUpView.findViewById(R.id.email);
+        passwordEt = signUpView.findViewById(R.id.password);
+        welcomeTv = signUpView.findViewById(R.id.tv_welcome_text);
 
         theme = Argus.getInstance().getArgusTheme();
 

@@ -1,5 +1,6 @@
 package com.moldedbits.argus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -34,7 +35,7 @@ public class LoginFragment extends BaseFragment {
         }
         if (rootView != null) {
             if (Argus.getInstance().isSkipLoginEnable()) {
-                TextView textView = (TextView) rootView.findViewById(R.id.tv_skip_login);
+                TextView textView = rootView.findViewById(R.id.tv_skip_login);
                 if (textView != null) {
                     String skipText = Argus.getInstance().getSkipLoginText();
                     if (Argus.getInstance().isSkipLoginEnable()) {
@@ -61,8 +62,9 @@ public class LoginFragment extends BaseFragment {
 
     public void onSkipLogin() {
         //TODO if needed other activity for this we can also do that later
-        startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(getActivity()));
-        getActivity().finish();
+        Intent intent = Argus.getInstance().getNextScreenProvider().getNextScreen(getActivity());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     public int getLayoutId() {

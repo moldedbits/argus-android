@@ -18,8 +18,8 @@
             android:id="@+id/iv_logo"
             android:layout_width="@dimen/logo_size"
             android:layout_height="@dimen/logo_size"
-            android:layout_gravity="center"
-            android:contentDescription="image" />
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/logo" />
 
         <FrameLayout
             android:id="@id/container_email"
@@ -62,10 +62,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:onClick="onSignupClick"
-                android:paddingLeft="@dimen/padding_x"
-                android:paddingStart="@dimen/padding_x"
-                android:paddingRight="@dimen/padding_x"
                 android:paddingEnd="@dimen/padding_x"
+                android:paddingLeft="@dimen/padding_x"
+                android:paddingRight="@dimen/padding_x"
+                android:paddingStart="@dimen/padding_x"
                 android:text="@string/sign_up"
                 android:textSize="@dimen/text_14" />
         </LinearLayout>
