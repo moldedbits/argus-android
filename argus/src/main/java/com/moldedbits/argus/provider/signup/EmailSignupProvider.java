@@ -2,7 +2,6 @@ package com.moldedbits.argus.provider.signup;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,7 @@ public abstract class EmailSignupProvider extends BaseProvider {
         if (!validationEngine.isValidatorAdded(ValidationEngine.EMAIL_KEY)) {
             validationEngine
                     .addEmailValidation(
-                            new RegexValidation(Patterns.EMAIL_ADDRESS.pattern(),
+                            new RegexValidation(Constants.REGEX_EMAIL,
                                     context.getString(R.string.invalid_email)));
         }
 

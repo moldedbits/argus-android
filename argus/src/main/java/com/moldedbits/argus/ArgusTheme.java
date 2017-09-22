@@ -35,6 +35,10 @@ public class ArgusTheme {
     private int welcomeTextColor;
 
     @Getter
+    @ColorInt
+    private int buttonTextColor;
+
+    @Getter
     private boolean showEditTextDrawables;
 
     public static class Builder {
@@ -90,6 +94,11 @@ public class ArgusTheme {
 
         public Builder hideWelcomeText() {
             argusTheme.welcomeTextVisibility = View.GONE;
+            return this;
+        }
+
+        public Builder buttonTextColor(int buttonTextColor) {
+            argusTheme.buttonTextColor = buttonTextColor;
             return this;
         }
 

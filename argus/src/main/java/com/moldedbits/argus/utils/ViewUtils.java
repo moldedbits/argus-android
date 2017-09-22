@@ -30,4 +30,17 @@ public final class ViewUtils {
         return accentColor;
     }
 
+    // caching primary color
+    private static int primaryColor = -1;
+    public static int fetchPrimaryColor(final Context context) {
+        if(primaryColor == -1) {
+            TypedValue typedValue = new TypedValue();
+            TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorPrimary});
+            primaryColor = a.getColor(0, 0);
+            a.recycle();
+        }
+
+        return primaryColor;
+    }
+
 }

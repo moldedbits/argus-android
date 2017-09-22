@@ -40,13 +40,13 @@ public abstract class EmailLoginProvider extends BaseProvider {
     @Nullable
     @Override
     public View inflateView(ViewGroup parentView) {
-        if (!validationEngine.isValidatorAdded(Constants.REGEX_EMAIL)) {
+        if (!validationEngine.isValidatorAdded(ValidationEngine.EMAIL_KEY)) {
             validationEngine
                     .addEmailValidation(new RegexValidation(Constants.REGEX_EMAIL,
                             parentView.getContext().getString(R.string.invalid_email)));
         }
 
-        if (!validationEngine.isValidatorAdded(Constants.REGEX_REQUIRED)) {
+        if (!validationEngine.isValidatorAdded(ValidationEngine.PASSWORD_KEY)) {
             validationEngine
                     .addPasswordValidation(new RegexValidation(Constants.REGEX_REQUIRED,
                             parentView.getContext().getString(R.string.required)));

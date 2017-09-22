@@ -14,7 +14,7 @@ import com.moldedbits.argus.R;
 public class ThemeHelper {
 
     public void applyTheme(View view, ArgusTheme theme) {
-        TextView welcomeTv = (TextView) view.findViewById(R.id.tv_welcome_text);
+        TextView welcomeTv = view.findViewById(R.id.tv_welcome_text);
         if (welcomeTv != null && !TextUtils.isEmpty(theme.getWelcomeText())) {
             if (theme.getWelcomeTextVisibility() == View.VISIBLE) {
                 welcomeTv.setVisibility(View.VISIBLE);
@@ -27,9 +27,16 @@ public class ThemeHelper {
         }
 
         if (theme.getButtonDrawable() != 0) {
-            Button actionButton = (Button) view.findViewById(R.id.action_button);
+            Button actionButton = view.findViewById(R.id.action_button);
             if (actionButton != null) {
                 actionButton.setBackgroundResource(theme.getButtonDrawable());
+            }
+        }
+
+        if (theme.getButtonTextColor() != 0) {
+            Button actionButton = view.findViewById(R.id.action_button);
+            if (actionButton != null) {
+                actionButton.setTextColor(theme.getButtonTextColor());
             }
         }
 

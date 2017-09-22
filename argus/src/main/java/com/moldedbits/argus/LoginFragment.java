@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.moldedbits.argus.provider.BaseProvider;
+import com.moldedbits.argus.utils.ViewUtils;
 
 import java.util.List;
 
@@ -34,9 +35,17 @@ public class LoginFragment extends BaseFragment {
             }
         }
         if (rootView != null) {
+            if (Argus.getInstance().getSignupProviders() != null) {
+                TextView textView = rootView.findViewById(R.id.tv_signup);
+                if (textView != null) {
+                    textView.setTextColor(ViewUtils.fetchAccentColor(getActivity()));
+                }
+            }
+
             if (Argus.getInstance().isSkipLoginEnable()) {
                 TextView textView = rootView.findViewById(R.id.tv_skip_login);
                 if (textView != null) {
+                    textView.setTextColor(ViewUtils.fetchPrimaryColor(getActivity()));
                     String skipText = Argus.getInstance().getSkipLoginText();
                     if (Argus.getInstance().isSkipLoginEnable()) {
                         if (!TextUtils.isEmpty(skipText)) {
