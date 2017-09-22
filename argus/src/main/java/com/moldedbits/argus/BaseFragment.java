@@ -45,10 +45,11 @@ public abstract class BaseFragment extends Fragment implements ResultListener {
 
         PorterDuffColorFilter filter = new PorterDuffColorFilter(
                 ViewUtils.fetchAccentColor(getContext()), PorterDuff.Mode.MULTIPLY);
-        ContextCompat.getDrawable(getContext(), R.drawable.email_icon).setColorFilter(filter);
-        ContextCompat.getDrawable(getContext(), R.drawable.password_icon).setColorFilter(filter);
+        ContextCompat.getDrawable(getContext(), R.drawable.ic_mail).setColorFilter(filter);
+        ContextCompat.getDrawable(getContext(), R.drawable.ic_lock).setColorFilter(filter);
         ContextCompat.getDrawable(getContext(), R.drawable.icn_show_pwd).setColorFilter(filter);
         ContextCompat.getDrawable(getContext(), R.drawable.ic_hide_pwd).setColorFilter(filter);
+        ContextCompat.getDrawable(getContext(), R.drawable.ic_person).setColorFilter(filter);
     }
 
     protected void setView(View view, List<BaseProvider> providerList) {

@@ -15,9 +15,9 @@ class SimpleEmailSignupProvider extends EmailSignupProvider {
     }
 
     @Override
-    public void doServerSignup(String username, String email, String password) {
+    public void doServerSignup(String fName, String lName, String email, String password) {
         // need to set state signed-in in Argus here
-        if(username.equals("valid@user.com") && password.equals("password")) {
+        if(email.equals("valid@user.com") && password.equals("password")) {
             // do a real API call here and in on success do following
             if (context != null) {
                 Toast.makeText(context, context.getString(R.string.signing_up),
@@ -30,5 +30,4 @@ class SimpleEmailSignupProvider extends EmailSignupProvider {
             }
         }
     }
-
 }

@@ -26,7 +26,7 @@
             android:id="@+id/iv_email_et"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/email_icon" />
+            android:src="@drawable/ic_mail" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             android:id="@+id/iv_password_et"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/password_icon" />
+            android:src="@drawable/ic_lock" />
 
         <RelativeLayout
             android:layout_width="match_parent"

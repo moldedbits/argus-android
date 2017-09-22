@@ -26,11 +26,11 @@
             android:id="@+id/fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/email_icon"
+            android:drawableLeft="@drawable/ic_person"
             android:drawablePadding="@dimen/margin_x"
-            android:drawableStart="@drawable/email_icon"
+            android:drawableStart="@drawable/ic_person"
             android:inputType="textPersonName"
-            android:tag="fname" />
+            android:tag="name" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -43,11 +43,11 @@
             android:id="@+id/lname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/email_icon"
+            android:drawableLeft="@drawable/ic_person"
             android:drawablePadding="@dimen/margin_x"
-            android:drawableStart="@drawable/email_icon"
+            android:drawableStart="@drawable/ic_person"
             android:inputType="textPersonName"
-            android:tag="lname" />
+            android:tag="name" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -61,9 +61,9 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/email_icon"
+            android:drawableLeft="@drawable/ic_mail"
             android:drawablePadding="@dimen/margin_x"
-            android:drawableStart="@drawable/email_icon"
+            android:drawableStart="@drawable/ic_mail"
             android:fontFamily="sans-serif"
             android:inputType="textEmailAddress"
             android:tag="email" />
@@ -81,9 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawableLeft="@drawable/password_icon"
+            android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="@dimen/margin_x"
-            android:drawableStart="@drawable/password_icon"
+            android:drawableStart="@drawable/ic_lock"
             android:fontFamily="sans-serif"
             android:inputType="textPassword"
             android:tag="password" />
