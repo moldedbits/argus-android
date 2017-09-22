@@ -68,13 +68,6 @@ public abstract class EmailSignupProvider extends BaseProvider {
                                     context.getString(R.string.required)));
         }
 
-        if (!validationEngine.isValidatorAdded(ValidationEngine.NAME_KEY)) {
-            validationEngine
-                    .addNameValidation(
-                            new RegexValidation(Constants.REGEX_REQUIRED,
-                                    context.getString(R.string.required)));
-        }
-
         View signUpView = LayoutInflater.from(context)
                 .inflate(R.layout.signup_email, parentView, false);
         firstNameEt = signUpView.findViewById(R.id.fname);
