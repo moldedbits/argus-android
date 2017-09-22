@@ -1,5 +1,6 @@
 package com.moldedbits.argus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -57,8 +58,9 @@ public class ArgusActivity extends AppCompatActivity
     }
 
     private void showNextScreen() {
-        startActivity(Argus.getInstance().getNextScreenProvider().getNextScreen(this));
-        finish();
+        Intent intent = Argus.getInstance().getNextScreenProvider().getNextScreen(this);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     public void onSignupClick(View view) {
