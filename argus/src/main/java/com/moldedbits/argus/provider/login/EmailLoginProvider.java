@@ -40,16 +40,19 @@ public abstract class EmailLoginProvider extends BaseProvider {
     @Nullable
     @Override
     public View inflateView(ViewGroup parentView) {
+        if (!validationEngine.isValidatorAdded(ValidationEngine.REQUIRED_KEY)) {
+            validationEngine.addRequiredValidation(new RegexValidation(Constants.REGEX_REQUIRED,
+                    parentView.getContext().getString(R.string.required)));
+        }
+
         if (!validationEngine.isValidatorAdded(ValidationEngine.EMAIL_KEY)) {
-            validationEngine
-                    .addEmailValidation(new RegexValidation(Constants.REGEX_EMAIL,
-                            parentView.getContext().getString(R.string.invalid_email)));
+            validationEngine.addEmailValidation(new RegexValidation(Constants.REGEX_EMAIL,
+                    parentView.getContext().getString(R.string.invalid_email)));
         }
 
         if (!validationEngine.isValidatorAdded(ValidationEngine.PASSWORD_KEY)) {
-            validationEngine
-                    .addPasswordValidation(new RegexValidation(Constants.REGEX_REQUIRED,
-                            parentView.getContext().getString(R.string.required)));
+            validationEngine.addPasswordValidation(new RegexValidation(Constants.REGEX_REQUIRED,
+                    parentView.getContext().getString(R.string.required)));
         }
 
         if (context != null) {
@@ -108,7 +111,13 @@ public abstract class EmailLoginProvider extends BaseProvider {
         }
 
         // we want to run all validations
+        usernameInput.setTag(ValidationEngine.REQUIRED_KEY);
         boolean result1 = ValidationEngine.validateEditText(usernameInput, validationEngine);
+        if (result1) {
+            usernameInput.setTag(ValidationEngine.EMAIL_KEY);
+            result1 = ValidationEngine.validateEditText(usernameInput, validationEngine);
+        }
+
         boolean result2 = ValidationEngine.validateEditText(passwordInput, validationEngine);
 
         return result1 && result2;

@@ -33,7 +33,7 @@ public abstract class EmailSignupProvider extends BaseProvider {
         this.isValidationRequired = isValidationRequired;
         validationEngine = new ValidationEngine();
     }
-    
+
     @Override
     protected void performAction() {
         if (validate()) {
@@ -46,25 +46,27 @@ public abstract class EmailSignupProvider extends BaseProvider {
     @Override
     protected View inflateView(ViewGroup parentView) {
         Context context = parentView.getContext();
+        if (!validationEngine.isValidatorAdded(ValidationEngine.REQUIRED_KEY)) {
+            validationEngine.addRequiredValidation(new RegexValidation(Constants.REGEX_REQUIRED,
+                    parentView.getContext().getString(R.string.required)));
+        }
+
         if (!validationEngine.isValidatorAdded(ValidationEngine.EMAIL_KEY)) {
-            validationEngine
-                    .addEmailValidation(
-                            new RegexValidation(Constants.REGEX_EMAIL,
-                                    context.getString(R.string.invalid_email)));
+            validationEngine.addEmailValidation(
+                    new RegexValidation(Constants.REGEX_EMAIL,
+                            context.getString(R.string.invalid_email)));
         }
 
         if (!validationEngine.isValidatorAdded(ValidationEngine.PASSWORD_KEY)) {
-            validationEngine
-                    .addPasswordValidation(
-                            new RegexValidation(Constants.REGEX_REQUIRED,
-                                    context.getString(R.string.required)));
+            validationEngine.addPasswordValidation(
+                    new RegexValidation(Constants.REGEX_REQUIRED,
+                            context.getString(R.string.required)));
         }
 
         if (!validationEngine.isValidatorAdded(ValidationEngine.NAME_KEY)) {
-            validationEngine
-                    .addNameValidation(
-                            new RegexValidation(Constants.REGEX_REQUIRED,
-                                    context.getString(R.string.required)));
+            validationEngine.addNameValidation(
+                    new RegexValidation(Constants.REGEX_REQUIRED,
+                            context.getString(R.string.required)));
         }
 
         View signUpView = LayoutInflater.from(context)
@@ -91,7 +93,13 @@ public abstract class EmailSignupProvider extends BaseProvider {
         boolean result1 = ValidationEngine.validateEditText(firstNameEt, validationEngine);
         boolean result2 = ValidationEngine.validateEditText(lastNameEt, validationEngine);
         boolean result3 = ValidationEngine.validateEditText(passwordEt, validationEngine);
+
+        emailEt.setTag(ValidationEngine.REQUIRED_KEY);
         boolean result4 = ValidationEngine.validateEditText(emailEt, validationEngine);
+        if (result4) {
+            emailEt.setTag(ValidationEngine.EMAIL_KEY);
+            result4 = ValidationEngine.validateEditText(emailEt, validationEngine);
+        }
 
         return result1 && result2 && result3 && result4;
     }
