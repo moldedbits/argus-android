@@ -19,6 +19,7 @@ import java.util.Map;
 public class ValidationEngine {
     public static final String EMAIL_KEY = "email";
     public static final String PASSWORD_KEY = "password";
+    public static final String REQUIRED_KEY = "required";
     public static final String NAME_KEY = "name";
     private static final String TAG = "ValidationEngine";
     private final Map<String, List<Validation>> validators;
@@ -63,6 +64,10 @@ public class ValidationEngine {
 
     public ValidationEngine addPasswordValidations(List<Validation> passwordValidations) {
         return addValidations(PASSWORD_KEY, passwordValidations);
+    }
+
+    public ValidationEngine addRequiredValidation(Validation validation) {
+        return addValidation(REQUIRED_KEY, validation);
     }
 
     public ValidationEngine addNameValidation(Validation validation) {
